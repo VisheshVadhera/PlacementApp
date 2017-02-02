@@ -43,4 +43,8 @@ dependencies {
 
     //Accountkit
     compile 'com.facebook.android:account-kit-sdk:4.+'
+
+    //Dagger 2
+    compile 'com.google.dagger:dagger:2.8'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.8'
 }
