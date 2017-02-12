@@ -1,28 +1,43 @@
-package com.vishesh.tpc_stud.auth;
+package com.vishesh.tpc_stud.auth.views;
+
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.facebook.accountkit.ui.AccountKitActivity;
 import com.facebook.accountkit.ui.AccountKitConfiguration;
 import com.facebook.accountkit.ui.LoginType;
 import com.vishesh.tpc_stud.R;
 
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class LoginActivity extends AppCompatActivity {
+/**
+ * Created by vishesh on 12/2/17.
+ */
+public class LoginFragment extends Fragment {
 
     private static final int ACCOUNT_KIT_REQUEST_CODE = 100;
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+
+    public LoginFragment() {
+        setRetainInstance(true);
     }
 
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_login, container, false);
+        ButterKnife.bind(this, view);
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
 
     @OnClick(R.id.button_login)
     void onEmailLoginClicked() {
@@ -31,14 +46,14 @@ public class LoginActivity extends AppCompatActivity {
                 new AccountKitConfiguration.AccountKitConfigurationBuilder(LoginType.EMAIL,
                         AccountKitActivity.ResponseType.CODE).build();
 
-        final Intent accountKitIntent = new Intent(this, AccountKitActivity.class);
+        final Intent accountKitIntent = new Intent(getActivity(), AccountKitActivity.class);
         accountKitIntent.putExtra(AccountKitActivity.ACCOUNT_KIT_ACTIVITY_CONFIGURATION, accountKitConfiguration);
 
         startActivityForResult(accountKitIntent, ACCOUNT_KIT_REQUEST_CODE);
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK) {
             switch (resultCode) {
@@ -46,6 +61,5 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         }
-
     }
 }

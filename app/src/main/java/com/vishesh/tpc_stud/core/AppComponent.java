@@ -1,6 +1,7 @@
 package com.vishesh.tpc_stud.core;
 
 import com.vishesh.tpc_stud.core.modules.AppModule;
+import com.vishesh.tpc_stud.core.views.BaseActivity;
 
 import javax.inject.Singleton;
 
@@ -13,5 +14,6 @@ import dagger.Component;
 @Component(modules = AppModule.class)
 public interface AppComponent {
 
+    void inject(BaseActivity baseActivity);
 
 }
