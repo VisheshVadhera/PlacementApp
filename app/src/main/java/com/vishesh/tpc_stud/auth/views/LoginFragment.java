@@ -10,10 +10,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.facebook.accountkit.AccountKitLoginResult;
 import com.facebook.accountkit.ui.AccountKitActivity;
 import com.facebook.accountkit.ui.AccountKitConfiguration;
 import com.facebook.accountkit.ui.LoginType;
 import com.vishesh.tpc_stud.R;
+import com.vishesh.tpc_stud.auth.presenters.LoginPresenter;
+
+import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -25,6 +29,8 @@ public class LoginFragment extends Fragment {
 
     private static final int ACCOUNT_KIT_REQUEST_CODE = 100;
 
+    @Inject
+    LoginPresenter loginPresenter;
 
 
     public LoginFragment() {
@@ -58,7 +64,8 @@ public class LoginFragment extends Fragment {
         if (resultCode == Activity.RESULT_OK) {
             switch (resultCode) {
                 case ACCOUNT_KIT_REQUEST_CODE:
-
+                    AccountKitLoginResult accountKitLoginResult = data.getParcelableExtra(AccountKitLoginResult.RESULT_KEY);
+                    loginPresenter.onEmailLoginResultReceived(accountKitLoginResult);
             }
         }
     }
