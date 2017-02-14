@@ -7,7 +7,7 @@ import com.facebook.accountkit.AccountKitLoginResult;
  */
 public class LoginPresenter {
 
-    private final
+
 
     public void onEmailLoginResultReceived(AccountKitLoginResult accountKitLoginResult) {
 

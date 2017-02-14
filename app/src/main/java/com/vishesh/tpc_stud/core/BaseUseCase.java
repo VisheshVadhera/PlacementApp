@@ -1,12 +1,10 @@
 package com.vishesh.tpc_stud.core;
 
-import javax.inject.Inject;
-
-import io.reactivex.Observable;
 import io.reactivex.Scheduler;
+import io.reactivex.Single;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.observers.DisposableObserver;
+import io.reactivex.observers.DisposableSingleObserver;
 
 /**
  * Created by vishesh on 14/2/17.
@@ -17,7 +15,6 @@ public abstract class BaseUseCase<T, Parameters> {
     private final Scheduler postJobScheduler;
     private final CompositeDisposable compositeDisposable;
 
-    @Inject
     protected BaseUseCase(Scheduler jobScheduler,
                           Scheduler postJobScheduler,
                           CompositeDisposable compositeDisposable) {
@@ -26,11 +23,11 @@ public abstract class BaseUseCase<T, Parameters> {
         this.compositeDisposable = compositeDisposable;
     }
 
-    public void execute(DisposableObserver<T> disposableObserver, Parameters params) {
-        Observable<T> observable = buildObservable(params)
+    public void execute(DisposableSingleObserver<T> disposableObserver, Parameters params) {
+        Single<T> single = buildObservable(params)
                 .subscribeOn(jobScheduler)
                 .observeOn(postJobScheduler);
-        addDisposable(observable.subscribeWith(disposableObserver));
+        addDisposable(single.subscribeWith(disposableObserver));
     }
 
     public void dispose() {
@@ -39,7 +36,7 @@ public abstract class BaseUseCase<T, Parameters> {
         }
     }
 
-    protected abstract Observable<T> buildObservable(Parameters params);
+    protected abstract Single<T> buildObservable(Parameters params);
 
     private void addDisposable(Disposable disposable) {
         compositeDisposable.add(disposable);
