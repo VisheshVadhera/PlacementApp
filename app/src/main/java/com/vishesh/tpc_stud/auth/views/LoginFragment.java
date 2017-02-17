@@ -5,9 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.facebook.accountkit.AccountKitLoginResult;
 import com.facebook.accountkit.ui.AccountKitActivity;
@@ -20,7 +18,6 @@ import com.vishesh.tpc_stud.core.views.BaseFragment;
 
 import javax.inject.Inject;
 
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -39,14 +36,6 @@ public class LoginFragment
         setRetainInstance(true);
     }
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_login, container, false);
-        ButterKnife.bind(this, view);
-        return view;
-    }
-
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -56,6 +45,11 @@ public class LoginFragment
     @Override
     public void injectDependencies() {
         ((TpcStudApplication) getActivity().getApplication()).getAppComponent().inject(this);
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_login;
     }
 
     @OnClick(R.id.button_login)
