@@ -1,7 +1,7 @@
 package com.vishesh.tpc_stud.auth.useCases;
 
 import com.vishesh.tpc_stud.auth.services.AuthService;
-import com.vishesh.tpc_stud.core.BaseUseCase;
+import com.vishesh.tpc_stud.core.helpers.BaseUseCase;
 
 import java.util.Map;
 
@@ -15,7 +15,7 @@ import io.reactivex.disposables.CompositeDisposable;
 /**
  * Created by vishesh on 14/2/17.
  */
-public class LoginUseCase extends BaseUseCase<Void, Map<String, Integer>>{
+public class LoginUseCase extends BaseUseCase<Void, Map<String, String>>{
 
     private final AuthService authService;
 
@@ -29,7 +29,7 @@ public class LoginUseCase extends BaseUseCase<Void, Map<String, Integer>>{
     }
 
     @Override
-    protected Single<Void> buildObservable(Map<String, Integer> map) {
-        return authService.emailLogin(map);
+    protected Single<Void> buildObservable(Map<String, String> params) {
+        return authService.emailLogin(params);
     }
 }

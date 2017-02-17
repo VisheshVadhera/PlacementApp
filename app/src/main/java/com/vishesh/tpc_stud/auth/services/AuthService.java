@@ -12,6 +12,6 @@ import retrofit2.http.POST;
 public interface AuthService {
 
     @POST("emailLogin")
-    Single<Void> emailLogin(@Body Map<String, Integer> map);
+    Single<Void> emailLogin(@Body Map<String, String> map);
 
 }

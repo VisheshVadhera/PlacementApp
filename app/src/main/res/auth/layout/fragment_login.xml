@@ -11,8 +11,8 @@
         android:id="@+id/button_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         android:text="@string/button_login_text" />
+
+    <include layout="@layout/view_loader"/>
 
 </LinearLayout>

@@ -26,7 +26,9 @@ import butterknife.OnClick;
 /**
  * Created by vishesh on 12/2/17.
  */
-public class LoginFragment extends BaseFragment {
+public class LoginFragment
+        extends BaseFragment
+        implements LoginPresenter.LoginView {
 
     private static final int ACCOUNT_KIT_REQUEST_CODE = 100;
 
@@ -42,7 +44,13 @@ public class LoginFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         ButterKnife.bind(this, view);
-        return super.onCreateView(inflater, container, savedInstanceState);
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        loginPresenter.setView(this);
     }
 
     @Override
@@ -65,13 +73,18 @@ public class LoginFragment extends BaseFragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK) {
-            switch (resultCode) {
+            switch (requestCode) {
                 case ACCOUNT_KIT_REQUEST_CODE:
                     AccountKitLoginResult accountKitLoginResult = data.getParcelableExtra(AccountKitLoginResult.RESULT_KEY);
                     loginPresenter.onEmailLoginResultReceived(accountKitLoginResult);
+                    break;
             }
         }
+    }
+
+    @Override
+    public void takeUserName() {
+
     }
 }

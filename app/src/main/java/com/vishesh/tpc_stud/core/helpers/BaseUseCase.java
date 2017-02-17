@@ -1,4 +1,4 @@
-package com.vishesh.tpc_stud.core;
+package com.vishesh.tpc_stud.core.helpers;
 
 import io.reactivex.Scheduler;
 import io.reactivex.Single;

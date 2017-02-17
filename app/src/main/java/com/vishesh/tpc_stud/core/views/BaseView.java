@@ -5,5 +5,9 @@ package com.vishesh.tpc_stud.core.views;
  */
 public interface BaseView {
 
-    public void showErrorMessage(String message);
+    public void showMessage(String message);
+
+    public void showLoader();
+
+    public void hideLoader();
 }

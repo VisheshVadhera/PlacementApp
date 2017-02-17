@@ -3,11 +3,15 @@ package com.vishesh.tpc_stud.core.presenters;
 /**
  * Created by vishesh on 17/2/17.
  */
-public interface BasePresenter {
+public abstract class BasePresenter {
 
-    void resume();
+    public abstract void resume();
 
-    void pause();
+    public abstract void pause();
 
-    void destroy();
+    public abstract void destroy();
+
+    protected void handleError(Throwable throwable){
+
+    }
 }

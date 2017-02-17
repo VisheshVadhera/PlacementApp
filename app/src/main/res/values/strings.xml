@@ -1,5 +1,3 @@
 <resources>
     <string name="app_name">tpc-stud</string>
-
-    <string name="button_login_text">Sign In With Email</string>
 </resources>
