@@ -27,7 +27,11 @@ android {
     }
 }
 
-repositories{
+ext {
+    supportLibVersion = '23.0.0'
+}
+
+repositories {
     jcenter()
 }
 
@@ -35,7 +39,10 @@ repositories{
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:24.2.1'
+
+    //Support Library
+    compile "com.android.support:appcompat-v7:${supportLibVersion}"
+    compile "com.android.support:design:${supportLibVersion}"
 
     //Butterknife
     compile 'com.jakewharton:butterknife:8.5.1'
