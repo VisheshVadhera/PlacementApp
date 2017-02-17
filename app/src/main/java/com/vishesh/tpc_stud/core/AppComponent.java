@@ -1,5 +1,6 @@
 package com.vishesh.tpc_stud.core;
 
+import com.vishesh.tpc_stud.auth.views.LoginFragment;
 import com.vishesh.tpc_stud.core.modules.AppModule;
 import com.vishesh.tpc_stud.core.views.BaseActivity;
 
@@ -16,4 +17,5 @@ public interface AppComponent {
 
     void inject(BaseActivity baseActivity);
 
+    void inject(LoginFragment loginFragment);
 }

@@ -2,7 +2,6 @@ package com.vishesh.tpc_stud.auth.views;
 
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,6 +15,8 @@ import com.facebook.accountkit.ui.AccountKitConfiguration;
 import com.facebook.accountkit.ui.LoginType;
 import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.auth.presenters.LoginPresenter;
+import com.vishesh.tpc_stud.core.TpcStudApplication;
+import com.vishesh.tpc_stud.core.views.BaseFragment;
 
 import javax.inject.Inject;
 
@@ -25,13 +26,12 @@ import butterknife.OnClick;
 /**
  * Created by vishesh on 12/2/17.
  */
-public class LoginFragment extends Fragment {
+public class LoginFragment extends BaseFragment {
 
     private static final int ACCOUNT_KIT_REQUEST_CODE = 100;
 
     @Inject
     LoginPresenter loginPresenter;
-
 
     public LoginFragment() {
         setRetainInstance(true);
@@ -43,6 +43,11 @@ public class LoginFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         ButterKnife.bind(this, view);
         return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+    @Override
+    public void injectDependencies() {
+        ((TpcStudApplication) getActivity().getApplication()).getAppComponent().inject(this);
     }
 
     @OnClick(R.id.button_login)

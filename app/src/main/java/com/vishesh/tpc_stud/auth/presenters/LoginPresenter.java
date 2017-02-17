@@ -1,12 +1,13 @@
 package com.vishesh.tpc_stud.auth.presenters;
 
 import com.facebook.accountkit.AccountKitLoginResult;
+import com.vishesh.tpc_stud.core.presenters.BasePresenter;
+import com.vishesh.tpc_stud.core.views.BaseView;
 
 /**
  * Created by vishesh on 12/2/17.
  */
-public class LoginPresenter {
-
+public class LoginPresenter implements BasePresenter{
 
 
     public void onEmailLoginResultReceived(AccountKitLoginResult accountKitLoginResult) {
@@ -25,5 +26,24 @@ public class LoginPresenter {
 
 
         }
+    }
+
+    @Override
+    public void resume() {
+
+    }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void destroy() {
+
+    }
+
+    public interface LoginView extends BaseView {
+
     }
 }
