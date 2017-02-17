@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:text="@string/button_login_text" />
 
-    <include layout="@layout/view_loader"/>
+    <include layout="@layout/view_loader"
+        android:visibility="gone"/>
 
 </LinearLayout>

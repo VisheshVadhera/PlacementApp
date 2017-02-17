@@ -12,18 +12,18 @@ android {
         versionCode 1
         versionName "1.0"
         resValue "string", "base_url", BASE_URL
+        resValue "string", "facebook_app_id", FACEBOOK_APP_ID
+        resValue "string", "account_kit_client_token", ACCOUNT_KIT_CLIENT_TOKEN
+        manifestPlaceholders = [
+                facebook_app_id         : FACEBOOK_APP_ID,
+                account_kit_client_token: ACCOUNT_KIT_CLIENT_TOKEN,
+                ak_login_protocol_scheme: "ak${FACEBOOK_APP_ID}"
+        ]
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            defaultConfig {
-                manifestPlaceholders = [
-                        facebook_app_id         : FACEBOOK_APP_ID,
-                        account_kit_client_token: ACCOUNT_KIT_CLIENT_TOKEN,
-                        ak_login_protocol_scheme: "ak${FACEBOOK_APP_ID}"
-                ]
-            }
         }
     }
     sourceSets {
@@ -76,6 +76,7 @@ dependencies {
 
     //Okhttp
     compile 'com.squareup.okhttp3:okhttp:3.6.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.6.0'
 
     //LoaderView
     compile 'com.github.ybq:Android-SpinKit:1.1.0'
