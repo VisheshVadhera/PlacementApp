@@ -4,9 +4,9 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.github.ybq.android.spinkit.SpinKitView;
 import com.vishesh.tpc_stud.R;
 
 import butterknife.BindView;
@@ -16,8 +16,8 @@ import butterknife.BindView;
  */
 public abstract class BaseFragment extends Fragment {
 
-    @BindView(R.id.view_loader)
-    SpinKitView spinKitView;
+    @BindView(R.id.layout_loader)
+    RelativeLayout relativeLayoutLoader;
 
     public void showMessage(String message) {
         Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT)
@@ -31,11 +31,11 @@ public abstract class BaseFragment extends Fragment {
     }
 
     public void showLoader() {
-        spinKitView.setVisibility(View.VISIBLE);
+        relativeLayoutLoader.setVisibility(View.VISIBLE);
     }
 
     public void hideLoader() {
-        spinKitView.setVisibility(View.GONE);
+        relativeLayoutLoader.setVisibility(View.GONE);
     }
 
     public abstract void injectDependencies();
