@@ -4,8 +4,6 @@ import com.vishesh.tpc_stud.auth.models.AccessToken;
 import com.vishesh.tpc_stud.core.helpers.BaseUseCase;
 import com.vishesh.tpc_stud.core.repos.UserRepository;
 
-import java.util.Map;
-
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -14,23 +12,23 @@ import io.reactivex.Single;
 import io.reactivex.disposables.CompositeDisposable;
 
 /**
- * Created by vishesh on 14/2/17.
+ * Created by vishesh on 18/2/17.
  */
-public class LoginUseCase extends BaseUseCase<AccessToken, Map<String, String>> {
+public class AccessTokenUseCase extends BaseUseCase<Object, AccessToken>{
 
     private final UserRepository userRepository;
 
     @Inject
-    protected LoginUseCase(@Named("jobScheduler") Scheduler jobScheduler,
-                           @Named("postJobScheduler") Scheduler postJobScheduler,
-                           CompositeDisposable compositeDisposable,
-                           UserRepository userRepository) {
+    public AccessTokenUseCase(@Named("jobScheduler") Scheduler jobScheduler,
+                              @Named("postJobScheduler") Scheduler postJobScheduler,
+                              CompositeDisposable compositeDisposable,
+                              UserRepository userRepository) {
         super(jobScheduler, postJobScheduler, compositeDisposable);
         this.userRepository = userRepository;
     }
 
     @Override
-    protected Single<AccessToken> buildObservable(Map<String, String> params) {
-        return userRepository.emailLogin(params);
+    protected Single<Object> buildObservable(AccessToken params) {
+        return userRepository.saveAccessToken(params);
     }
 }

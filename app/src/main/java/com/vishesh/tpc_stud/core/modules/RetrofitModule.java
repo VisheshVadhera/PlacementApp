@@ -1,12 +1,18 @@
 package com.vishesh.tpc_stud.core.modules;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import com.vishesh.tpc_stud.core.repos.LocalCache;
+
+import java.io.IOException;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -17,7 +23,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class RetrofitModule {
 
-    private String baseUrl;
+    private static final String AUTH_HEADER = "Authorization";
+
+    private final String baseUrl;
 
     public RetrofitModule(String baseUrl) {
         this.baseUrl = baseUrl;
@@ -25,20 +33,34 @@ public class RetrofitModule {
 
     @Provides
     @Singleton
-    public OkHttpClient provideOkHttpClient() {
+    OkHttpClient provideOkHttpClient(final LocalCache localCache) {
 
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
-                .addInterceptor(httpLoggingInterceptor);
+                .addInterceptor(httpLoggingInterceptor)
+                .addNetworkInterceptor(new Interceptor() {
+                    @Override
+                    public Response intercept(Chain chain) throws IOException {
+                        Request request = chain.request();
+
+                        String accessToken = localCache.getAccessToken();
+                        Request modifiedRequest = request
+                                .newBuilder()
+                                .header(AUTH_HEADER, accessToken)
+                                .build();
+
+                        return chain.proceed(modifiedRequest);
+                    }
+                });
 
         return builder.build();
     }
 
     @Provides
     @Singleton
-    public Retrofit provideRetrofit(OkHttpClient okHttpClient) {
+    Retrofit provideRetrofit(OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .client(okHttpClient)

@@ -87,4 +87,6 @@ dependencies {
     //LoaderView
     compile 'com.github.ybq:Android-SpinKit:1.1.0'
 
+    //RxPreferences
+    compile 'com.f2prateek.rx.preferences2:rx-preferences:2.0.0-RC1'
 }
