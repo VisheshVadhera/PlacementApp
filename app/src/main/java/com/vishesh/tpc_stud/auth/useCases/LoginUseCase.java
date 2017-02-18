@@ -1,5 +1,6 @@
 package com.vishesh.tpc_stud.auth.useCases;
 
+import com.vishesh.tpc_stud.auth.models.AccessToken;
 import com.vishesh.tpc_stud.auth.services.AuthService;
 import com.vishesh.tpc_stud.core.helpers.BaseUseCase;
 
@@ -15,7 +16,7 @@ import io.reactivex.disposables.CompositeDisposable;
 /**
  * Created by vishesh on 14/2/17.
  */
-public class LoginUseCase extends BaseUseCase<Void, Map<String, String>>{
+public class LoginUseCase extends BaseUseCase<AccessToken, Map<String, String>> {
 
     private final AuthService authService;
 
@@ -29,7 +30,7 @@ public class LoginUseCase extends BaseUseCase<Void, Map<String, String>>{
     }
 
     @Override
-    protected Single<Void> buildObservable(Map<String, String> params) {
+    protected Single<AccessToken> buildObservable(Map<String, String> params) {
         return authService.emailLogin(params);
     }
 }

@@ -1,6 +1,7 @@
 package com.vishesh.tpc_stud.auth.presenters;
 
 import com.facebook.accountkit.AccountKitLoginResult;
+import com.vishesh.tpc_stud.auth.models.AccessToken;
 import com.vishesh.tpc_stud.auth.useCases.LoginUseCase;
 import com.vishesh.tpc_stud.core.presenters.BasePresenter;
 import com.vishesh.tpc_stud.core.views.BaseView;
@@ -38,7 +39,7 @@ public class LoginPresenter extends BasePresenter {
             loginView.showMessage(message);
         } else if (accountKitLoginResult.getAuthorizationCode() != null) {
             Map<String, String> map = new HashMap<>();
-            map.put("authorizationCode", accountKitLoginResult.getAuthorizationCode().substring(0, 10));
+            map.put("authorizationCode", accountKitLoginResult.getAuthorizationCode());
             loginView.showLoader();
             loginUseCase.execute(new LoginObserver(), map);
         }
@@ -69,10 +70,10 @@ public class LoginPresenter extends BasePresenter {
         void takeUserName();
     }
 
-    private final class LoginObserver extends DisposableSingleObserver<Void> {
+    private final class LoginObserver extends DisposableSingleObserver<AccessToken> {
 
         @Override
-        public void onSuccess(Void value) {
+        public void onSuccess(AccessToken value) {
             loginView.hideLoader();
             loginView.takeUserName();
         }
