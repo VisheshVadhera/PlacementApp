@@ -77,6 +77,12 @@ public class LoginFragment
     }
 
     @Override
+    public void takeUserName() {
+        Intent userNameIntent = UserNameActivity.createIntent(getActivity());
+        startActivityForResult(userNameIntent, USER_NAME_REQUEST_CODE);
+    }
+
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
             switch (requestCode) {
@@ -86,11 +92,5 @@ public class LoginFragment
                     break;
             }
         }
-    }
-
-    @Override
-    public void takeUserName() {
-        Intent userNameIntent = UserNameActivity.createIntent(getActivity());
-        startActivityForResult(userNameIntent, USER_NAME_REQUEST_CODE);
     }
 }
