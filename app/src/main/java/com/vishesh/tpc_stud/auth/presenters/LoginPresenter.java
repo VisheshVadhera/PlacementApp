@@ -4,6 +4,8 @@ import com.facebook.accountkit.AccountKitLoginResult;
 import com.vishesh.tpc_stud.auth.models.AccessToken;
 import com.vishesh.tpc_stud.auth.useCases.AccessTokenUseCase;
 import com.vishesh.tpc_stud.auth.useCases.LoginUseCase;
+import com.vishesh.tpc_stud.auth.useCases.UpdateUserUseCase;
+import com.vishesh.tpc_stud.core.models.User;
 import com.vishesh.tpc_stud.core.presenters.BasePresenter;
 import com.vishesh.tpc_stud.core.views.BaseView;
 
@@ -23,11 +25,29 @@ public class LoginPresenter extends BasePresenter {
 
     private final LoginUseCase loginUseCase;
     private final AccessTokenUseCase accessTokenUseCase;
+    private final UpdateUserUseCase updateUserUseCase;
 
     @Inject
-    public LoginPresenter(LoginUseCase loginUseCase, AccessTokenUseCase accessTokenUseCase) {
+    public LoginPresenter(LoginUseCase loginUseCase,
+                          AccessTokenUseCase accessTokenUseCase,
+                          UpdateUserUseCase updateUserUseCase) {
         this.loginUseCase = loginUseCase;
         this.accessTokenUseCase = accessTokenUseCase;
+        this.updateUserUseCase = updateUserUseCase;
+    }
+
+    public void setView(LoginView loginView) {
+        this.loginView = loginView;
+    }
+
+    @Override
+    public void resume() {
+
+    }
+
+    @Override
+    public void pause() {
+
     }
 
     public void onEmailLoginResultReceived(AccountKitLoginResult accountKitLoginResult) {
@@ -48,18 +68,12 @@ public class LoginPresenter extends BasePresenter {
         }
     }
 
-    public void setView(LoginView loginView){
-        this.loginView = loginView;
-    }
-
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void pause() {
-
+    public void onUserNameReceived(String firstName, String lastName) {
+        User user = new User();
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        loginView.showLoader();
+        updateUserUseCase.execute(new UserObserver(), user);
     }
 
     @Override
@@ -71,6 +85,8 @@ public class LoginPresenter extends BasePresenter {
     public interface LoginView extends BaseView {
 
         void takeUserName();
+
+        void showDashboard();
     }
 
     private final class LoginObserver extends DisposableSingleObserver<AccessToken> {
@@ -87,12 +103,28 @@ public class LoginPresenter extends BasePresenter {
         }
     }
 
-    private final class AccessTokenObserver extends DisposableSingleObserver<Object>{
+    private final class AccessTokenObserver extends DisposableSingleObserver<Object> {
 
         @Override
         public void onSuccess(Object o) {
             loginView.hideLoader();
             loginView.takeUserName();
+        }
+
+        @Override
+        public void onError(Throwable e) {
+            loginView.hideLoader();
+            handleError(e);
+        }
+    }
+
+
+    private final class UserObserver extends DisposableSingleObserver<User> {
+
+        @Override
+        public void onSuccess(User value) {
+            loginView.hideLoader();
+            loginView.showDashboard();
         }
 
         @Override

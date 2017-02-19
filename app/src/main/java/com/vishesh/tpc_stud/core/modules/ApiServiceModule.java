@@ -1,6 +1,7 @@
 package com.vishesh.tpc_stud.core.modules;
 
 import com.vishesh.tpc_stud.auth.services.AuthService;
+import com.vishesh.tpc_stud.auth.services.UserService;
 
 import javax.inject.Singleton;
 
@@ -16,7 +17,13 @@ public class ApiServiceModule {
 
     @Provides
     @Singleton
-    public AuthService provideAuthService(Retrofit retrofit){
+    public AuthService provideAuthService(Retrofit retrofit) {
         return retrofit.create(AuthService.class);
+    }
+
+    @Provides
+    @Singleton
+    public UserService provideUserService(Retrofit retrofit) {
+        return retrofit.create(UserService.class);
     }
 }

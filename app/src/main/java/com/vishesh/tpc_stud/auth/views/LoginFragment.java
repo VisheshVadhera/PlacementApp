@@ -90,6 +90,11 @@ public class LoginFragment
                     AccountKitLoginResult accountKitLoginResult = data.getParcelableExtra(AccountKitLoginResult.RESULT_KEY);
                     loginPresenter.onEmailLoginResultReceived(accountKitLoginResult);
                     break;
+                case USER_NAME_REQUEST_CODE:
+                    String firstName = data.getStringExtra(EXTRA_FIRST_NAME);
+                    String lastName = data.getStringExtra(EXTRA_LAST_NAME);
+                    loginPresenter.onUserNameReceived(firstName, lastName);
+                    break;
             }
         }
     }
