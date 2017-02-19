@@ -10,29 +10,8 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".auth.views.LoginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.facebook.accountkit.ui.AccountKitActivity"
-            android:theme="@style/AccountKitLoginTheme"
-            tools:replace="android:theme" />
-        <activity android:name="com.facebook.accountkit.ui.AccountKitEmailRedirectActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="{ak_login_protocol_scheme}" />
-            </intent-filter>
-        </activity>
+    android:supportsRtl="true"
+    android:theme="@style/AppTheme">
 
         <meta-data
             android:name="com.facebook.accountkit.ApplicationName"
@@ -49,7 +28,35 @@
             android:name="com.facebook.accountkit.FacebookAppEventsEnabled"
             android:value="false" />
 
-        <activity android:name=".auth.views.UserNameActivity"></activity>
+
+        <activity android:name=".auth.views.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+        android:name="com.facebook.accountkit.ui.AccountKitActivity"
+        android:theme="@style/AccountKitLoginTheme"
+        tools:replace="android:theme" />
+
+        <activity android:name="com.facebook.accountkit.ui.AccountKitEmailRedirectActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="{ak_login_protocol_scheme}" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".auth.views.UserNameActivity"/>
+
+
+
     </application>
 
 </manifest>

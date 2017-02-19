@@ -87,11 +87,6 @@ dependencies {
     //LoaderView
     compile 'com.github.ybq:Android-SpinKit:1.1.0'
 
-    //Convert RxJava 1 types to 2
-    compile "com.github.akarnokd:rxjava2-interop:0.9.1"
-
     //RxBindings for views
-    compile 'com.jakewharton.rxbinding:rxbinding:1.0.0'
-    compile 'com.jakewharton.rxbinding:rxbinding-appcompat-v7:1.0.0'
-
+    compile 'com.github.JakeWharton.RxBinding:rxbinding:d7774aae78'
 }
