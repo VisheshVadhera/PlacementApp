@@ -7,4 +7,6 @@ public interface LocalCache {
     void saveAccessToken(String accessToken);
 
     String getAccessToken();
+
+    int getUserId();
 }

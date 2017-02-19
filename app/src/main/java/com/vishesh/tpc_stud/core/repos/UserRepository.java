@@ -39,7 +39,7 @@ public class UserRepository {
         return Single.just(new Object());
     }
 
-    public Single<User> updateUser(int userId, User user) {
-        return userService.updateUser(userId, user);
+    public Single<User> updateUser(User user) {
+        return userService.updateUser(localCache.getUserId(), user);
     }
 }

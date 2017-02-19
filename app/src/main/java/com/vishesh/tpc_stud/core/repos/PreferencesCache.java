@@ -10,6 +10,9 @@ public class PreferencesCache implements LocalCache {
     private static final String PREF_ACCESS_TOKEN = "PREF_ACCESS_TOKEN";
     private static final String DEFAULT_ACCESS_TOKEN = "";
 
+    private static final String PREF_USER_ID = "PREF_USER_ID";
+    private static final int DEFAULT_USER_ID = 0;
+
 
     private final SharedPreferences sharedPreferences;
 
@@ -28,5 +31,10 @@ public class PreferencesCache implements LocalCache {
     @Override
     public String getAccessToken() {
         return sharedPreferences.getString(PREF_ACCESS_TOKEN, DEFAULT_ACCESS_TOKEN);
+    }
+
+    @Override
+    public int getUserId() {
+        return sharedPreferences.getInt(PREF_USER_ID, DEFAULT_USER_ID);
     }
 }
