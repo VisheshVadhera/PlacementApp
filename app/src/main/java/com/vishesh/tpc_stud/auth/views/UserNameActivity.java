@@ -82,10 +82,8 @@ public class UserNameActivity extends BaseActivity {
             public void onNext(Boolean formValid) {
                 if (formValid) {
                     buttonContinue.setEnabled(true);
-//                    buttonContinue.setBackgroundColor(ContextCompat.getColor(UserNameActivity.this, R.color.colorPrimary));
                 } else {
                     buttonContinue.setEnabled(false);
-//                    buttonContinue.setBackgroundColor(ContextCompat.getColor(UserNameActivity.this, R.color.gray));
                 }
             }
 
