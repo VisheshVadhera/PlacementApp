@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import io.reactivex.Single;
+import io.reactivex.functions.Function;
 
 /**
  * Created by vishesh on 18/2/17.
@@ -31,7 +32,14 @@ public class UserRepository {
     }
 
     public Single<AccessToken> emailLogin(Map<String, String> params) {
-        return authService.emailLogin(params);
+        return authService.emailLogin(params)
+                .map(new Function<AccessToken, AccessToken>() {
+                    @Override
+                    public AccessToken apply(AccessToken accessToken) throws Exception {
+                        localCache.saveAccessToken(accessToken.getAccessToken());
+                        return accessToken;
+                    }
+                });
     }
 
     public Single<Object> saveAccessToken(AccessToken accessToken) {
@@ -39,7 +47,18 @@ public class UserRepository {
         return Single.just(new Object());
     }
 
-    public Single<User> updateUser(User user) {
-        return userService.updateUser(localCache.getUserId(), user);
+    public Single<User> updateUser(final Integer userId, User user) {
+        return userService.updateUser(userId, user);
+    }
+
+    public Single<User> getCurrentUser() {
+        return userService.getCurrentUser()
+                .map(new Function<User, User>() {
+                    @Override
+                    public User apply(User user) throws Exception {
+                        localCache.saveUserId(user.getId());
+                        return user;
+                    }
+                });
     }
 }

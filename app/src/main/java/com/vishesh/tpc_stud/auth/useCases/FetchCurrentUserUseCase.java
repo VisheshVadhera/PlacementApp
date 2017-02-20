@@ -11,24 +11,22 @@ import io.reactivex.Scheduler;
 import io.reactivex.Single;
 import io.reactivex.disposables.CompositeDisposable;
 
-/**
- * Created by vishesh on 19/2/17.
- */
-public class UpdateUserUseCase extends BaseUseCase<User, Integer, User>{
+
+public class FetchCurrentUserUseCase extends BaseUseCase<User, Void, Void>{
 
     private final UserRepository userRepository;
 
     @Inject
-    protected UpdateUserUseCase(@Named("jobScheduler") Scheduler jobScheduler,
-                                @Named("postJobScheduler") Scheduler postJobScheduler,
-                                CompositeDisposable compositeDisposable,
-                                UserRepository userRepository) {
+    protected FetchCurrentUserUseCase(@Named("jobScheduler") Scheduler jobScheduler,
+                                      @Named("postJobScheduler") Scheduler postJobScheduler,
+                                      CompositeDisposable compositeDisposable,
+                                      UserRepository userRepository) {
         super(jobScheduler, postJobScheduler, compositeDisposable);
         this.userRepository = userRepository;
     }
 
     @Override
-    protected Single<User> buildObservable(Integer userId, User user) {
-        return userRepository.updateUser(userId, user);
+    protected Single<User> buildObservable(Void aVoid, Void bVoid) {
+        return userRepository.getCurrentUser();
     }
 }

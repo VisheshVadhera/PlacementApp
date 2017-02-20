@@ -4,6 +4,7 @@ import com.vishesh.tpc_stud.core.models.User;
 
 import io.reactivex.Single;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
@@ -16,4 +17,6 @@ public interface UserService {
     @PUT("users/{userId}")
     public Single<User> updateUser(@Path("userId") int userId, @Body User user);
 
+    @GET("users/currentUser")
+    public Single<User> getCurrentUser();
 }

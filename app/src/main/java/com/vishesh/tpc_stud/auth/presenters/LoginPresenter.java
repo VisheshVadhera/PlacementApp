@@ -1,8 +1,11 @@
 package com.vishesh.tpc_stud.auth.presenters;
 
+import android.text.TextUtils;
+
 import com.facebook.accountkit.AccountKitLoginResult;
+import com.fernandocejas.arrow.optional.Optional;
 import com.vishesh.tpc_stud.auth.models.AccessToken;
-import com.vishesh.tpc_stud.auth.useCases.AccessTokenUseCase;
+import com.vishesh.tpc_stud.auth.useCases.FetchCurrentUserUseCase;
 import com.vishesh.tpc_stud.auth.useCases.LoginUseCase;
 import com.vishesh.tpc_stud.auth.useCases.UpdateUserUseCase;
 import com.vishesh.tpc_stud.core.models.User;
@@ -24,16 +27,18 @@ public class LoginPresenter extends BasePresenter {
     private LoginView loginView;
 
     private final LoginUseCase loginUseCase;
-    private final AccessTokenUseCase accessTokenUseCase;
     private final UpdateUserUseCase updateUserUseCase;
+    private final FetchCurrentUserUseCase fetchCurrentUserUseCase;
+
+    private Optional<User> userOptional = Optional.absent();
 
     @Inject
     public LoginPresenter(LoginUseCase loginUseCase,
-                          AccessTokenUseCase accessTokenUseCase,
-                          UpdateUserUseCase updateUserUseCase) {
+                          UpdateUserUseCase updateUserUseCase,
+                          FetchCurrentUserUseCase fetchCurrentUserUseCase) {
         this.loginUseCase = loginUseCase;
-        this.accessTokenUseCase = accessTokenUseCase;
         this.updateUserUseCase = updateUserUseCase;
+        this.fetchCurrentUserUseCase = fetchCurrentUserUseCase;
     }
 
     public void setView(LoginView loginView) {
@@ -64,16 +69,20 @@ public class LoginPresenter extends BasePresenter {
             Map<String, String> map = new HashMap<>();
             map.put("authorizationCode", accountKitLoginResult.getAuthorizationCode());
             loginView.showLoader();
-            loginUseCase.execute(new LoginObserver(), map);
+            loginUseCase.execute(new LoginObserver(), map, null);
         }
     }
 
     public void onUserNameReceived(String firstName, String lastName) {
-        User user = new User();
-        user.setFirstName(firstName);
-        user.setLastName(lastName);
-        loginView.showLoader();
-        updateUserUseCase.execute(new UserObserver(), user);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            user.setFirstName(firstName);
+            user.setLastName(lastName);
+            loginView.showLoader();
+            updateUserUseCase.execute(new UpdatedUserObserver(), user.getId(), user);
+        } else {
+            loginView.showMessage("Unable to perform request. Please try again");
+        }
     }
 
     @Override
@@ -86,14 +95,14 @@ public class LoginPresenter extends BasePresenter {
 
         void takeUserName();
 
-        void showDashboard();
+        void openDashboard();
     }
 
     private final class LoginObserver extends DisposableSingleObserver<AccessToken> {
 
         @Override
         public void onSuccess(AccessToken value) {
-            accessTokenUseCase.execute(new AccessTokenObserver(), value);
+            fetchCurrentUserUseCase.execute(new CurrentUserObserver(), null, null);
         }
 
         @Override
@@ -103,28 +112,33 @@ public class LoginPresenter extends BasePresenter {
         }
     }
 
-    private final class AccessTokenObserver extends DisposableSingleObserver<Object> {
-
-        @Override
-        public void onSuccess(Object o) {
-            loginView.hideLoader();
-            loginView.takeUserName();
-        }
-
-        @Override
-        public void onError(Throwable e) {
-            loginView.hideLoader();
-            handleError(e);
-        }
-    }
-
-
-    private final class UserObserver extends DisposableSingleObserver<User> {
+    private final class UpdatedUserObserver extends DisposableSingleObserver<User> {
 
         @Override
         public void onSuccess(User value) {
             loginView.hideLoader();
-            loginView.showDashboard();
+            loginView.openDashboard();
+        }
+
+        @Override
+        public void onError(Throwable e) {
+            loginView.hideLoader();
+            handleError(e);
+        }
+    }
+
+    private final class CurrentUserObserver extends DisposableSingleObserver<User> {
+
+        @Override
+        public void onSuccess(User user) {
+            userOptional = Optional.of(user);
+
+            loginView.hideLoader();
+            if (TextUtils.isEmpty(user.getFirstName())) {
+                loginView.takeUserName();
+            } else {
+                loginView.openDashboard();
+            }
         }
 
         @Override

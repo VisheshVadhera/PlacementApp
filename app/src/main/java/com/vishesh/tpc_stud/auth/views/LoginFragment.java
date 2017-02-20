@@ -83,7 +83,7 @@ public class LoginFragment
     }
 
     @Override
-    public void showDashboard() {
+    public void openDashboard() {
 
     }
 

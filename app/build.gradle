@@ -89,4 +89,7 @@ dependencies {
 
     //RxBindings for views
     compile 'com.github.JakeWharton.RxBinding:rxbinding:d7774aae78'
+
+    //Optionals library
+    compile 'com.fernandocejas:arrow:1.0.0'
 }

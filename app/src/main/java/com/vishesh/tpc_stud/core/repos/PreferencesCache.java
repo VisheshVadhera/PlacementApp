@@ -37,4 +37,12 @@ public class PreferencesCache implements LocalCache {
     public int getUserId() {
         return sharedPreferences.getInt(PREF_USER_ID, DEFAULT_USER_ID);
     }
+
+    @Override
+    public void saveUserId(int userId) {
+        sharedPreferences
+                .edit()
+                .putInt(PREF_USER_ID, userId)
+                .apply();
+    }
 }
