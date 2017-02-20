@@ -58,6 +58,10 @@ public abstract class BaseFragment extends Fragment {
         unbinder.unbind();
     }
 
+    protected void finish(){
+        getActivity().finish();
+    }
+
     protected abstract void injectDependencies();
 
     protected abstract int getLayoutId();

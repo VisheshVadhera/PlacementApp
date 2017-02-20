@@ -29,6 +29,7 @@ android {
     sourceSets {
         main {
             res.srcDirs = [
+                    'src/main/res/dashboard',
                     'src/main/res/core',
                     'src/main/res/auth',
                     'src/main/res'
