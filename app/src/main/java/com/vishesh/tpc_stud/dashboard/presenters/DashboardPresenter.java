@@ -6,6 +6,8 @@ import com.vishesh.tpc_stud.dashboard.useCases.LogoutUseCase;
 
 import javax.inject.Inject;
 
+import io.reactivex.observers.DisposableSingleObserver;
+
 public class DashboardPresenter extends BasePresenter {
 
     private DashboardView dashboardView;
@@ -21,8 +23,14 @@ public class DashboardPresenter extends BasePresenter {
         this.dashboardView = dashboardView;
     }
 
+    public void onLogoutClicked() {
+        dashboardView.showLoader();
+        logoutUseCase.execute(new LogoutObserver(), null, null);
+    }
+
     public interface DashboardView extends BaseView {
 
+        void openLoginScreen();
     }
 
     @Override
@@ -39,5 +47,20 @@ public class DashboardPresenter extends BasePresenter {
     public void destroy() {
         logoutUseCase.dispose();
         dashboardView = null;
+    }
+
+    private class LogoutObserver extends DisposableSingleObserver<Object> {
+
+        @Override
+        public void onSuccess(Object value) {
+            dashboardView.hideLoader();
+            dashboardView.openLoginScreen();
+        }
+
+        @Override
+        public void onError(Throwable e) {
+            dashboardView.hideLoader();
+            handleError(e);
+        }
     }
 }

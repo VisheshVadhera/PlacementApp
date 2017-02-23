@@ -2,6 +2,7 @@ package com.vishesh.tpc_stud.auth.views;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -40,11 +41,15 @@ public class LoginFragment
         setRetainInstance(true);
     }
 
-    public static Intent createIntent(String firstName, String lastName) {
+    public static Intent createUserNameIntent(String firstName, String lastName) {
         Intent userNameIntent = new Intent();
         userNameIntent.putExtra(EXTRA_FIRST_NAME, firstName);
         userNameIntent.putExtra(EXTRA_LAST_NAME, lastName);
         return userNameIntent;
+    }
+
+    public static Intent createLoginIntent(Context context) {
+        return new Intent(context, LoginActivity.class);
     }
 
     @Override
