@@ -46,7 +46,6 @@ public class DashboardFragment
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         viewPager.setAdapter(sectionsPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
-
     }
 
 }

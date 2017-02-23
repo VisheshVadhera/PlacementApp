@@ -88,6 +88,7 @@ public class LoginPresenter extends BasePresenter {
     @Override
     public void destroy() {
         loginUseCase.dispose();
+        updateUserUseCase.dispose();
         loginView = null;
     }
 

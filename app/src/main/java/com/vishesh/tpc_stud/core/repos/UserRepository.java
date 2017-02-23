@@ -10,6 +10,8 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import io.reactivex.Single;
+import io.reactivex.SingleEmitter;
+import io.reactivex.SingleOnSubscribe;
 import io.reactivex.functions.Function;
 
 /**
@@ -60,5 +62,16 @@ public class UserRepository {
                         return user;
                     }
                 });
+    }
+
+    public Single<Object> logout() {
+        return Single.create(new SingleOnSubscribe<Object>() {
+            @Override
+            public void subscribe(SingleEmitter<Object> e) throws Exception {
+                localCache.deleteAccessToken();
+                localCache.deleteUserId();
+                e.onSuccess(new Object());
+            }
+        });
     }
 }
