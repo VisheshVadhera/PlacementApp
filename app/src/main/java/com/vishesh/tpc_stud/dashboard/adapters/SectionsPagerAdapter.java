@@ -1,4 +1,4 @@
-package com.vishesh.tpc_stud.dashboard;
+package com.vishesh.tpc_stud.dashboard.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

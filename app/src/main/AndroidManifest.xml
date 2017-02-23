@@ -50,7 +50,7 @@
         </activity>
         <activity android:name=".auth.views.UserNameActivity" />
         <activity
-            android:name=".dashboard.DashboardActivity"
+            android:name=".dashboard.views.DashboardActivity"
             android:label="@string/title_activity_dashboard"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>

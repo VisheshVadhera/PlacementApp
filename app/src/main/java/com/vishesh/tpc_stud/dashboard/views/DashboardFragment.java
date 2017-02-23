@@ -1,6 +1,7 @@
-package com.vishesh.tpc_stud.dashboard;
+package com.vishesh.tpc_stud.dashboard.views;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.auth.views.LoginFragment;
 import com.vishesh.tpc_stud.core.ActivityComponent;
 import com.vishesh.tpc_stud.core.views.BaseFragment;
+import com.vishesh.tpc_stud.dashboard.adapters.SectionsPagerAdapter;
 import com.vishesh.tpc_stud.dashboard.presenters.DashboardPresenter;
 
 import javax.inject.Inject;
@@ -44,6 +46,12 @@ public class DashboardFragment
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
     protected int getLayoutId() {
         return R.layout.fragment_dashboard;
     }
@@ -52,11 +60,19 @@ public class DashboardFragment
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-        viewPager.setAdapter(sectionsPagerAdapter);
-        tabLayout.setupWithViewPager(viewPager);
+        initializeView();
 
         dashboardPresenter.setView(this);
+    }
+
+    private void initializeView() {
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+
+        sectionsPagerAdapter.addFragment(0, RecruitersFragment.newInstance());
+        sectionsPagerAdapter.addFragment(1, ProfileFragment.newInstance());
+
+        viewPager.setAdapter(sectionsPagerAdapter);
+        tabLayout.setupWithViewPager(viewPager);
     }
 
 

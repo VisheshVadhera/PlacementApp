@@ -1,4 +1,4 @@
-package com.vishesh.tpc_stud.dashboard;
+package com.vishesh.tpc_stud.dashboard.views;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
