@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 
 import com.vishesh.tpc_stud.core.scopes.PerActivity;
+import com.vishesh.tpc_stud.dashboard.SectionsPagerAdapter;
 
 import dagger.Module;
 import dagger.Provides;
@@ -30,5 +31,11 @@ public class ActivityModule {
     @PerActivity
     public FragmentManager provideFragmentManager() {
         return ((FragmentActivity) activity).getSupportFragmentManager();
+    }
+
+    @Provides
+    @PerActivity
+    public SectionsPagerAdapter provideSectionsPagerAdapter(FragmentManager fragmentManager) {
+        return new SectionsPagerAdapter(fragmentManager);
     }
 }

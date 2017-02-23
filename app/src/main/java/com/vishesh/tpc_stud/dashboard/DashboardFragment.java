@@ -2,9 +2,6 @@ package com.vishesh.tpc_stud.dashboard;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -14,11 +11,12 @@ import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.core.ActivityComponent;
 import com.vishesh.tpc_stud.core.views.BaseFragment;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 
 public class DashboardFragment
-        extends BaseFragment
-        {
+        extends BaseFragment {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -27,7 +25,7 @@ public class DashboardFragment
     @BindView(R.id.container)
     ViewPager viewPager;
 
-//    @Inject
+    @Inject
     SectionsPagerAdapter sectionsPagerAdapter;
 
     @Override
@@ -51,21 +49,4 @@ public class DashboardFragment
 
     }
 
-    private class SectionsPagerAdapter extends FragmentStatePagerAdapter {
-
-
-        public SectionsPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return null;
-        }
-
-        @Override
-        public int getCount() {
-            return 0;
-        }
-    }
 }
