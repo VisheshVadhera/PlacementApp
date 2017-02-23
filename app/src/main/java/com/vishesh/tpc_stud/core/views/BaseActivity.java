@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.vishesh.tpc_stud.core.AppComponent;
 import com.vishesh.tpc_stud.core.TpcStudApplication;
+import com.vishesh.tpc_stud.core.modules.ActivityModule;
 
 /**
  * Created by vishesh on 12/2/17.
@@ -27,5 +28,9 @@ public class BaseActivity extends AppCompatActivity {
 
     protected AppComponent getApplicationComponent(){
         return ((TpcStudApplication) getApplication()).getAppComponent();
+    }
+
+    protected ActivityModule getActivityModule(){
+        return new ActivityModule(this);
     }
 }

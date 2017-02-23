@@ -11,7 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.vishesh.tpc_stud.R;
-import com.vishesh.tpc_stud.core.TpcStudApplication;
+import com.vishesh.tpc_stud.core.ActivityComponent;
 import com.vishesh.tpc_stud.core.views.BaseFragment;
 
 import butterknife.BindView;
@@ -32,7 +32,8 @@ public class DashboardFragment
 
     @Override
     protected void injectDependencies() {
-        ((TpcStudApplication) getActivity().getApplication()).getAppComponent().inject(this);
+        getDependencyInjector(ActivityComponent.class)
+                .inject(this);
     }
 
     @Override

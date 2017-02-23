@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.vishesh.tpc_stud.R;
+import com.vishesh.tpc_stud.core.helpers.DependencyInjector;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -60,6 +61,10 @@ public abstract class BaseFragment extends Fragment {
 
     protected void finish(){
         getActivity().finish();
+    }
+
+    protected <T> T getDependencyInjector(Class<T> injectorType){
+        return injectorType.cast(((DependencyInjector<T>) getActivity()).getInjector());
     }
 
     protected abstract void injectDependencies();

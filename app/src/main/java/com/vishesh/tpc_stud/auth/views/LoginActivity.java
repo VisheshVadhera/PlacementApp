@@ -28,6 +28,7 @@ public class LoginActivity
     private void initializeInjector() {
         activityComponent = DaggerActivityComponent
                 .builder()
+                .activityModule(getActivityModule())
                 .appComponent(getApplicationComponent())
                 .build();
     }
