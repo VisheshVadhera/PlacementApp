@@ -13,6 +13,7 @@ import com.facebook.accountkit.ui.AccountKitConfiguration;
 import com.facebook.accountkit.ui.LoginType;
 import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.auth.presenters.LoginPresenter;
+import com.vishesh.tpc_stud.core.ActivityComponent;
 import com.vishesh.tpc_stud.core.TpcStudApplication;
 import com.vishesh.tpc_stud.core.views.BaseFragment;
 
@@ -27,14 +28,16 @@ public class LoginFragment
         extends BaseFragment
         implements LoginPresenter.LoginView {
 
+    @Inject
+    LoginPresenter loginPresenter;
+
     private static final int ACCOUNT_KIT_REQUEST_CODE = 100;
     private static final int USER_NAME_REQUEST_CODE = 101;
 
     private static final String EXTRA_FIRST_NAME = "EXTRA_FIRST_NAME";
     private static final String EXTRA_LAST_NAME = "EXTRA_LAST_NAME";
 
-    @Inject
-    LoginPresenter loginPresenter;
+    private ActivityComponent activityComponent;
 
     public LoginFragment() {
         setRetainInstance(true);

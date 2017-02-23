@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import com.vishesh.tpc_stud.core.AppComponent;
 import com.vishesh.tpc_stud.core.TpcStudApplication;
 
 /**
@@ -15,11 +16,6 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        injectDependencies();
-    }
-
-    private void injectDependencies() {
-        ((TpcStudApplication) getApplication()).getAppComponent().inject(this);
     }
 
     protected void addFragment(int containerViewId, Fragment fragment) {
@@ -27,5 +23,9 @@ public class BaseActivity extends AppCompatActivity {
                 .beginTransaction()
                 .add(containerViewId, fragment)
                 .commit();
+    }
+
+    protected AppComponent getApplicationComponent(){
+        return ((TpcStudApplication) getApplication()).getAppComponent();
     }
 }

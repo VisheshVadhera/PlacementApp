@@ -21,6 +21,7 @@ import dagger.Component;
         RetrofitModule.class, SchedulersModule.class, DataModule.class})
 public interface AppComponent {
 
+
     void inject(BaseActivity baseActivity);
 
     void inject(LoginFragment loginFragment);

@@ -24,6 +24,6 @@ public class DashboardActivity
 
     @Override
     public ActivityComponent getInjector() {
-        return ;
+        return null;
     }
 }

@@ -14,8 +14,6 @@ import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.core.TpcStudApplication;
 import com.vishesh.tpc_stud.core.views.BaseFragment;
 
-import javax.inject.Inject;
-
 import butterknife.BindView;
 
 public class DashboardFragment
@@ -29,7 +27,7 @@ public class DashboardFragment
     @BindView(R.id.container)
     ViewPager viewPager;
 
-    @Inject
+//    @Inject
     SectionsPagerAdapter sectionsPagerAdapter;
 
     @Override
