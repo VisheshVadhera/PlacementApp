@@ -1,5 +1,6 @@
 package com.vishesh.tpc_stud.core.modules;
 
+import android.app.FragmentManager;
 import android.content.Context;
 
 import com.vishesh.tpc_stud.core.TpcStudApplication;
@@ -25,5 +26,9 @@ public class AppModule {
     @Singleton
     public Context provideApplicationContext(){
         return tpcStudApplication;
+    }
+
+    @Provides
+    public FragmentManager provideFragmentManager(){
     }
 }

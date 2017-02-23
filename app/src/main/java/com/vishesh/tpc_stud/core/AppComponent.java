@@ -7,6 +7,7 @@ import com.vishesh.tpc_stud.core.modules.DataModule;
 import com.vishesh.tpc_stud.core.modules.RetrofitModule;
 import com.vishesh.tpc_stud.core.modules.SchedulersModule;
 import com.vishesh.tpc_stud.core.views.BaseActivity;
+import com.vishesh.tpc_stud.dashboard.DashboardFragment;
 
 import javax.inject.Singleton;
 
@@ -23,4 +24,6 @@ public interface AppComponent {
     void inject(BaseActivity baseActivity);
 
     void inject(LoginFragment loginFragment);
+
+    void inject(DashboardFragment dashboardFragment);
 }
