@@ -5,14 +5,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.fernandocejas.arrow.optional.Optional;
-import com.vishesh.tpc_stud.dashboard.models.Recruiter;
+import com.vishesh.tpc_stud.dashboard.models.RecruiterModel;
 
 import java.util.List;
 
 public class RecruiterItemAdapter extends RecyclerView.Adapter<RecruiterItemAdapter.ViewHolder> {
 
 
-    private Optional<List<Recruiter>> recruitersOptional;
+    private Optional<List<RecruiterModel>> recruitersOptional;
 
     public RecruiterItemAdapter() {
 
@@ -28,8 +28,8 @@ public class RecruiterItemAdapter extends RecyclerView.Adapter<RecruiterItemAdap
 
     }
 
-    public void setData(List<Recruiter> recruiters){
-        this.recruitersOptional = Optional.of(recruiters);
+    public void setData(List<RecruiterModel> recruiterModels){
+        this.recruitersOptional = Optional.of(recruiterModels);
         notifyDataSetChanged();
     }
 

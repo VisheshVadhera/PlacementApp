@@ -3,7 +3,9 @@ package com.vishesh.tpc_stud.dashboard.presenters;
 import com.vishesh.tpc_stud.core.presenters.BasePresenter;
 import com.vishesh.tpc_stud.core.repos.LocalCache;
 import com.vishesh.tpc_stud.core.views.BaseView;
+import com.vishesh.tpc_stud.dashboard.mappers.RecruiterModelMapper;
 import com.vishesh.tpc_stud.dashboard.models.Recruiter;
+import com.vishesh.tpc_stud.dashboard.models.RecruiterModel;
 import com.vishesh.tpc_stud.dashboard.useCases.GetRecruitersUseCase;
 
 import java.util.List;
@@ -18,12 +20,15 @@ public class RecruitersPresenter extends BasePresenter {
 
     private final GetRecruitersUseCase getRecruitersUseCase;
     private final LocalCache localCache;
+    private final RecruiterModelMapper recruiterModelMapper;
 
     @Inject
     public RecruitersPresenter(GetRecruitersUseCase getRecruitersUseCase,
-                               LocalCache localCache) {
+                               LocalCache localCache,
+                               RecruiterModelMapper recruiterModelMapper) {
         this.getRecruitersUseCase = getRecruitersUseCase;
         this.localCache = localCache;
+        this.recruiterModelMapper = recruiterModelMapper;
     }
 
     public void setView(RecruitersView recruitersView) {
@@ -38,7 +43,7 @@ public class RecruitersPresenter extends BasePresenter {
 
     public interface RecruitersView extends BaseView {
 
-        void showJobOffers(List<Recruiter> value);
+        void showJobOffers(List<RecruiterModel> recruiterModels);
     }
 
     @Override
@@ -59,9 +64,9 @@ public class RecruitersPresenter extends BasePresenter {
     private final class JobsObserver extends DisposableSingleObserver<List<Recruiter>> {
 
         @Override
-        public void onSuccess(List<Recruiter> value) {
+        public void onSuccess(List<Recruiter> recruiters) {
             recruitersView.hideLoader();
-            recruitersView.showJobOffers(value);
+            recruitersView.showJobOffers(recruiterModelMapper.transform(recruiters));
         }
 
         @Override

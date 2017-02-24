@@ -9,7 +9,7 @@ import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.core.ActivityComponent;
 import com.vishesh.tpc_stud.core.views.BaseFragment;
 import com.vishesh.tpc_stud.dashboard.adapters.RecruiterItemAdapter;
-import com.vishesh.tpc_stud.dashboard.models.Recruiter;
+import com.vishesh.tpc_stud.dashboard.models.RecruiterModel;
 import com.vishesh.tpc_stud.dashboard.presenters.RecruitersPresenter;
 
 import java.util.List;
@@ -61,7 +61,7 @@ public class RecruitersFragment
 
 
     @Override
-    public void showJobOffers(List<Recruiter> recruiters) {
-        recruiterItemAdapter.setData(recruiters);
+    public void showJobOffers(List<RecruiterModel> recruiterModels) {
+        recruiterItemAdapter.setData(recruiterModels);
     }
 }
