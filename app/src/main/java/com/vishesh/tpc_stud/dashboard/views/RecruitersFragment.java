@@ -21,7 +21,7 @@ import butterknife.BindView;
 
 public class RecruitersFragment
         extends BaseFragment
-        implements RecruitersPresenter.RecruitersView{
+        implements RecruitersPresenter.RecruitersView {
 
     @BindView(R.id.recycler_view_recruiters)
     RecyclerView recyclerViewRecruiters;
@@ -44,7 +44,6 @@ public class RecruitersFragment
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        recyclerViewRecruiters.setAdapter(recruiterItemAdapter);
         recruitersPresenter.setView(this);
     }
 
@@ -59,9 +58,9 @@ public class RecruitersFragment
         return R.layout.fragment_recruiters;
     }
 
-
     @Override
     public void showJobOffers(List<RecruiterModel> recruiterModels) {
         recruiterItemAdapter.setData(recruiterModels);
+        recyclerViewRecruiters.setAdapter(recruiterItemAdapter);
     }
 }

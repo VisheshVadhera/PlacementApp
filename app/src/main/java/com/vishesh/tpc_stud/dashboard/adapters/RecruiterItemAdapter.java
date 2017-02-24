@@ -64,7 +64,7 @@ public class RecruiterItemAdapter extends RecyclerView.Adapter<RecruiterItemAdap
         return recruitersOptional.isPresent() ? recruitersOptional.get().size() : 0;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.text_job_offer_title)
         TextView textJobOfferTitle;

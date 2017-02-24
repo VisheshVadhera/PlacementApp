@@ -4,6 +4,7 @@ import com.vishesh.tpc_stud.auth.models.AccessToken;
 import com.vishesh.tpc_stud.auth.services.AuthService;
 import com.vishesh.tpc_stud.auth.services.UserService;
 import com.vishesh.tpc_stud.core.models.User;
+import com.vishesh.tpc_stud.dashboard.models.UserProfile;
 
 import java.util.Map;
 
@@ -73,5 +74,9 @@ public class UserRepository {
                 e.onSuccess(new Object());
             }
         });
+    }
+
+    public Single<UserProfile> getProfile(Integer userId) {
+        return userService.getProfile(userId);
     }
 }
