@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/text_job_offer_title"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_marginTop="8dp"
+                android:text="Name"
+                android:textSize="32dp" />
+
+            <TextView
+                android:id="@+id/text_recruiter_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_job_offer_title"
+                android:layout_marginTop="8dp"
+                android:text="Company Name"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/text_job_offer_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_recruiter_name"
+                android:layout_marginTop="16dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="Description"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/text_process_date_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_job_offer_description"
+                android:layout_marginTop="16dp"
+                android:text="Date"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/text_pay_package_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_job_offer_description"
+                android:layout_marginTop="16dp"
+                android:text="Package Offered"
+                android:layout_marginLeft="260dp"
+                android:textSize="12dp"/>
+
+            <TextView
+                android:id="@+id/text_process_date_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_process_date_label"
+                android:layout_marginTop="8dp"
+                android:text="January 5, 2017"
+                android:textSize="12dp"/>
+
+            <TextView
+                android:id="@+id/text_pay_package_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_pay_package_label"
+                android:layout_marginTop="8dp"
+                android:text="Rs 800000"
+                android:layout_marginLeft="260dp"
+                android:textSize="12dp"/>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>
