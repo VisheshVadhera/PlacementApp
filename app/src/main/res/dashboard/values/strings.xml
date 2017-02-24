@@ -3,4 +3,7 @@
 
     <string name="action_logout">Logout</string>
 
+    <string name="process_date_label">Date</string>
+    <string name="pay_package_label">Package Offered</string>
+    
 </resources>

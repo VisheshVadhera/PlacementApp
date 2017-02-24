@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.fernandocejas.arrow.optional.Optional;
 import com.vishesh.tpc_stud.R;
@@ -14,10 +15,13 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class RecruiterItemAdapter extends RecyclerView.Adapter<RecruiterItemAdapter.ViewHolder> {
 
-    private Optional<List<RecruiterModel>> recruitersOptional;
 
+    private Optional<List<RecruiterModel>> recruitersOptional;
     private final Context context;
 
     @Inject
@@ -34,13 +38,14 @@ public class RecruiterItemAdapter extends RecyclerView.Adapter<RecruiterItemAdap
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        if(recruitersOptional.isPresent()){
+        if (recruitersOptional.isPresent()) {
             List<RecruiterModel> recruiterModels = recruitersOptional.get();
+
 
         }
     }
 
-    public void setData(List<RecruiterModel> recruiterModels){
+    public void setData(List<RecruiterModel> recruiterModels) {
         this.recruitersOptional = Optional.of(recruiterModels);
         notifyDataSetChanged();
     }
@@ -50,10 +55,22 @@ public class RecruiterItemAdapter extends RecyclerView.Adapter<RecruiterItemAdap
         return recruitersOptional.isPresent() ? recruitersOptional.get().size() : 0;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
+
+        @BindView(R.id.text_job_offer_title)
+        TextView textJobOfferTitle;
+        @BindView(R.id.text_recruiter_name)
+        TextView textRecruiterName;
+        @BindView(R.id.text_job_offer_description)
+        TextView textJobOfferDescription;
+        @BindView(R.id.text_process_date_value)
+        TextView textProcessDateValue;
+        @BindView(R.id.text_pay_package_value)
+        TextView textPayPackageValue;
 
         public ViewHolder(View itemView) {
             super(itemView);
+            ButterKnife.bind(this, itemView);
         }
     }
 

@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/text_job_offer_description"
                 android:layout_marginTop="16dp"
-                android:text="Date"
+                android:text="@string/process_date_label"
                 android:textSize="12dp" />
 
             <TextView
@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/text_job_offer_description"
                 android:layout_marginTop="16dp"
-                android:text="Package Offered"
+                android:text="@string/pay_package_label"
                 android:layout_marginLeft="260dp"
                 android:textSize="12dp"/>
 
