@@ -6,10 +6,11 @@ import java.util.List;
 
 public class Recruiter {
 
+    private int id;
     private String name;
     private String description;
-    private List<JobOffer> jobOffers;
     private LocalDate processDate;
+    private List<JobOffer> jobOffers;
 
     public String getName() {
         return name;
@@ -33,5 +34,21 @@ public class Recruiter {
 
     public void setJobOffers(List<JobOffer> jobOffers) {
         this.jobOffers = jobOffers;
+    }
+
+    public LocalDate getProcessDate() {
+        return processDate;
+    }
+
+    public void setProcessDate(LocalDate processDate) {
+        this.processDate = processDate;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
