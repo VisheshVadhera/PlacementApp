@@ -6,7 +6,7 @@ import java.util.List;
 public class JobOffer {
 
     private int id;
-    private String position;
+    private String jobTitle;
     private int noOfOffers;
     private String location;
     private BigDecimal payPackage;
@@ -21,12 +21,12 @@ public class JobOffer {
         this.id = id;
     }
 
-    public String getPosition() {
-        return position;
+    public String getJobTitle() {
+        return jobTitle;
     }
 
-    public void setPosition(String position) {
-        this.position = position;
+    public void setJobTitle(String jobTitle) {
+        this.jobTitle = jobTitle;
     }
 
     public int getNoOfOffers() {

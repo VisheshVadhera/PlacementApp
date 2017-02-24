@@ -39,9 +39,14 @@ public class RecruiterItemAdapter extends RecyclerView.Adapter<RecruiterItemAdap
     public void onBindViewHolder(ViewHolder holder, int position) {
 
         if (recruitersOptional.isPresent()) {
-            List<RecruiterModel> recruiterModels = recruitersOptional.get();
 
+            RecruiterModel recruiterModel = recruitersOptional.get().get(position);
 
+            holder.textJobOfferTitle.setText(recruiterModel.getJobOffer().getJobTitle());
+            holder.textJobOfferDescription.setText(recruiterModel.getJobOffer().getDescription());
+            holder.textPayPackageValue.setText(recruiterModel.getJobOffer().getPayPackage().toPlainString());
+            holder.textRecruiterName.setText(recruiterModel.getName());
+            holder.textProcessDateValue.setText(recruiterModel.getProcessDate().toString());
         }
     }
 
