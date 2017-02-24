@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.fernandocejas.arrow.optional.Optional;
 import com.vishesh.tpc_stud.R;
+import com.vishesh.tpc_stud.core.utils.UiUtils;
 import com.vishesh.tpc_stud.dashboard.models.RecruiterModel;
 
 import java.util.List;
@@ -19,7 +20,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class RecruiterItemAdapter extends RecyclerView.Adapter<RecruiterItemAdapter.ViewHolder> {
-
 
     private Optional<List<RecruiterModel>> recruitersOptional;
     private final Context context;
@@ -44,9 +44,13 @@ public class RecruiterItemAdapter extends RecyclerView.Adapter<RecruiterItemAdap
 
             holder.textJobOfferTitle.setText(recruiterModel.getJobOffer().getJobTitle());
             holder.textJobOfferDescription.setText(recruiterModel.getJobOffer().getDescription());
-            holder.textPayPackageValue.setText(recruiterModel.getJobOffer().getPayPackage().toPlainString());
+            holder.textPayPackageValue
+                    .setText(UiUtils.toRupeeFormattedString(recruiterModel
+                            .getJobOffer().getPayPackage()));
             holder.textRecruiterName.setText(recruiterModel.getName());
-            holder.textProcessDateValue.setText(recruiterModel.getProcessDate().toString());
+            holder.textProcessDateValue
+                    .setText(UiUtils
+                            .toFormattedDate(recruiterModel.getProcessDate()));
         }
     }
 
@@ -78,5 +82,4 @@ public class RecruiterItemAdapter extends RecyclerView.Adapter<RecruiterItemAdap
             ButterKnife.bind(this, itemView);
         }
     }
-
 }
