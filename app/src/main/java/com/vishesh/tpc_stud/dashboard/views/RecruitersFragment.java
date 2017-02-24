@@ -9,7 +9,10 @@ import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.core.ActivityComponent;
 import com.vishesh.tpc_stud.core.views.BaseFragment;
 import com.vishesh.tpc_stud.dashboard.adapters.RecruiterItemAdapter;
+import com.vishesh.tpc_stud.dashboard.models.Recruiter;
 import com.vishesh.tpc_stud.dashboard.presenters.RecruitersPresenter;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -25,7 +28,6 @@ public class RecruitersFragment
 
     @Inject
     RecruiterItemAdapter recruiterItemAdapter;
-
     @Inject
     RecruitersPresenter recruitersPresenter;
 
@@ -58,4 +60,8 @@ public class RecruitersFragment
     }
 
 
+    @Override
+    public void showJobOffers(List<Recruiter> recruiters) {
+        recruiterItemAdapter.setData(recruiters);
+    }
 }

@@ -1,4 +1,4 @@
 package com.vishesh.tpc_stud.dashboard.models;
 
-public class Job {
+public class JobOffer {
 }

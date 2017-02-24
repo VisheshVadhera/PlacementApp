@@ -1,8 +1,9 @@
 package com.vishesh.tpc_stud.dashboard.presenters;
 
 import com.vishesh.tpc_stud.core.presenters.BasePresenter;
+import com.vishesh.tpc_stud.core.repos.LocalCache;
 import com.vishesh.tpc_stud.core.views.BaseView;
-import com.vishesh.tpc_stud.dashboard.models.Job;
+import com.vishesh.tpc_stud.dashboard.models.Recruiter;
 import com.vishesh.tpc_stud.dashboard.useCases.GetRecruitersUseCase;
 
 import java.util.List;
@@ -16,27 +17,28 @@ public class RecruitersPresenter extends BasePresenter {
     private RecruitersView recruitersView;
 
     private final GetRecruitersUseCase getRecruitersUseCase;
+    private final LocalCache localCache;
 
     @Inject
-    public RecruitersPresenter(GetRecruitersUseCase getRecruitersUseCase) {
+    public RecruitersPresenter(GetRecruitersUseCase getRecruitersUseCase,
+                               LocalCache localCache) {
         this.getRecruitersUseCase = getRecruitersUseCase;
+        this.localCache = localCache;
     }
-
 
     public void setView(RecruitersView recruitersView) {
         this.recruitersView = recruitersView;
     }
 
-
     public void onStart() {
         recruitersView.showLoader();
-        Integer userId = 1;
+        Integer userId = localCache.getUserId();
         getRecruitersUseCase.execute(new JobsObserver(), userId, null);
     }
 
     public interface RecruitersView extends BaseView {
 
-        void showJobs(List<Job> value);
+        void showJobOffers(List<Recruiter> value);
     }
 
     @Override
@@ -54,12 +56,12 @@ public class RecruitersPresenter extends BasePresenter {
         recruitersView = null;
     }
 
-    private final class JobsObserver extends DisposableSingleObserver<List<Job>> {
+    private final class JobsObserver extends DisposableSingleObserver<List<Recruiter>> {
 
         @Override
-        public void onSuccess(List<Job> value) {
+        public void onSuccess(List<Recruiter> value) {
             recruitersView.hideLoader();
-            recruitersView.showJobs(value);
+            recruitersView.showJobOffers(value);
         }
 
         @Override

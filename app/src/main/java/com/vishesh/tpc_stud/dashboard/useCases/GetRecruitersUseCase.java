@@ -1,7 +1,7 @@
 package com.vishesh.tpc_stud.dashboard.useCases;
 
 import com.vishesh.tpc_stud.core.helpers.BaseUseCase;
-import com.vishesh.tpc_stud.dashboard.models.Job;
+import com.vishesh.tpc_stud.dashboard.models.Recruiter;
 import com.vishesh.tpc_stud.dashboard.repos.RecruiterRepository;
 
 import java.util.List;
@@ -12,7 +12,7 @@ import io.reactivex.Scheduler;
 import io.reactivex.Single;
 import io.reactivex.disposables.CompositeDisposable;
 
-public class GetRecruitersUseCase extends BaseUseCase<List<Job>, Integer, Void>{
+public class GetRecruitersUseCase extends BaseUseCase<List<Recruiter>, Integer, Void>{
 
     private final RecruiterRepository recruiterRepository;
 
@@ -25,7 +25,7 @@ public class GetRecruitersUseCase extends BaseUseCase<List<Job>, Integer, Void>{
     }
 
     @Override
-    protected Single<List<Job>> buildObservable(Integer integer, Void aVoid) {
-        return null;
+    protected Single<List<Recruiter>> buildObservable(Integer userId, Void aVoid) {
+        return recruiterRepository.getRecruiters(userId);
     }
 }
