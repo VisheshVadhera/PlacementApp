@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.hannesdorfmann.adapterdelegates3.AdapterDelegate;
 import com.vishesh.tpc_stud.R;
+import com.vishesh.tpc_stud.core.utils.UiUtils;
 import com.vishesh.tpc_stud.dashboard.models.UserProfile;
 
 import java.util.List;
@@ -23,12 +24,12 @@ import butterknife.ButterKnife;
  * Created by vishesh on 25/2/17.
  */
 
-public class GpaAdapterDelegate extends AdapterDelegate<UserProfile> {
+public class CourseAdapterDelegate extends AdapterDelegate<UserProfile> {
 
     private final Context context;
 
     @Inject
-    public GpaAdapterDelegate(Context context) {
+    public CourseAdapterDelegate(Context context) {
         this.context = context;
     }
 
@@ -41,7 +42,7 @@ public class GpaAdapterDelegate extends AdapterDelegate<UserProfile> {
     @Override
     protected RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent) {
         View view = LayoutInflater.from(context).inflate(R.layout.layout_profile_item, parent, false);
-        return new GpaViewHolder(view);
+        return new CourseViewHolder(view);
     }
 
     @Override
@@ -50,20 +51,22 @@ public class GpaAdapterDelegate extends AdapterDelegate<UserProfile> {
                                     @NonNull RecyclerView.ViewHolder holder,
                                     @NonNull List<Object> payloads) {
 
-        GpaViewHolder gpaViewHolder = (GpaViewHolder) holder;
+        CourseViewHolder courseViewHolder = (CourseViewHolder) holder;
 
-        gpaViewHolder.textGpaLabel.setText(context.getString(R.string.gpa_label));
-        gpaViewHolder.textGpaValue.setText(userProfile.getGpa().toString());
+        courseViewHolder.textCourseLabel.setText(context.getString(R.string.course_label));
+        courseViewHolder.textCourseValue.setText(UiUtils
+                .createSpacedString(userProfile.getCourse().getBranch(),
+                        userProfile.getCourse().getDegree().getDegreeName()));
     }
 
-    private static class GpaViewHolder extends RecyclerView.ViewHolder {
+    private static class CourseViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.text_profile_item_label)
-        TextView textGpaLabel;
+        TextView textCourseLabel;
         @BindView(R.id.text_profile_item_value)
-        TextView textGpaValue;
+        TextView textCourseValue;
 
-        public GpaViewHolder(View itemView) {
+        public CourseViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
