@@ -23,7 +23,6 @@ import butterknife.ButterKnife;
 /**
  * Created by vishesh on 25/2/17.
  */
-
 public class CourseAdapterDelegate extends AdapterDelegate<UserProfile> {
 
     private final Context context;
@@ -59,7 +58,7 @@ public class CourseAdapterDelegate extends AdapterDelegate<UserProfile> {
                         userProfile.getCourse().getDegree().getDegreeName()));
     }
 
-    private static class CourseViewHolder extends RecyclerView.ViewHolder {
+    static class CourseViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.text_profile_item_label)
         TextView textCourseLabel;

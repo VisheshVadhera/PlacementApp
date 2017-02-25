@@ -5,12 +5,15 @@ import com.vishesh.tpc_stud.dashboard.services.RecruiterService;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import io.reactivex.Single;
 
 public class RecruiterRepository {
 
     private final RecruiterService recruiterService;
 
+    @Inject
     public RecruiterRepository(RecruiterService recruiterService) {
         this.recruiterService = recruiterService;
     }

@@ -60,7 +60,7 @@ public class HeaderAdapterDelegate extends AdapterDelegate<User> {
         headerViewHolder.textEmail.setText(user.getEmail());
     }
 
-    private static class HeaderViewHolder extends RecyclerView.ViewHolder {
+    static class HeaderViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.image_profile_picture)
         CircleImageView imageProfilePicture;

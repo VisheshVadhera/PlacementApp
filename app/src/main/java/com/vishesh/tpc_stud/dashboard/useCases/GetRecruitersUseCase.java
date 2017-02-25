@@ -6,6 +6,7 @@ import com.vishesh.tpc_stud.dashboard.repos.RecruiterRepository;
 
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import io.reactivex.Scheduler;
@@ -16,6 +17,7 @@ public class GetRecruitersUseCase extends BaseUseCase<List<Recruiter>, Integer, 
 
     private final RecruiterRepository recruiterRepository;
 
+    @Inject
     protected GetRecruitersUseCase(@Named("jobScheduler") Scheduler jobScheduler,
                                    @Named("postJobScheduler") Scheduler postJobScheduler,
                                    CompositeDisposable compositeDisposable,

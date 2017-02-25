@@ -42,6 +42,11 @@ public class ProfileItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         this.networkProfileAdapter = networkProfileAdapter;
     }
 
+    public void setData(User user, UserProfile userProfile){
+        this.user = user;
+        this.userProfile = userProfile;
+    }
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType) {

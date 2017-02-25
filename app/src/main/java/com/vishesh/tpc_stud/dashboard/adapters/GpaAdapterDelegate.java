@@ -56,7 +56,7 @@ public class GpaAdapterDelegate extends AdapterDelegate<UserProfile> {
         gpaViewHolder.textGpaValue.setText(userProfile.getGpa().toString());
     }
 
-    private static class GpaViewHolder extends RecyclerView.ViewHolder {
+    static class GpaViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.text_profile_item_label)
         TextView textGpaLabel;

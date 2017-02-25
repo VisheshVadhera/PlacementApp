@@ -4,6 +4,7 @@ import com.vishesh.tpc_stud.core.helpers.BaseUseCase;
 import com.vishesh.tpc_stud.core.repos.UserRepository;
 import com.vishesh.tpc_stud.dashboard.models.UserProfile;
 
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import io.reactivex.Scheduler;
@@ -17,6 +18,7 @@ public class GetProfileUseCase extends BaseUseCase<UserProfile, Integer, Object>
 
     private final UserRepository userRepository;
 
+    @Inject
     protected GetProfileUseCase(@Named("jobScheduler") Scheduler jobScheduler,
                                 @Named("postJobScheduler") Scheduler postJobScheduler,
                                 CompositeDisposable compositeDisposable,

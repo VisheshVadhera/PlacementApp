@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 
 import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.core.ActivityComponent;
+import com.vishesh.tpc_stud.core.DaggerActivityComponent;
 import com.vishesh.tpc_stud.core.helpers.DependencyInjector;
 import com.vishesh.tpc_stud.core.views.BaseActivity;
 import com.vishesh.tpc_stud.dashboard.views.DashboardFragment;

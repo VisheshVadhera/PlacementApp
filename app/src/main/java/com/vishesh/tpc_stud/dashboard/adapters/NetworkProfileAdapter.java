@@ -62,7 +62,7 @@ public class NetworkProfileAdapter extends AdapterDelegate<List<NetworkProfile>>
                                 networkProfile.getNetwork().getNetworkName()));
     }
 
-    private static class NetworkProfileViewHolder extends RecyclerView.ViewHolder {
+    static class NetworkProfileViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.text_profile_item_label)
         TextView textNetworkProfileLabel;
