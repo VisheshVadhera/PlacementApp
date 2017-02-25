@@ -9,6 +9,7 @@
     <string name="cv_label">CV</string>
     <string name="gpa_label">GPA</string>
     <string name="course_label">Course</string>
+    <string name="network_profile_value">Open</string>
 
     <string name="cv_upload_action">Upload</string>
     <string name="cv_view_action">View</string>

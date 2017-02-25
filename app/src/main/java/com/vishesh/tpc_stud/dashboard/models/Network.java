@@ -6,5 +6,15 @@ package com.vishesh.tpc_stud.dashboard.models;
 
 public enum Network {
 
-    GITHUB, LINKEDIN, OTHER
+    GITHUB("Github"), LINKEDIN("LinkedIn"), WEBSITE("Website"), OTHER("Other");
+
+    private String networkName;
+
+    Network(String networkName) {
+        this.networkName = networkName;
+    }
+
+    public String getNetworkName() {
+        return networkName;
+    }
 }
