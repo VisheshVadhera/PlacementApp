@@ -98,4 +98,13 @@ dependencies {
 
     //JodaTime
     compile "net.danlew:android.joda:${jodaTimeVersion}"
+
+    //AdapterDelegates for heterogeneous recycler views
+    compile 'com.hannesdorfmann:adapterdelegates3:3.0.1'
+
+    //Circle ImageView
+    compile 'de.hdodenhof:circleimageview:2.1.0'
+
+    //Glide for loading images
+    compile 'com.github.bumptech.glide:glide:3.7.0'
 }

@@ -11,6 +11,7 @@ public class User {
     private String firstName;
     private String lastName;
     private String email;
+    private String picUrl;
 
     public int getId() {
         return id;
@@ -44,4 +45,11 @@ public class User {
         this.email = email;
     }
 
+    public String getPicUrl() {
+        return picUrl;
+    }
+
+    public void setPicUrl(String picUrl) {
+        this.picUrl = picUrl;
+    }
 }

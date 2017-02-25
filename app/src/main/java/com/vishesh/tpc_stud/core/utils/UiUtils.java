@@ -20,15 +20,19 @@ public class UiUtils {
         throw new AssertionError("Can't instantiate UiUtils");
     }
 
-    public static String toRupeeFormattedString(BigDecimal amount){
-        return String.format("$%s %s", RUPEE_PREFIX, amount.toPlainString());
+    public static String toRupeeFormattedString(BigDecimal amount) {
+        return createSpacedString(RUPEE_PREFIX, amount.toPlainString());
     }
 
-    public static String toFormattedDate(LocalDate localDate){
+    public static String toFormattedDate(LocalDate localDate) {
         DateTimeFormatter dateTimeFormatter = DateTimeFormat
                 .forPattern(DATE_PATTERN)
                 .withLocale(Locale.US);
         return dateTimeFormatter.print(localDate);
+    }
+
+    public static String createSpacedString(String s1, String s2) {
+        return String.format("%s %s", s1, s2);
     }
 
 }
