@@ -2,8 +2,9 @@ package com.vishesh.tpc_stud.auth.services;
 
 import com.vishesh.tpc_stud.auth.models.AccessToken;
 
-import java.util.HashMap;
 import java.util.Map;
+
+import javax.inject.Inject;
 
 import io.reactivex.Single;
 import retrofit2.http.Body;
@@ -14,6 +15,7 @@ public class MockAuthService implements AuthService {
 
     private final MockRetrofit mockRetrofit;
 
+    @Inject
     public MockAuthService(MockRetrofit mockRetrofit) {
         this.mockRetrofit = mockRetrofit;
     }
@@ -27,6 +29,6 @@ public class MockAuthService implements AuthService {
         accessToken.setAccessToken("thisIsASampleToken");
         return delegate
                 .returningResponse(accessToken)
-                .emailLogin(new HashMap<String, String>());
+                .emailLogin(map);
     }
 }
