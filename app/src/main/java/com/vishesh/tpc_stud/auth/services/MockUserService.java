@@ -10,8 +10,6 @@ import com.vishesh.tpc_stud.dashboard.models.UserProfile;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-
 import io.reactivex.Single;
 import retrofit2.http.Body;
 import retrofit2.http.Path;
@@ -35,7 +33,6 @@ public class MockUserService implements UserService {
         return mockUser;
     }
 
-    @Inject
     public MockUserService(MockRetrofit mockRetrofit) {
         this.mockRetrofit = mockRetrofit;
         delegate = mockRetrofit.create(UserService.class);
