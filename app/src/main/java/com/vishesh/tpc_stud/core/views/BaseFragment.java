@@ -24,7 +24,7 @@ public abstract class BaseFragment extends Fragment {
     @BindView(R.id.layout_loader)
     RelativeLayout relativeLayoutLoader;
 
-    private Unbinder unbinder;
+    protected Unbinder unbinder;
 
     public void showMessage(String message) {
         Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT)
