@@ -75,7 +75,7 @@ public class MockUserService implements UserService {
         networkProfile.setUrl("https://github.com");
 
         NetworkProfile networkProfile1 = new NetworkProfile();
-        networkProfile.setNetwork(Network.LINKEDIN);
+        networkProfile1.setNetwork(Network.LINKEDIN);
         networkProfile1.setUrl("http://linkedin.com");
 
         networkProfiles.add(networkProfile);

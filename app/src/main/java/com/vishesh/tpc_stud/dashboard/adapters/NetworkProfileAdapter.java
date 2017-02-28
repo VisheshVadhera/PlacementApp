@@ -48,7 +48,7 @@ public class NetworkProfileAdapter extends AdapterDelegate<List<NetworkProfile>>
     @Override
     protected void onBindViewHolder(@NonNull List<NetworkProfile> items, int position, @NonNull RecyclerView.ViewHolder holder, @NonNull List<Object> payloads) {
 
-        NetworkProfile networkProfile = items.get(position);
+        NetworkProfile networkProfile = items.get(position - items.size() - 2);
         NetworkProfileViewHolder networkProfileViewHolder = (NetworkProfileViewHolder) holder;
 
         networkProfileViewHolder
