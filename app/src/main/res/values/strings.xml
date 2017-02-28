@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">tpc-stud</string>
+    
+    <string name="button_continue_text">Continue</string>
 </resources>

@@ -16,7 +16,7 @@ import io.reactivex.disposables.CompositeDisposable;
 /**
  * Created by vishesh on 14/2/17.
  */
-public class LoginUseCase extends BaseUseCase<AccessToken, Map<String, String>> {
+public class LoginUseCase extends BaseUseCase<AccessToken, Map<String, String>, Void> {
 
     private final UserRepository userRepository;
 
@@ -30,7 +30,7 @@ public class LoginUseCase extends BaseUseCase<AccessToken, Map<String, String>> 
     }
 
     @Override
-    protected Single<AccessToken> buildObservable(Map<String, String> params) {
-        return userRepository.emailLogin(params);
+    protected Single<AccessToken> buildObservable(Map<String, String> map, Void aVoid) {
+        return userRepository.emailLogin(map);
     }
 }

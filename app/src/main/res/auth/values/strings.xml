@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="button_login_text">Sign In With Email</string>
+    
+    <string name="first_name_hint">First Name</string>
+    <string name="last_name_hint">Last Name</string>
+
 </resources>

@@ -9,7 +9,7 @@ import io.reactivex.observers.DisposableSingleObserver;
 /**
  * Created by vishesh on 14/2/17.
  */
-public abstract class BaseUseCase<T, Parameters> {
+public abstract class BaseUseCase<Output, Input1, Input2> {
 
     private final Scheduler jobScheduler;
     private final Scheduler postJobScheduler;
@@ -23,11 +23,13 @@ public abstract class BaseUseCase<T, Parameters> {
         this.compositeDisposable = compositeDisposable;
     }
 
-    public void execute(DisposableSingleObserver<T> disposableObserver, Parameters params) {
-        Single<T> single = buildObservable(params)
+    public void execute(DisposableSingleObserver<Output> disposableObserver,
+                        Input1 input1, Input2 input2) {
+        Single<Output> single = buildObservable(input1, input2)
                 .subscribeOn(jobScheduler)
                 .observeOn(postJobScheduler);
         addDisposable(single.subscribeWith(disposableObserver));
+
     }
 
     public void dispose() {
@@ -36,7 +38,7 @@ public abstract class BaseUseCase<T, Parameters> {
         }
     }
 
-    protected abstract Single<T> buildObservable(Parameters params);
+    protected abstract Single<Output> buildObservable(Input1 input1, Input2 input2);
 
     private void addDisposable(Disposable disposable) {
         compositeDisposable.add(disposable);
