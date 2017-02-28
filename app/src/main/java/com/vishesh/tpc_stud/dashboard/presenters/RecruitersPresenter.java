@@ -38,7 +38,7 @@ public class RecruitersPresenter extends BasePresenter {
     public void onStart() {
         recruitersView.showLoader();
         Integer userId = localCache.getUserId();
-        getRecruitersUseCase.execute(new JobsObserver(), userId, null);
+        getRecruitersUseCase.execute(new JobOffersObserver(), userId, null);
     }
 
     public interface RecruitersView extends BaseView {
@@ -61,7 +61,7 @@ public class RecruitersPresenter extends BasePresenter {
         recruitersView = null;
     }
 
-    private final class JobsObserver extends DisposableSingleObserver<List<Recruiter>> {
+    private final class JobOffersObserver extends DisposableSingleObserver<List<Recruiter>> {
 
         @Override
         public void onSuccess(List<Recruiter> recruiters) {

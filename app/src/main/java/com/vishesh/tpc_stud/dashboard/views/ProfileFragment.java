@@ -2,6 +2,7 @@ package com.vishesh.tpc_stud.dashboard.views;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -60,6 +61,7 @@ public class ProfileFragment
     @Override
     public void showProfile(User user, UserProfile userProfile) {
         profileItemAdapter.setData(user, userProfile);
+        recyclerViewProfile.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerViewProfile.setAdapter(profileItemAdapter);
     }
 }

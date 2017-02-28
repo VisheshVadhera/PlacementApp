@@ -2,6 +2,7 @@ package com.vishesh.tpc_stud.dashboard.views;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -61,6 +62,7 @@ public class RecruitersFragment
     @Override
     public void showJobOffers(List<RecruiterModel> recruiterModels) {
         recruiterItemAdapter.setData(recruiterModels);
+        recyclerViewRecruiters.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerViewRecruiters.setAdapter(recruiterItemAdapter);
     }
 }
