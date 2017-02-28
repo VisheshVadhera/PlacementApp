@@ -16,6 +16,7 @@ import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.auth.presenters.LoginPresenter;
 import com.vishesh.tpc_stud.core.ActivityComponent;
 import com.vishesh.tpc_stud.core.views.BaseFragment;
+import com.vishesh.tpc_stud.dashboard.views.DashboardFragment;
 
 import javax.inject.Inject;
 
@@ -90,7 +91,9 @@ public class LoginFragment
 
     @Override
     public void openDashboard() {
-
+        Intent dashboardIntent = DashboardFragment.createIntent(getActivity());
+        startActivity(dashboardIntent);
+        finish();
     }
 
     @Override
