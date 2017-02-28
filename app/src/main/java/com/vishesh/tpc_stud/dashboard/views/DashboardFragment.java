@@ -1,5 +1,7 @@
 package com.vishesh.tpc_stud.dashboard.views;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -38,6 +40,10 @@ public class DashboardFragment
 
     @Inject
     DashboardPresenter dashboardPresenter;
+
+    public static Intent createIntent(Context context){
+        return new Intent(context, DashboardActivity.class);
+    }
 
     @Override
     protected void injectDependencies() {
