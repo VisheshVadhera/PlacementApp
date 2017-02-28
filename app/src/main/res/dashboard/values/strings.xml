@@ -13,5 +13,8 @@
 
     <string name="cv_upload_action">Upload</string>
     <string name="cv_view_action">View</string>
-    
+
+    <string name="dashboard_tab_recruiters_title">Recruiters</string>
+    <string name="dashboard_tab_profile_title">Profile</string>
+
 </resources>

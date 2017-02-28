@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -13,6 +14,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.jakewharton.rxbinding2.support.design.widget.RxTabLayout;
+import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic;
 import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.auth.views.LoginFragment;
 import com.vishesh.tpc_stud.core.ActivityComponent;
@@ -23,6 +27,9 @@ import com.vishesh.tpc_stud.dashboard.presenters.DashboardPresenter;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import io.reactivex.Observable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
 
 public class DashboardFragment
         extends BaseFragment
@@ -41,7 +48,10 @@ public class DashboardFragment
     @Inject
     DashboardPresenter dashboardPresenter;
 
-    public static Intent createIntent(Context context){
+    private Observable<Integer> tabPositionObservable;
+    private Consumer<Integer> tabPositionConsumer;
+
+    public static Intent createIntent(Context context) {
         return new Intent(context, DashboardActivity.class);
     }
 
@@ -79,6 +89,44 @@ public class DashboardFragment
 
         viewPager.setAdapter(sectionsPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
+
+        IconicsDrawable homeIcon = new IconicsDrawable(getContext())
+                .sizeDp(20)
+                .icon(MaterialDesignIconic.Icon.gmi_home);
+
+        IconicsDrawable profileIcon = new IconicsDrawable(getContext())
+                .sizeDp(20)
+                .icon(MaterialDesignIconic.Icon.gmi_account_box);
+
+        tabLayout.getTabAt(0).setIcon(homeIcon);
+        tabLayout.getTabAt(1).setIcon(profileIcon);
+
+        final ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+
+        tabPositionObservable = RxTabLayout
+                .selections(tabLayout)
+                .map(new Function<TabLayout.Tab, Integer>() {
+                    @Override
+                    public Integer apply(TabLayout.Tab tab) throws Exception {
+                        return tab.getPosition();
+                    }
+                });
+
+        tabPositionConsumer = new Consumer<Integer>() {
+            @Override
+            public void accept(Integer tabPosition) throws Exception {
+                if (actionBar != null) {
+                    if (tabPosition == 0) {
+                        actionBar.setTitle(getString(R.string.dashboard_tab_recruiters_title));
+                    } else {
+                        actionBar.setTitle(getString(R.string.dashboard_tab_profile_title));
+                    }
+                }
+            }
+        };
+
+        tabPositionObservable
+                .subscribe(tabPositionConsumer);
     }
 
 

@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 
 android {
-    compileSdkVersion 23
+    compileSdkVersion 24
     buildToolsVersion "24.0.0"
 
     defaultConfig {
@@ -39,7 +39,7 @@ android {
 }
 
 ext {
-    supportLibVersion = '23.0.0'
+    supportLibVersion = '24.0.0'
     okHttpVersion = '3.6.0'
     daggerVersion = '2.8'
     rxVersion = '2.0.1'
@@ -92,6 +92,7 @@ dependencies {
 
     //RxBindings for views
     compile 'com.github.JakeWharton.RxBinding:rxbinding:d7774aae78'
+    compile 'com.github.JakeWharton.RxBinding:rxbinding-design:d7774aae78'
 
     //Optionals library
     compile 'com.fernandocejas:arrow:1.0.0'
