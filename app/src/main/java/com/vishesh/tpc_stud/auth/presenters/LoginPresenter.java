@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import com.facebook.accountkit.AccountKitLoginResult;
 import com.fernandocejas.arrow.optional.Optional;
 import com.vishesh.tpc_stud.auth.models.AccessToken;
-import com.vishesh.tpc_stud.auth.useCases.FetchCurrentUserUseCase;
+import com.vishesh.tpc_stud.auth.useCases.GetCurrentUserUseCase;
 import com.vishesh.tpc_stud.auth.useCases.LoginUseCase;
 import com.vishesh.tpc_stud.auth.useCases.UpdateUserUseCase;
 import com.vishesh.tpc_stud.core.models.User;
@@ -28,17 +28,17 @@ public class LoginPresenter extends BasePresenter {
 
     private final LoginUseCase loginUseCase;
     private final UpdateUserUseCase updateUserUseCase;
-    private final FetchCurrentUserUseCase fetchCurrentUserUseCase;
+    private final GetCurrentUserUseCase getCurrentUserUseCase;
 
     private Optional<User> userOptional = Optional.absent();
 
     @Inject
     public LoginPresenter(LoginUseCase loginUseCase,
                           UpdateUserUseCase updateUserUseCase,
-                          FetchCurrentUserUseCase fetchCurrentUserUseCase) {
+                          GetCurrentUserUseCase getCurrentUserUseCase) {
         this.loginUseCase = loginUseCase;
         this.updateUserUseCase = updateUserUseCase;
-        this.fetchCurrentUserUseCase = fetchCurrentUserUseCase;
+        this.getCurrentUserUseCase = getCurrentUserUseCase;
     }
 
     public void setView(LoginView loginView) {
@@ -103,7 +103,7 @@ public class LoginPresenter extends BasePresenter {
 
         @Override
         public void onSuccess(AccessToken value) {
-            fetchCurrentUserUseCase.execute(new CurrentUserObserver(), null, null);
+            getCurrentUserUseCase.execute(new CurrentUserObserver(), null, null);
         }
 
         @Override

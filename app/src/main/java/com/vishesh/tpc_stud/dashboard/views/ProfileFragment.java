@@ -2,10 +2,12 @@ package com.vishesh.tpc_stud.dashboard.views;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.core.ActivityComponent;
+import com.vishesh.tpc_stud.core.models.User;
 import com.vishesh.tpc_stud.core.views.BaseFragment;
 import com.vishesh.tpc_stud.dashboard.adapters.ProfileItemAdapter;
 import com.vishesh.tpc_stud.dashboard.models.UserProfile;
@@ -13,10 +15,15 @@ import com.vishesh.tpc_stud.dashboard.presenters.ProfilePresenter;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+
 
 public class ProfileFragment
         extends BaseFragment
-        implements ProfilePresenter.ProfileView{
+        implements ProfilePresenter.ProfileView {
+
+    @BindView(R.id.recycler_view_profile)
+    RecyclerView recyclerViewProfile;
 
     @Inject
     ProfileItemAdapter profileItemAdapter;
@@ -51,7 +58,8 @@ public class ProfileFragment
     }
 
     @Override
-    public void showProfile(UserProfile userProfile) {
-
+    public void showProfile(User user, UserProfile userProfile) {
+        profileItemAdapter.setData(user, userProfile);
+        recyclerViewProfile.setAdapter(profileItemAdapter);
     }
 }

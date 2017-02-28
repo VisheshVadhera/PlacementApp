@@ -12,15 +12,15 @@ import io.reactivex.Single;
 import io.reactivex.disposables.CompositeDisposable;
 
 
-public class FetchCurrentUserUseCase extends BaseUseCase<User, Void, Void>{
+public class GetCurrentUserUseCase extends BaseUseCase<User, Void, Void>{
 
     private final UserRepository userRepository;
 
     @Inject
-    protected FetchCurrentUserUseCase(@Named("jobScheduler") Scheduler jobScheduler,
-                                      @Named("postJobScheduler") Scheduler postJobScheduler,
-                                      CompositeDisposable compositeDisposable,
-                                      UserRepository userRepository) {
+    protected GetCurrentUserUseCase(@Named("jobScheduler") Scheduler jobScheduler,
+                                    @Named("postJobScheduler") Scheduler postJobScheduler,
+                                    CompositeDisposable compositeDisposable,
+                                    UserRepository userRepository) {
         super(jobScheduler, postJobScheduler, compositeDisposable);
         this.userRepository = userRepository;
     }
