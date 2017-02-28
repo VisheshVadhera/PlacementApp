@@ -9,12 +9,13 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 import retrofit2.Retrofit;
+import retrofit2.mock.MockRetrofit;
 
 /**
  * Created by vishesh on 12/2/17.
  */
 @Singleton
-@Component(modules = {AppModule.class,
+@Component(modules = {AppModule.class, MockRetrofitModule.class,
         RetrofitModule.class, DataModule.class})
 public interface AppComponent {
 
@@ -22,4 +23,5 @@ public interface AppComponent {
 
     LocalCache localCache();
 
+    MockRetrofit mockRetrofit();
 }
