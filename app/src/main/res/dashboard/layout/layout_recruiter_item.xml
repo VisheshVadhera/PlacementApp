@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="240dp"
-    android:layout_marginLeft="8dp"
-    android:layout_marginTop="6dp"
+    android:layout_height="200dp"
     android:layout_marginBottom="6dp"
-    android:layout_marginRight="8dp">
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginTop="6dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_horizontal_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingBottom="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_horizontal_margin">
 
         <TextView
@@ -21,7 +21,7 @@
             android:layout_height="40dp"
             android:layout_marginTop="8dp"
             android:text="Name"
-            android:textSize="32dp" />
+            android:textSize="32sp" />
 
         <TextView
             android:id="@+id/text_recruiter_name"
@@ -30,7 +30,7 @@
             android:layout_below="@id/text_job_offer_title"
             android:layout_marginTop="8dp"
             android:text="Company Name"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/text_job_offer_description"
@@ -41,7 +41,7 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:text="Description"
-            android:textSize="12dp" />
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/text_process_date_label"
@@ -49,18 +49,19 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/text_job_offer_description"
             android:layout_marginTop="16dp"
+            android:gravity="start"
             android:text="@string/process_date_label"
-            android:textSize="12dp" />
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/text_pay_package_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/text_job_offer_description"
-            android:layout_marginLeft="260dp"
             android:layout_marginTop="16dp"
+            android:gravity="end"
             android:text="@string/pay_package_label"
-            android:textSize="12dp" />
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/text_process_date_value"
@@ -68,18 +69,19 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/text_process_date_label"
             android:layout_marginTop="8dp"
+            android:gravity="start"
             android:text="January 5, 2017"
-            android:textSize="12dp" />
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/text_pay_package_value"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="end"
             android:layout_below="@id/text_pay_package_label"
-            android:layout_marginLeft="260dp"
             android:layout_marginTop="8dp"
             android:text="Rs 800000"
-            android:textSize="12dp" />
+            android:textSize="12sp" />
 
     </RelativeLayout>
 
