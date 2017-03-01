@@ -25,12 +25,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
 /**
  * Created by vishesh on 25/2/17.
  */
-public class HeaderAdapterDelegate extends AdapterDelegate<User> {
+public class ProfileHeaderAdapterDelegate extends AdapterDelegate<User> {
 
     private final Context context;
 
     @Inject
-    public HeaderAdapterDelegate(Context context) {
+    public ProfileHeaderAdapterDelegate(Context context) {
         this.context = context;
     }
 

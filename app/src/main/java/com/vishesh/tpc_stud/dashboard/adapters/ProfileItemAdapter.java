@@ -20,7 +20,7 @@ public class ProfileItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private static final int VIEW_TYPE_COURSE = 3;
     private static final int VIEW_TYPE_NETWORK_PROFILE = 4;
 
-    private final HeaderAdapterDelegate headerAdapterDelegate;
+    private final ProfileHeaderAdapterDelegate profileHeaderAdapterDelegate;
     private final GpaAdapterDelegate gpaAdapterDelegate;
     private final CvAdapterDelegate cvAdapterDelegate;
     private final CourseAdapterDelegate courseAdapterDelegate;
@@ -30,12 +30,12 @@ public class ProfileItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private UserProfile userProfile;
 
     @Inject
-    public ProfileItemAdapter(HeaderAdapterDelegate headerAdapterDelegate,
+    public ProfileItemAdapter(ProfileHeaderAdapterDelegate profileHeaderAdapterDelegate,
                               GpaAdapterDelegate gpaAdapterDelegate,
                               CvAdapterDelegate cvAdapterDelegate,
                               CourseAdapterDelegate courseAdapterDelegate,
                               NetworkProfileAdapter networkProfileAdapter) {
-        this.headerAdapterDelegate = headerAdapterDelegate;
+        this.profileHeaderAdapterDelegate = profileHeaderAdapterDelegate;
         this.gpaAdapterDelegate = gpaAdapterDelegate;
         this.cvAdapterDelegate = cvAdapterDelegate;
         this.courseAdapterDelegate = courseAdapterDelegate;
@@ -51,7 +51,7 @@ public class ProfileItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType) {
             case VIEW_TYPE_HEADER:
-                return headerAdapterDelegate.onCreateViewHolder(parent);
+                return profileHeaderAdapterDelegate.onCreateViewHolder(parent);
             case VIEW_TYPE_GPA:
                 return gpaAdapterDelegate.onCreateViewHolder(parent);
             case VIEW_TYPE_CV:
@@ -67,7 +67,7 @@ public class ProfileItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         switch (holder.getItemViewType()) {
             case VIEW_TYPE_HEADER:
-                headerAdapterDelegate.onBindViewHolder(user, position, holder, null);
+                profileHeaderAdapterDelegate.onBindViewHolder(user, position, holder, null);
                 break;
             case VIEW_TYPE_GPA:
                 gpaAdapterDelegate.onBindViewHolder(userProfile, position, holder, null);
