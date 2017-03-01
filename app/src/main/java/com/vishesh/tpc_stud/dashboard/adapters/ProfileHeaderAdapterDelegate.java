@@ -8,8 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.hannesdorfmann.adapterdelegates3.AdapterDelegate;
+import com.squareup.picasso.Picasso;
 import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.core.models.User;
 import com.vishesh.tpc_stud.core.utils.UiUtils;
@@ -52,7 +52,7 @@ public class ProfileHeaderAdapterDelegate extends AdapterDelegate<User> {
                                     @NonNull List<Object> payloads) {
         HeaderViewHolder headerViewHolder = (HeaderViewHolder) holder;
 
-        Glide.with(context)
+        Picasso.with(context)
                 .load(user.getPicUrl())
                 .into(headerViewHolder.imageProfilePicture);
 

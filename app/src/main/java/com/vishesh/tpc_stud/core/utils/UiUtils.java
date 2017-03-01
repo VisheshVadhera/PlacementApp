@@ -1,5 +1,8 @@
 package com.vishesh.tpc_stud.core.utils;
 
+import android.content.Context;
+import android.widget.Toast;
+
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -35,4 +38,8 @@ public class UiUtils {
         return String.format("%s %s", s1, s2);
     }
 
+    public static void showToast(Context context, String toastMessage){
+        Toast.makeText(context, toastMessage, Toast.LENGTH_SHORT)
+                .show();
+    }
 }

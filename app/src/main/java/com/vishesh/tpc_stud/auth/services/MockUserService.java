@@ -29,7 +29,7 @@ public class MockUserService implements UserService {
         mockUser.setLastName("Vwxyz");
         mockUser.setId(1);
         mockUser.setEmail("abcd@example.com");
-        mockUser.setPicUrl("http://http://doubledutch.me/wp-content/uploads/teammembers/placeholder-user-photo.png");
+        mockUser.setPicUrl("http://doubledutch.me/wp-content/uploads/teammembers/placeholder-user-photo.png");
         return mockUser;
     }
 
