@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="240dp"
     android:layout_marginLeft="8dp"
-    android:layout_marginTop="@dimen/activity_horizontal_margin"
+    android:layout_marginTop="6dp"
+    android:layout_marginBottom="6dp"
     android:layout_marginRight="8dp">
 
     <RelativeLayout
@@ -17,7 +18,7 @@
         <TextView
             android:id="@+id/text_job_offer_title"
             android:layout_width="match_parent"
-            android:layout_height="32dp"
+            android:layout_height="40dp"
             android:layout_marginTop="8dp"
             android:text="Name"
             android:textSize="32dp" />
