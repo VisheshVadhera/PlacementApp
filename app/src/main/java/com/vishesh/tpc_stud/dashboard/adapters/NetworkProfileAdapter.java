@@ -23,7 +23,6 @@ import butterknife.ButterKnife;
 /**
  * Created by vishesh on 25/2/17.
  */
-
 public class NetworkProfileAdapter extends AdapterDelegate<List<NetworkProfile>> {
 
     private final Context context;
