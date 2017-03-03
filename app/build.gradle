@@ -116,6 +116,6 @@ dependencies {
     //For loading images
     compile 'com.squareup.picasso:picasso:2.5.2'
 
-    //RxRelays for EventBus
+    //RxRelays for Event
     compile 'com.jakewharton.rxrelay2:rxrelay:2.0.0'
 }

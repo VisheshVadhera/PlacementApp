@@ -23,8 +23,11 @@ import io.reactivex.observers.DisposableSingleObserver;
 public class ProfilePresenter
         extends BasePresenter {
 
+    private static final String CV_FILE_TYPE = "application/pdf";
+
     private Optional<User> userOptional = Optional.absent();
     private Optional<UserProfile> userProfileOptional = Optional.absent();
+
     private ProfileView profileView;
 
     private final GetProfileUseCase getProfileUseCase;
@@ -70,7 +73,7 @@ public class ProfilePresenter
             UserProfile userProfile = userProfileOptional.get();
 
             if (TextUtils.isEmpty(userProfile.getCvUrl())) {
-                profileView.openFileExplorer();
+                profileView.openFileExplorer(CV_FILE_TYPE);
             } else {
                 profileView.openPdfViewer();
             }
@@ -81,7 +84,7 @@ public class ProfilePresenter
 
         void showProfile(User user, UserProfile userProfile);
 
-        void openFileExplorer();
+        void openFileExplorer(String fileType);
 
         void openPdfViewer();
     }

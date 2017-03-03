@@ -1,5 +1,6 @@
 package com.vishesh.tpc_stud.dashboard.views;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -25,6 +26,8 @@ import io.reactivex.functions.Consumer;
 public class ProfileFragment
         extends BaseFragment
         implements ProfilePresenter.ProfileView {
+
+    private static final int CODE_FILE_SELECT = 1001;
 
     @BindView(R.id.recycler_view_profile)
     RecyclerView recyclerViewProfile;
@@ -73,8 +76,18 @@ public class ProfileFragment
     }
 
     @Override
-    public void openFileExplorer() {
+    public void openFileExplorer(String fileType) {
 
+        Intent fileChooserIntent = new Intent(Intent.ACTION_GET_CONTENT);
+        fileChooserIntent.setType(fileType);
+        fileChooserIntent.addCategory(Intent.CATEGORY_OPENABLE);
+
+        if (fileChooserIntent.resolveActivity(getContext().getPackageManager()) != null) {
+            startActivityForResult(Intent.createChooser(fileChooserIntent,
+                    getString(R.string.file_chooser_title)), CODE_FILE_SELECT);
+        } else {
+            showMessage(getString(R.string.file_chooser_err));
+        }
     }
 
     @Override

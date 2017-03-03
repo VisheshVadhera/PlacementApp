@@ -17,4 +17,7 @@
     <string name="dashboard_tab_recruiters_title">Recruiters</string>
     <string name="dashboard_tab_profile_title">Profile</string>
 
+    <string name="file_chooser_title">Select a file to upload</string>
+    <string name="file_chooser_err">Unable to save file</string>
+
 </resources>
