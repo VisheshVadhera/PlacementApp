@@ -68,7 +68,7 @@ public class CvAdapterDelegate extends AdapterDelegate<UserProfile> {
         }
     }
 
-    private class CvViewHolder extends RecyclerView.ViewHolder {
+    class CvViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.text_profile_item_value)
         TextView textCvAction;
