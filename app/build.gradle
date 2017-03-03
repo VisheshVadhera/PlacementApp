@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 
-
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.0"
@@ -47,6 +46,7 @@ ext {
     butterknifeVersion = '8.5.1'
     accountKitVersion = '4.+'
     jodaTimeVersion = '2.9.5.1'
+    permissionsDispatcherVersion = '2.3.1'
 }
 
 repositories {
@@ -118,4 +118,8 @@ dependencies {
 
     //RxRelays for Event
     compile 'com.jakewharton.rxrelay2:rxrelay:2.0.0'
+
+    //Annotations handling permissions for Android M+ devices
+    compile "com.github.hotchemi:permissionsdispatcher:${permissionsDispatcherVersion}"
+    annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:${permissionsDispatcherVersion}"
 }
