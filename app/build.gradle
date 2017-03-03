@@ -47,6 +47,7 @@ ext {
     accountKitVersion = '4.+'
     jodaTimeVersion = '2.9.5.1'
     permissionsDispatcherVersion = '2.3.1'
+    androidJobQueueVersion = '1.1.7'
 }
 
 repositories {
@@ -122,4 +123,7 @@ dependencies {
     //Annotations handling permissions for Android M+ devices
     compile "com.github.hotchemi:permissionsdispatcher:${permissionsDispatcherVersion}"
     annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:${permissionsDispatcherVersion}"
+
+    //Persisted Job Queue
+    compile "com.evernote:android-job:${androidJobQueueVersion}"
 }
