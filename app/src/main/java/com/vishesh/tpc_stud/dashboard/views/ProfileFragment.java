@@ -1,6 +1,7 @@
 package com.vishesh.tpc_stud.dashboard.views;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,11 +14,14 @@ import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.core.ActivityComponent;
 import com.vishesh.tpc_stud.core.helpers.Bus;
 import com.vishesh.tpc_stud.core.models.User;
+import com.vishesh.tpc_stud.core.utils.FileUtils;
 import com.vishesh.tpc_stud.core.views.BaseFragment;
 import com.vishesh.tpc_stud.dashboard.adapters.ProfileItemAdapter;
 import com.vishesh.tpc_stud.dashboard.busEvents.CvTapEvent;
 import com.vishesh.tpc_stud.dashboard.models.UserProfile;
 import com.vishesh.tpc_stud.dashboard.presenters.ProfilePresenter;
+
+import java.io.File;
 
 import javax.inject.Inject;
 
@@ -33,7 +37,7 @@ public class ProfileFragment
         extends BaseFragment
         implements ProfilePresenter.ProfileView {
 
-    private static final int CODE_FILE_SELECT = 1001;
+    private static final int FILE_SELECT_REQUEST_CODE = 1001;
 
     @BindView(R.id.recycler_view_profile)
     RecyclerView recyclerViewProfile;
@@ -99,7 +103,7 @@ public class ProfileFragment
 
         if (fileChooserIntent.resolveActivity(getContext().getPackageManager()) != null) {
             startActivityForResult(Intent.createChooser(fileChooserIntent,
-                    getString(R.string.file_chooser_title)), CODE_FILE_SELECT);
+                    getString(R.string.file_chooser_title)), FILE_SELECT_REQUEST_CODE);
         } else {
             showMessage(getString(R.string.file_chooser_err));
         }
@@ -119,6 +123,17 @@ public class ProfileFragment
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         ProfileFragmentPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == Activity.RESULT_OK) {
+            switch (resultCode) {
+                case FILE_SELECT_REQUEST_CODE:
+                    File file = FileUtils.getFileForUri(getContext(), data.getData());
+                    profilePresenter.onFileReceived(file);
+            }
+        }
     }
 
     private class BusEventConsumer implements Consumer<Object> {

@@ -12,6 +12,8 @@ import com.vishesh.tpc_stud.core.views.BaseView;
 import com.vishesh.tpc_stud.dashboard.models.UserProfile;
 import com.vishesh.tpc_stud.dashboard.useCases.GetProfileUseCase;
 
+import java.io.File;
+
 import javax.inject.Inject;
 
 import io.reactivex.observers.DisposableSingleObserver;
@@ -78,6 +80,10 @@ public class ProfilePresenter
                 profileView.openPdfViewer();
             }
         }
+    }
+
+    public void onFileReceived(File file) {
+
     }
 
     public interface ProfileView extends BaseView {
