@@ -77,7 +77,7 @@ public class ProfilePresenter
             if (TextUtils.isEmpty(userProfile.getCvUrl())) {
                 profileView.openFileExplorer(CV_FILE_TYPE);
             } else {
-                profileView.openPdfViewer();
+                profileView.openPdfViewer(userProfile.getCvUrl());
             }
         }
     }
@@ -92,7 +92,7 @@ public class ProfilePresenter
 
         void openFileExplorer(String fileType);
 
-        void openPdfViewer();
+        void openPdfViewer(String pdfUrl);
     }
 
     private final class ProfileObserver extends DisposableSingleObserver<UserProfile> {

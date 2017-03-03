@@ -3,6 +3,7 @@ package com.vishesh.tpc_stud.dashboard.views;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -91,8 +92,10 @@ public class ProfileFragment
     }
 
     @Override
-    public void openPdfViewer() {
-
+    public void openPdfViewer(String pdfUrl) {
+        Intent pdfIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(pdfUrl));
+        pdfIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(pdfIntent);
     }
 
     @NeedsPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
