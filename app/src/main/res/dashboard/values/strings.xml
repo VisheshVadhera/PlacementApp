@@ -18,7 +18,7 @@
     <string name="dashboard_tab_profile_title">Profile</string>
 
     <string name="file_chooser_title">Select a file to upload</string>
-    <string name="file_chooser_err">Unable to save file</string>
+    <string name="file_chooser_err">Unable to open file explorer</string>
     <string name="file_chooser_permission_denied">Permission to read external storage denied</string>
     <string name="file_chooser_never_ask">Please change the permissions model for this app in order to access this feature</string>
 
