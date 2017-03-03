@@ -1,6 +1,8 @@
 
 package com.vishesh.tpc_stud.dashboard.presenters;
 
+import android.text.TextUtils;
+
 import com.fernandocejas.arrow.optional.Optional;
 import com.vishesh.tpc_stud.auth.useCases.GetCurrentUserUseCase;
 import com.vishesh.tpc_stud.core.models.User;
@@ -22,6 +24,7 @@ public class ProfilePresenter
         extends BasePresenter {
 
     private Optional<User> userOptional = Optional.absent();
+    private Optional<UserProfile> userProfileOptional = Optional.absent();
     private ProfileView profileView;
 
     private final GetProfileUseCase getProfileUseCase;
@@ -61,9 +64,26 @@ public class ProfilePresenter
         getCurrentUserUseCase.execute(new CurrentUserObserver(), null, null);
     }
 
+    public void onCvTapped() {
+        if (userProfileOptional.isPresent()) {
+
+            UserProfile userProfile = userProfileOptional.get();
+
+            if (TextUtils.isEmpty(userProfile.getCvUrl())) {
+                profileView.openFileExplorer();
+            } else {
+                profileView.openPdfViewer();
+            }
+        }
+    }
+
     public interface ProfileView extends BaseView {
 
         void showProfile(User user, UserProfile userProfile);
+
+        void openFileExplorer();
+
+        void openPdfViewer();
     }
 
     private final class ProfileObserver extends DisposableSingleObserver<UserProfile> {
@@ -72,6 +92,7 @@ public class ProfilePresenter
         public void onSuccess(UserProfile userProfile) {
             profileView.hideLoader();
             if (userOptional.isPresent()) {
+                userProfileOptional = Optional.of(userProfile);
                 profileView.showProfile(userOptional.get(), userProfile);
             }
         }

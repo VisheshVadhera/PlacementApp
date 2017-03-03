@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.hannesdorfmann.adapterdelegates3.AdapterDelegate;
 import com.vishesh.tpc_stud.R;
+import com.vishesh.tpc_stud.core.helpers.Bus;
+import com.vishesh.tpc_stud.dashboard.busEvents.CvTapEvent;
 import com.vishesh.tpc_stud.dashboard.models.UserProfile;
 
 import java.util.List;
@@ -19,6 +21,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by vishesh on 25/2/17.
@@ -27,10 +30,13 @@ import butterknife.ButterKnife;
 public class CvAdapterDelegate extends AdapterDelegate<UserProfile> {
 
     private final Context context;
+    private final Bus bus;
 
     @Inject
-    public CvAdapterDelegate(Context context) {
+    public CvAdapterDelegate(Context context,
+                             Bus bus) {
         this.context = context;
+        this.bus = bus;
     }
 
     @Override
@@ -62,7 +68,7 @@ public class CvAdapterDelegate extends AdapterDelegate<UserProfile> {
         }
     }
 
-    static class CvViewHolder extends RecyclerView.ViewHolder {
+    private class CvViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.text_profile_item_value)
         TextView textCvAction;
@@ -72,6 +78,11 @@ public class CvAdapterDelegate extends AdapterDelegate<UserProfile> {
         public CvViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+        }
+
+        @OnClick(R.id.text_profile_item_value)
+        void onClick() {
+            bus.post(new CvTapEvent());
         }
     }
 }

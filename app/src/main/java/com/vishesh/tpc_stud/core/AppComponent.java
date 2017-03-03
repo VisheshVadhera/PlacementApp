@@ -1,5 +1,6 @@
 package com.vishesh.tpc_stud.core;
 
+import com.vishesh.tpc_stud.core.helpers.Bus;
 import com.vishesh.tpc_stud.core.modules.AppModule;
 import com.vishesh.tpc_stud.core.modules.DataModule;
 import com.vishesh.tpc_stud.core.modules.RetrofitModule;
@@ -24,4 +25,6 @@ public interface AppComponent {
     LocalCache localCache();
 
     MockRetrofit mockRetrofit();
+
+    Bus bus();
 }
