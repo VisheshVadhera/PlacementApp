@@ -128,12 +128,14 @@ public class ProfileFragment
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
-            switch (resultCode) {
+            switch (requestCode) {
                 case FILE_SELECT_REQUEST_CODE:
                     File file = FileUtils.getFileForUri(getContext(), data.getData());
                     profilePresenter.onFileReceived(file);
+                    break;
             }
         }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     private class BusEventConsumer implements Consumer<Object> {
