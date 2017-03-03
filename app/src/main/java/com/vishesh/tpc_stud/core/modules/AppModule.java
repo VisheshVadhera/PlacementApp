@@ -3,6 +3,7 @@ package com.vishesh.tpc_stud.core.modules;
 import android.content.Context;
 
 import com.vishesh.tpc_stud.core.TpcStudApplication;
+import com.vishesh.tpc_stud.core.helpers.Bus;
 
 import javax.inject.Singleton;
 
@@ -23,7 +24,13 @@ public class AppModule {
 
     @Provides
     @Singleton
-    public Context provideApplicationContext(){
+    public Context provideApplicationContext() {
         return tpcStudApplication;
+    }
+
+    @Provides
+    @Singleton
+    public Bus provideBus() {
+        return new Bus();
     }
 }
