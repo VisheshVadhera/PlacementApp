@@ -6,6 +6,7 @@ import com.vishesh.tpc_stud.dashboard.models.UserProfile;
 import io.reactivex.Single;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
@@ -16,11 +17,14 @@ import retrofit2.http.Path;
 public interface UserService {
 
     @PUT("users/{userId}")
-    public Single<User> updateUser(@Path("userId") int userId, @Body User user);
+    Single<User> updateUser(@Path("userId") int userId, @Body User user);
 
     @GET("users/currentUser")
-    public Single<User> getCurrentUser();
+    Single<User> getCurrentUser();
 
     @GET("users/{userId}/profile")
     Single<UserProfile> getProfile(@Path("userId") Integer userId);
+
+    @POST("users/{userId}/logout")
+    Single<Object> logout();
 }

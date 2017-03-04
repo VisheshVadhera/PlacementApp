@@ -67,6 +67,12 @@ public class MockUserService implements UserService {
                 .getProfile(userId);
     }
 
+    @Override
+    public Single<Object> logout() {
+        return delegate.returningResponse(new Object())
+                .logout();
+    }
+
     private List<NetworkProfile> getNetworkProfiles() {
         List<NetworkProfile> networkProfiles = new ArrayList<>();
 
