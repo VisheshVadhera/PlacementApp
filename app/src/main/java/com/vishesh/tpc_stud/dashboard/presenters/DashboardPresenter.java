@@ -1,5 +1,11 @@
 package com.vishesh.tpc_stud.dashboard.presenters;
 
+import android.text.TextUtils;
+
+import com.fernandocejas.arrow.optional.Optional;
+import com.vishesh.tpc_stud.auth.useCases.GetCurrentUserUseCase;
+import com.vishesh.tpc_stud.auth.useCases.UpdateUserUseCase;
+import com.vishesh.tpc_stud.core.models.User;
 import com.vishesh.tpc_stud.core.presenters.BasePresenter;
 import com.vishesh.tpc_stud.core.repos.LocalCache;
 import com.vishesh.tpc_stud.core.views.BaseView;
@@ -11,29 +17,50 @@ import io.reactivex.observers.DisposableSingleObserver;
 
 public class DashboardPresenter extends BasePresenter {
 
+    private Optional<User> userOptional = Optional.absent();
+
     private DashboardView dashboardView;
 
     private final LocalCache localCache;
     private final LogoutUseCase logoutUseCase;
+    private final GetCurrentUserUseCase getCurrentUserUseCase;
+    private final UpdateUserUseCase updateUserUseCase;
 
     @Inject
-    public DashboardPresenter(LocalCache localCache, LogoutUseCase logoutUseCase) {
+    public DashboardPresenter(LocalCache localCache,
+                              LogoutUseCase logoutUseCase,
+                              GetCurrentUserUseCase getCurrentUserUseCase,
+                              UpdateUserUseCase updateUserUseCase) {
         this.localCache = localCache;
         this.logoutUseCase = logoutUseCase;
+        this.getCurrentUserUseCase = getCurrentUserUseCase;
+        this.updateUserUseCase = updateUserUseCase;
     }
 
     public void setView(DashboardView dashboardView) {
         this.dashboardView = dashboardView;
     }
 
+    public void onStart() {
+        dashboardView.showLoader();
+        getCurrentUserUseCase.execute(new CurrentUserObserver(), null, null);
+    }
+
+    public void onUserNameReceived(String firstName, String lastName) {
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            user.setFirstName(firstName);
+            user.setLastName(lastName);
+            dashboardView.showLoader();
+            updateUserUseCase.execute(new UpdatedUserObserver(), user.getId(), user);
+        } else {
+            dashboardView.showMessage("Unable to perform request. Please try again");
+        }
+    }
+
     public void onLogoutClicked() {
         dashboardView.showLoader();
         logoutUseCase.execute(new LogoutObserver(), null, null);
-    }
-
-    public interface DashboardView extends BaseView {
-
-        void openLoginScreen();
     }
 
     @Override
@@ -48,8 +75,19 @@ public class DashboardPresenter extends BasePresenter {
 
     @Override
     public void destroy() {
+        getCurrentUserUseCase.dispose();
+        updateUserUseCase.dispose();
         logoutUseCase.dispose();
         dashboardView = null;
+    }
+
+    public interface DashboardView extends BaseView {
+
+        void openLoginScreen();
+
+        void takeUserName();
+
+        void setupTabs();
     }
 
     private class LogoutObserver extends DisposableSingleObserver<Object> {
@@ -61,6 +99,43 @@ public class DashboardPresenter extends BasePresenter {
 
             dashboardView.hideLoader();
             dashboardView.openLoginScreen();
+        }
+
+        @Override
+        public void onError(Throwable e) {
+            dashboardView.hideLoader();
+            handleError(e);
+        }
+    }
+
+    private class CurrentUserObserver extends DisposableSingleObserver<User> {
+
+        @Override
+        public void onSuccess(User user) {
+
+            userOptional = Optional.of(user);
+
+            if (TextUtils.isEmpty(user.getFirstName())) {
+                dashboardView.takeUserName();
+            } else {
+                dashboardView.hideLoader();
+                dashboardView.setupTabs();
+            }
+        }
+
+        @Override
+        public void onError(Throwable e) {
+            dashboardView.hideLoader();
+            handleError(e);
+        }
+    }
+
+    private class UpdatedUserObserver extends DisposableSingleObserver<User> {
+
+        @Override
+        public void onSuccess(User value) {
+            dashboardView.hideLoader();
+            dashboardView.setupTabs();
         }
 
         @Override

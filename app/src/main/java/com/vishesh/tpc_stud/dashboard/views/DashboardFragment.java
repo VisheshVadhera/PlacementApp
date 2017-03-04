@@ -1,5 +1,6 @@
 package com.vishesh.tpc_stud.dashboard.views;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic;
 import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.auth.views.LoginFragment;
+import com.vishesh.tpc_stud.auth.views.UserNameActivity;
 import com.vishesh.tpc_stud.core.ActivityComponent;
 import com.vishesh.tpc_stud.core.views.BaseFragment;
 import com.vishesh.tpc_stud.dashboard.adapters.SectionsPagerAdapter;
@@ -34,6 +36,10 @@ import io.reactivex.functions.Function;
 public class DashboardFragment
         extends BaseFragment
         implements DashboardPresenter.DashboardView {
+
+    public static final int USER_NAME_REQUEST_CODE = 101;
+    public static final String EXTRA_FIRST_NAME = "EXTRA_FIRST_NAME";
+    public static final String EXTRA_LAST_NAME = "EXTRA_LAST_NAME";
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -55,6 +61,13 @@ public class DashboardFragment
         return new Intent(context, DashboardActivity.class);
     }
 
+    public static Intent createUserNameIntent(String firstName, String lastName) {
+        Intent userNameIntent = new Intent();
+        userNameIntent.putExtra(EXTRA_FIRST_NAME, firstName);
+        userNameIntent.putExtra(EXTRA_LAST_NAME, lastName);
+        return userNameIntent;
+    }
+
     @Override
     protected void injectDependencies() {
         getDependencyInjector(ActivityComponent.class)
@@ -68,20 +81,47 @@ public class DashboardFragment
     }
 
     @Override
-    protected int getLayoutId() {
-        return R.layout.fragment_dashboard;
-    }
-
-    @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        initializeView();
 
         dashboardPresenter.setView(this);
     }
 
-    private void initializeView() {
+    @Override
+    public void onStart() {
+        super.onStart();
+        dashboardPresenter.onStart();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_dashboard, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_logout:
+                dashboardPresenter.onLogoutClicked();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void openLoginScreen() {
+        startActivity(LoginFragment.createLoginIntent(getActivity()));
+        finish();
+    }
+
+    @Override
+    public void takeUserName() {
+        Intent userNameIntent = UserNameActivity.createIntent(getActivity());
+        startActivityForResult(userNameIntent, USER_NAME_REQUEST_CODE);
+    }
+
+    @Override
+    public void setupTabs() {
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 
         sectionsPagerAdapter.addFragment(0, RecruitersFragment.newInstance());
@@ -129,25 +169,21 @@ public class DashboardFragment
                 .subscribe(tabPositionConsumer);
     }
 
-
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_dashboard, menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_logout:
-                dashboardPresenter.onLogoutClicked();
-                break;
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == Activity.RESULT_OK) {
+            switch (requestCode) {
+                case USER_NAME_REQUEST_CODE:
+                    String firstName = data.getStringExtra(DashboardFragment.EXTRA_FIRST_NAME);
+                    String lastName = data.getStringExtra(DashboardFragment.EXTRA_LAST_NAME);
+                    dashboardPresenter.onUserNameReceived(firstName, lastName);
+                    break;
+            }
         }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
-    public void openLoginScreen() {
-        startActivity(LoginFragment.createLoginIntent(getActivity()));
-        finish();
+    protected int getLayoutId() {
+        return R.layout.fragment_dashboard;
     }
 }
