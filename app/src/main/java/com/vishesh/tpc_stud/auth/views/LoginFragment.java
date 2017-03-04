@@ -33,20 +33,9 @@ public class LoginFragment
     LoginPresenter loginPresenter;
 
     private static final int ACCOUNT_KIT_REQUEST_CODE = 100;
-    private static final int USER_NAME_REQUEST_CODE = 101;
-
-    private static final String EXTRA_FIRST_NAME = "EXTRA_FIRST_NAME";
-    private static final String EXTRA_LAST_NAME = "EXTRA_LAST_NAME";
 
     public LoginFragment() {
         setRetainInstance(true);
-    }
-
-    public static Intent createUserNameIntent(String firstName, String lastName) {
-        Intent userNameIntent = new Intent();
-        userNameIntent.putExtra(EXTRA_FIRST_NAME, firstName);
-        userNameIntent.putExtra(EXTRA_LAST_NAME, lastName);
-        return userNameIntent;
     }
 
     public static Intent createLoginIntent(Context context) {
@@ -84,12 +73,6 @@ public class LoginFragment
     }
 
     @Override
-    public void takeUserName() {
-        Intent userNameIntent = UserNameActivity.createIntent(getActivity());
-        startActivityForResult(userNameIntent, USER_NAME_REQUEST_CODE);
-    }
-
-    @Override
     public void openDashboard() {
         Intent dashboardIntent = DashboardFragment.createIntent(getActivity());
         startActivity(dashboardIntent);
@@ -103,11 +86,6 @@ public class LoginFragment
                 case ACCOUNT_KIT_REQUEST_CODE:
                     AccountKitLoginResult accountKitLoginResult = data.getParcelableExtra(AccountKitLoginResult.RESULT_KEY);
                     loginPresenter.onEmailLoginResultReceived(accountKitLoginResult);
-                    break;
-                case USER_NAME_REQUEST_CODE:
-                    String firstName = data.getStringExtra(EXTRA_FIRST_NAME);
-                    String lastName = data.getStringExtra(EXTRA_LAST_NAME);
-                    loginPresenter.onUserNameReceived(firstName, lastName);
                     break;
             }
         }
