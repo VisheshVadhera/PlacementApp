@@ -1,6 +1,7 @@
 package com.vishesh.tpc_stud.dashboard.presenters;
 
 import com.vishesh.tpc_stud.core.presenters.BasePresenter;
+import com.vishesh.tpc_stud.core.repos.LocalCache;
 import com.vishesh.tpc_stud.core.views.BaseView;
 import com.vishesh.tpc_stud.dashboard.useCases.LogoutUseCase;
 
@@ -12,10 +13,12 @@ public class DashboardPresenter extends BasePresenter {
 
     private DashboardView dashboardView;
 
-    private LogoutUseCase logoutUseCase;
+    private final LocalCache localCache;
+    private final LogoutUseCase logoutUseCase;
 
     @Inject
-    public DashboardPresenter(LogoutUseCase logoutUseCase) {
+    public DashboardPresenter(LocalCache localCache, LogoutUseCase logoutUseCase) {
+        this.localCache = localCache;
         this.logoutUseCase = logoutUseCase;
     }
 
@@ -53,6 +56,9 @@ public class DashboardPresenter extends BasePresenter {
 
         @Override
         public void onSuccess(Object value) {
+            localCache.deleteUserId();
+            localCache.deleteAccessToken();
+
             dashboardView.hideLoader();
             dashboardView.openLoginScreen();
         }
