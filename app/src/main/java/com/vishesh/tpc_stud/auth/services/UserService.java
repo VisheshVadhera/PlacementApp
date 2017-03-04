@@ -1,6 +1,7 @@
 package com.vishesh.tpc_stud.auth.services;
 
 import com.vishesh.tpc_stud.core.models.User;
+import com.vishesh.tpc_stud.dashboard.models.UserProfile;
 
 import io.reactivex.Single;
 import retrofit2.http.Body;
@@ -19,4 +20,7 @@ public interface UserService {
 
     @GET("users/currentUser")
     public Single<User> getCurrentUser();
+
+    @GET("users/{userId}/profile")
+    Single<UserProfile> getProfile(@Path("userId") Integer userId);
 }

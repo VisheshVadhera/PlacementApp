@@ -26,7 +26,7 @@ public class DataModule {
 
     @Provides
     @Singleton
-    SharedPreferences provideRxSharedPreferences() {
+    SharedPreferences provideSharedPreferences() {
         return PreferenceManager.getDefaultSharedPreferences(context);
     }
 

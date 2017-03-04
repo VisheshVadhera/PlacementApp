@@ -12,4 +12,8 @@ public interface LocalCache {
     int getUserId();
 
     void saveUserId(int userId);
+
+    void deleteAccessToken();
+
+    void deleteUserId();
 }

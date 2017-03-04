@@ -45,4 +45,20 @@ public class PreferencesCache implements LocalCache {
                 .putInt(PREF_USER_ID, userId)
                 .apply();
     }
+
+    @Override
+    public void deleteAccessToken() {
+        sharedPreferences
+                .edit()
+                .remove(PREF_ACCESS_TOKEN)
+                .apply();
+    }
+
+    @Override
+    public void deleteUserId() {
+        sharedPreferences
+                .edit()
+                .remove(PREF_USER_ID)
+                .apply();
+    }
 }
