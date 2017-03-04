@@ -11,6 +11,6 @@ import retrofit2.http.Path;
 public interface RecruiterService {
 
     @GET("users/{userId}/recruiters")
-    public Single<List<Recruiter>> getRecruiters(@Path("userId") int userId);
+    Single<List<Recruiter>> getRecruiters(@Path("userId") int userId);
 
 }

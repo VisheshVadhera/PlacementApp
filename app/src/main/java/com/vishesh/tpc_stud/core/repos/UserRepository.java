@@ -11,8 +11,6 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import io.reactivex.Single;
-import io.reactivex.SingleEmitter;
-import io.reactivex.SingleOnSubscribe;
 import io.reactivex.functions.Function;
 
 /**
@@ -45,11 +43,6 @@ public class UserRepository {
                 });
     }
 
-    public Single<Object> saveAccessToken(AccessToken accessToken) {
-        localCache.saveAccessToken(accessToken.getAccessToken());
-        return Single.just(new Object());
-    }
-
     public Single<User> updateUser(final Integer userId, User user) {
         return userService.updateUser(userId, user);
     }
@@ -66,14 +59,7 @@ public class UserRepository {
     }
 
     public Single<Object> logout() {
-        return Single.create(new SingleOnSubscribe<Object>() {
-            @Override
-            public void subscribe(SingleEmitter<Object> e) throws Exception {
-                localCache.deleteAccessToken();
-                localCache.deleteUserId();
-                e.onSuccess(new Object());
-            }
-        });
+        return userService.logout();
     }
 
     public Single<UserProfile> getProfile(Integer userId) {
