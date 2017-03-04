@@ -75,9 +75,9 @@ public class ProfilePresenter
             UserProfile userProfile = userProfileOptional.get();
 
             if (TextUtils.isEmpty(userProfile.getCvUrl())) {
-                profileView.openFileExplorer(CV_FILE_TYPE);
+//           TODO:     profileView.openFileExplorer(CV_FILE_TYPE);
             } else {
-                profileView.openPdfViewer(userProfile.getCvUrl());
+//            TODO:    profileView.openPdfViewer(userProfile.getCvUrl());
             }
         }
     }

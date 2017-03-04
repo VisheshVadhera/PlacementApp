@@ -27,7 +27,6 @@ public class MockRecruiterService implements RecruiterService {
         delegate = mockRetrofit.create(RecruiterService.class);
     }
 
-
     @Override
     public Single<List<Recruiter>> getRecruiters(@Path("userId") int userId) {
         return delegate.returningResponse(getRecruiters())
