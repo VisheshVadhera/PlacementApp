@@ -12,6 +12,7 @@ import android.widget.Button;
 import com.jakewharton.rxbinding2.widget.RxTextView;
 import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.core.views.BaseActivity;
+import com.vishesh.tpc_stud.dashboard.views.DashboardFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -55,7 +56,7 @@ public class UserNameActivity extends BaseActivity {
     @OnClick(R.id.button_continue)
     public void onClick() {
         setResult(Activity.RESULT_OK,
-                LoginFragment.createUserNameIntent(editTextFirstName.getText().toString(),
+                DashboardFragment.createUserNameIntent(editTextFirstName.getText().toString(),
                         editTextLastName.getText().toString()));
     }
 
