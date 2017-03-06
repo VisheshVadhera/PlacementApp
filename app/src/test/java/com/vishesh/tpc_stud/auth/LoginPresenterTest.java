@@ -158,7 +158,7 @@ public class LoginPresenterTest {
 
     @Test
     @SuppressWarnings("unchecked")
-    public void onAccountKitSuccessfulLogin_openDashboard() {
+    public void onAccountKitSuccessfulLogin_loginToRepository() {
 
         AccountKitLoginResult accountKitLoginResult = new AccountKitLoginResult() {
             @Nullable
