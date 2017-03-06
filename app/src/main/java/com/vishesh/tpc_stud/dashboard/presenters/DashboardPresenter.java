@@ -2,7 +2,6 @@ package com.vishesh.tpc_stud.dashboard.presenters;
 
 import android.text.TextUtils;
 
-import com.fernandocejas.arrow.optional.Optional;
 import com.vishesh.tpc_stud.auth.useCases.GetCurrentUserUseCase;
 import com.vishesh.tpc_stud.auth.useCases.UpdateUserUseCase;
 import com.vishesh.tpc_stud.core.models.User;
@@ -16,8 +15,6 @@ import javax.inject.Inject;
 import io.reactivex.observers.DisposableSingleObserver;
 
 public class DashboardPresenter extends BasePresenter {
-
-    private Optional<User> userOptional = Optional.absent();
 
     private DashboardView dashboardView;
 
@@ -47,15 +44,14 @@ public class DashboardPresenter extends BasePresenter {
     }
 
     public void onUserNameReceived(String firstName, String lastName) {
-        if (userOptional.isPresent()) {
-            User user = userOptional.get();
-            user.setFirstName(firstName);
-            user.setLastName(lastName);
-            dashboardView.showLoader();
-            updateUserUseCase.execute(new UpdatedUserObserver(), user.getId(), user);
-        } else {
-            dashboardView.showMessage("Unable to perform request. Please try again");
-        }
+
+        User user = new User();
+        user.setId(localCache.getUserId());
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+
+        dashboardView.showLoader();
+        updateUserUseCase.execute(new UpdatedUserObserver(), localCache.getUserId(), user);
     }
 
     public void onLogoutClicked() {
@@ -113,7 +109,7 @@ public class DashboardPresenter extends BasePresenter {
         @Override
         public void onSuccess(User user) {
 
-            userOptional = Optional.of(user);
+            localCache.saveUserId(user.getId());
 
             if (TextUtils.isEmpty(user.getFirstName())) {
                 dashboardView.takeUserName();
