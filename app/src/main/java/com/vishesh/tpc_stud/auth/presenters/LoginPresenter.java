@@ -21,6 +21,7 @@ import io.reactivex.observers.DisposableSingleObserver;
  */
 public class LoginPresenter extends BasePresenter {
 
+    public static final String LOGIN_CANCELLED = "Login Cancelled";
     private LoginView loginView;
 
     private final LoginUseCase loginUseCase;
@@ -52,8 +53,7 @@ public class LoginPresenter extends BasePresenter {
             message = accountKitLoginResult.getError().getErrorType().getMessage();
             loginView.showMessage(message);
         } else if (accountKitLoginResult.wasCancelled()) {
-            message = "Login Cancelled";
-            loginView.showMessage(message);
+            loginView.showMessage(LOGIN_CANCELLED);
         } else if (accountKitLoginResult.getAuthorizationCode() != null) {
             Map<String, String> map = new HashMap<>();
             map.put("authorizationCode", accountKitLoginResult.getAuthorizationCode());
@@ -62,18 +62,18 @@ public class LoginPresenter extends BasePresenter {
         }
     }
 
-    @Override
-    public void destroy() {
-        loginUseCase.dispose();
-        loginView = null;
-    }
-
     public void onEmailLoginClicked() {
         AccountKitConfiguration accountKitConfiguration =
                 new AccountKitConfiguration.AccountKitConfigurationBuilder(LoginType.EMAIL,
                         AccountKitActivity.ResponseType.CODE).build();
 
         loginView.startLoginProcess(accountKitConfiguration);
+    }
+
+    @Override
+    public void destroy() {
+        loginUseCase.dispose();
+        loginView = null;
     }
 
     public interface LoginView extends BaseView {
@@ -97,5 +97,4 @@ public class LoginPresenter extends BasePresenter {
             handleError(e);
         }
     }
-
 }
