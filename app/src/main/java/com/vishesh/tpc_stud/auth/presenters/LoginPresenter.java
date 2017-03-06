@@ -1,6 +1,9 @@
 package com.vishesh.tpc_stud.auth.presenters;
 
 import com.facebook.accountkit.AccountKitLoginResult;
+import com.facebook.accountkit.ui.AccountKitActivity;
+import com.facebook.accountkit.ui.AccountKitConfiguration;
+import com.facebook.accountkit.ui.LoginType;
 import com.vishesh.tpc_stud.auth.models.AccessToken;
 import com.vishesh.tpc_stud.auth.useCases.LoginUseCase;
 import com.vishesh.tpc_stud.core.presenters.BasePresenter;
@@ -65,15 +68,26 @@ public class LoginPresenter extends BasePresenter {
         loginView = null;
     }
 
+    public void onEmailLoginClicked() {
+        AccountKitConfiguration accountKitConfiguration =
+                new AccountKitConfiguration.AccountKitConfigurationBuilder(LoginType.EMAIL,
+                        AccountKitActivity.ResponseType.CODE).build();
+
+        loginView.startLoginProcess(accountKitConfiguration);
+    }
+
     public interface LoginView extends BaseView {
 
         void openDashboard();
+
+        void startLoginProcess(AccountKitConfiguration accountKitConfiguration);
     }
 
     private final class LoginObserver extends DisposableSingleObserver<AccessToken> {
 
         @Override
         public void onSuccess(AccessToken value) {
+            loginView.hideLoader();
             loginView.openDashboard();
         }
 
