@@ -11,7 +11,6 @@ import android.view.View;
 import com.facebook.accountkit.AccountKitLoginResult;
 import com.facebook.accountkit.ui.AccountKitActivity;
 import com.facebook.accountkit.ui.AccountKitConfiguration;
-import com.facebook.accountkit.ui.LoginType;
 import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.auth.presenters.LoginPresenter;
 import com.vishesh.tpc_stud.core.ActivityComponent;
@@ -61,15 +60,7 @@ public class LoginFragment
 
     @OnClick(R.id.button_login)
     void onEmailLoginClicked() {
-
-        AccountKitConfiguration accountKitConfiguration =
-                new AccountKitConfiguration.AccountKitConfigurationBuilder(LoginType.EMAIL,
-                        AccountKitActivity.ResponseType.CODE).build();
-
-        final Intent accountKitIntent = new Intent(getActivity(), AccountKitActivity.class);
-        accountKitIntent.putExtra(AccountKitActivity.ACCOUNT_KIT_ACTIVITY_CONFIGURATION, accountKitConfiguration);
-
-        startActivityForResult(accountKitIntent, ACCOUNT_KIT_REQUEST_CODE);
+        loginPresenter.onEmailLoginClicked();
     }
 
     @Override
@@ -77,6 +68,14 @@ public class LoginFragment
         Intent dashboardIntent = DashboardFragment.createIntent(getActivity());
         startActivity(dashboardIntent);
         finish();
+    }
+
+    @Override
+    public void startLoginProcess(AccountKitConfiguration accountKitConfiguration) {
+        final Intent accountKitIntent = new Intent(getActivity(), AccountKitActivity.class);
+        accountKitIntent.putExtra(AccountKitActivity.ACCOUNT_KIT_ACTIVITY_CONFIGURATION, accountKitConfiguration);
+
+        startActivityForResult(accountKitIntent, ACCOUNT_KIT_REQUEST_CODE);
     }
 
     @Override
