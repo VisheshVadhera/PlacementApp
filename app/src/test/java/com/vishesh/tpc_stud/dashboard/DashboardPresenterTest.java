@@ -67,7 +67,7 @@ public class DashboardPresenterTest {
 
     @Test
     @SuppressWarnings("unchecked")
-    public void onUserNameReceived_updateUser_ifUserOptionalExtant() {
+    public void onUserNameReceived_updateUserToRepository() {
 
         String firstName = "Abc";
         String lastName = "Xyz";
