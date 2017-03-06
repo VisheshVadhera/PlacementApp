@@ -1,6 +1,9 @@
 package com.vishesh.tpc_stud.auth.presenters;
 
 import com.facebook.accountkit.AccountKitLoginResult;
+import com.facebook.accountkit.ui.AccountKitActivity;
+import com.facebook.accountkit.ui.AccountKitConfiguration;
+import com.facebook.accountkit.ui.LoginType;
 import com.vishesh.tpc_stud.auth.models.AccessToken;
 import com.vishesh.tpc_stud.auth.useCases.LoginUseCase;
 import com.vishesh.tpc_stud.core.presenters.BasePresenter;
@@ -18,6 +21,7 @@ import io.reactivex.observers.DisposableSingleObserver;
  */
 public class LoginPresenter extends BasePresenter {
 
+    public static final String LOGIN_CANCELLED = "Login Cancelled";
     private LoginView loginView;
 
     private final LoginUseCase loginUseCase;
@@ -49,14 +53,21 @@ public class LoginPresenter extends BasePresenter {
             message = accountKitLoginResult.getError().getErrorType().getMessage();
             loginView.showMessage(message);
         } else if (accountKitLoginResult.wasCancelled()) {
-            message = "Login Cancelled";
-            loginView.showMessage(message);
+            loginView.showMessage(LOGIN_CANCELLED);
         } else if (accountKitLoginResult.getAuthorizationCode() != null) {
             Map<String, String> map = new HashMap<>();
             map.put("authorizationCode", accountKitLoginResult.getAuthorizationCode());
             loginView.showLoader();
             loginUseCase.execute(new LoginObserver(), map, null);
         }
+    }
+
+    public void onEmailLoginClicked() {
+        AccountKitConfiguration accountKitConfiguration =
+                new AccountKitConfiguration.AccountKitConfigurationBuilder(LoginType.EMAIL,
+                        AccountKitActivity.ResponseType.CODE).build();
+
+        loginView.startLoginProcess(accountKitConfiguration);
     }
 
     @Override
@@ -68,12 +79,15 @@ public class LoginPresenter extends BasePresenter {
     public interface LoginView extends BaseView {
 
         void openDashboard();
+
+        void startLoginProcess(AccountKitConfiguration accountKitConfiguration);
     }
 
     private final class LoginObserver extends DisposableSingleObserver<AccessToken> {
 
         @Override
         public void onSuccess(AccessToken value) {
+            loginView.hideLoader();
             loginView.openDashboard();
         }
 
@@ -83,5 +97,4 @@ public class LoginPresenter extends BasePresenter {
             handleError(e);
         }
     }
-
 }
