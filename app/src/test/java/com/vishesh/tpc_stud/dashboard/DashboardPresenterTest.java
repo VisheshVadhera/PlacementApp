@@ -2,6 +2,7 @@ package com.vishesh.tpc_stud.dashboard;
 
 import com.vishesh.tpc_stud.auth.useCases.GetCurrentUserUseCase;
 import com.vishesh.tpc_stud.auth.useCases.UpdateUserUseCase;
+import com.vishesh.tpc_stud.core.models.User;
 import com.vishesh.tpc_stud.core.repos.LocalCache;
 import com.vishesh.tpc_stud.dashboard.presenters.DashboardPresenter;
 import com.vishesh.tpc_stud.dashboard.useCases.LogoutUseCase;
@@ -45,7 +46,7 @@ public class DashboardPresenterTest {
 
     @Test
     @SuppressWarnings("unchecked")
-    public void testOnStart() {
+    public void onStart_getCurrentUser() {
         dashboardPresenter.onStart();
 
         verify(dashboardView).showLoader();
@@ -54,5 +55,27 @@ public class DashboardPresenterTest {
                 any(Void.class), any(Void.class));
     }
 
+    @Test
+    @SuppressWarnings("unchecked")
+    public void onLogoutClicked_logoutToRepository() {
+        dashboardPresenter.onLogoutClicked();
 
+        verify(dashboardView).showLoader();
+        verify(logoutUseCase).execute(any(DisposableSingleObserver.class),
+                any(Void.class), any(Void.class));
+    }
+
+    @Test
+    @SuppressWarnings("unchecked")
+    public void onUserNameReceived_updateUser_ifUserOptionalExtant() {
+
+        String firstName = "Abc";
+        String lastName = "Xyz";
+
+        dashboardPresenter.onUserNameReceived(firstName, lastName);
+
+        verify(dashboardView).showLoader();
+        verify(updateUserUseCase).execute(any(DisposableSingleObserver.class),
+                any(Integer.class), any(User.class));
+    }
 }
