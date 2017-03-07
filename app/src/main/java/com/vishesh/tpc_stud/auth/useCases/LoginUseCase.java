@@ -15,12 +15,12 @@ import io.reactivex.Single;
 /**
  * Created by vishesh on 14/2/17.
  */
-public class LoginUseCase extends BaseUseCase<AccessToken, Map<String, String>, Void> {
+public class LoginUseCase extends BaseUseCase<AccessToken, Map<String, String>, Object> {
 
     private final UserRepository userRepository;
 
     @Inject
-    protected LoginUseCase(@Named("jobScheduler") Scheduler jobScheduler,
+    public LoginUseCase(@Named("jobScheduler") Scheduler jobScheduler,
                            @Named("postJobScheduler") Scheduler postJobScheduler,
                            UserRepository userRepository) {
         super(jobScheduler, postJobScheduler);
@@ -28,7 +28,7 @@ public class LoginUseCase extends BaseUseCase<AccessToken, Map<String, String>, 
     }
 
     @Override
-    protected Single<AccessToken> buildObservable(Map<String, String> map, Void aVoid) {
+    public Single<AccessToken> buildObservable(Map<String, String> map, Object o) {
         return userRepository.emailLogin(map);
     }
 }

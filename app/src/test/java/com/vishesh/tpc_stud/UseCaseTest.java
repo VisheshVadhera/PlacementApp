@@ -2,18 +2,17 @@ package com.vishesh.tpc_stud;
 
 import com.vishesh.tpc_stud.core.helpers.BaseUseCase;
 
+import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
-import org.mockito.BDDMockito;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import io.reactivex.Scheduler;
 import io.reactivex.Single;
-import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.TestScheduler;
 
@@ -26,27 +25,35 @@ public class UseCaseTest {
 
     @Mock
     private Scheduler mockJobScheduler;
-    @Mock
-    private Scheduler mockPostJobScheduler;
-    @Mock
-    private CompositeDisposable compositeDisposable;
+
+    private Scheduler mockPostJobScheduler = new TestScheduler();
 
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
 
     @Before
-    public void setUp() {
+    public void setup() {
         useCase = new UseCaseTestClass(mockJobScheduler,
                 mockPostJobScheduler);
         observer = new TestDisposableObserver<>();
-        BDDMockito.given(mockPostJobScheduler).willReturn(new TestScheduler());
     }
 
-    @Test
+    @Test()
     public void onNullObserverPassed_useCaseShouldFail() {
         expectedException.expect(NullPointerException.class);
         Object o = new Object();
         useCase.execute(null, o, o);
+    }
+
+    @Test
+    public void afterSuccessfulExecution_useCaseShouldBeDisposed() {
+        Object o = new Object();
+
+        useCase.execute(observer, o, o);
+        useCase.dispose();
+
+        Assertions.assertThat(observer.isDisposed())
+                .isTrue();
     }
 
     private static class UseCaseTestClass extends BaseUseCase<Object, Object, Object> {

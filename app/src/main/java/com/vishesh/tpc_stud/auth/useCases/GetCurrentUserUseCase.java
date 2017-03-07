@@ -11,20 +11,21 @@ import io.reactivex.Scheduler;
 import io.reactivex.Single;
 
 
-public class GetCurrentUserUseCase extends BaseUseCase<User, Void, Void>{
+public class GetCurrentUserUseCase extends BaseUseCase<User, Object, Object>{
 
     private final UserRepository userRepository;
 
     @Inject
-    protected GetCurrentUserUseCase(@Named("jobScheduler") Scheduler jobScheduler,
-                                    @Named("postJobScheduler") Scheduler postJobScheduler,
-                                    UserRepository userRepository) {
+    public GetCurrentUserUseCase(@Named("jobScheduler") Scheduler jobScheduler,
+                                 @Named("postJobScheduler") Scheduler postJobScheduler,
+                                 UserRepository userRepository) {
         super(jobScheduler, postJobScheduler);
         this.userRepository = userRepository;
     }
 
+
     @Override
-    protected Single<User> buildObservable(Void aVoid, Void bVoid) {
+    public Single<User> buildObservable(Object o, Object o2) {
         return userRepository.getCurrentUser();
     }
 }
