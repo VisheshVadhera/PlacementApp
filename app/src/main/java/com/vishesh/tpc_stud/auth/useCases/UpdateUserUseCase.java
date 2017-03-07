@@ -18,15 +18,15 @@ public class UpdateUserUseCase extends BaseUseCase<User, Integer, User>{
     private final UserRepository userRepository;
 
     @Inject
-    protected UpdateUserUseCase(@Named("jobScheduler") Scheduler jobScheduler,
-                                @Named("postJobScheduler") Scheduler postJobScheduler,
-                                UserRepository userRepository) {
+    public UpdateUserUseCase(@Named("jobScheduler") Scheduler jobScheduler,
+                             @Named("postJobScheduler") Scheduler postJobScheduler,
+                             UserRepository userRepository) {
         super(jobScheduler, postJobScheduler);
         this.userRepository = userRepository;
     }
 
     @Override
-    protected Single<User> buildObservable(Integer userId, User user) {
+    public Single<User> buildObservable(Integer userId, User user) {
         return userRepository.updateUser(userId, user);
     }
 }
