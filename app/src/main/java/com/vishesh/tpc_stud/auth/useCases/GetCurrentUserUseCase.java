@@ -9,7 +9,6 @@ import javax.inject.Named;
 
 import io.reactivex.Scheduler;
 import io.reactivex.Single;
-import io.reactivex.disposables.CompositeDisposable;
 
 
 public class GetCurrentUserUseCase extends BaseUseCase<User, Void, Void>{
@@ -19,9 +18,8 @@ public class GetCurrentUserUseCase extends BaseUseCase<User, Void, Void>{
     @Inject
     protected GetCurrentUserUseCase(@Named("jobScheduler") Scheduler jobScheduler,
                                     @Named("postJobScheduler") Scheduler postJobScheduler,
-                                    CompositeDisposable compositeDisposable,
                                     UserRepository userRepository) {
-        super(jobScheduler, postJobScheduler, compositeDisposable);
+        super(jobScheduler, postJobScheduler);
         this.userRepository = userRepository;
     }
 

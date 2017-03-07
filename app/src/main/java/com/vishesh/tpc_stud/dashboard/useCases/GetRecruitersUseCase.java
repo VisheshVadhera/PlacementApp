@@ -11,7 +11,6 @@ import javax.inject.Named;
 
 import io.reactivex.Scheduler;
 import io.reactivex.Single;
-import io.reactivex.disposables.CompositeDisposable;
 
 public class GetRecruitersUseCase extends BaseUseCase<List<Recruiter>, Integer, Void>{
 
@@ -20,9 +19,8 @@ public class GetRecruitersUseCase extends BaseUseCase<List<Recruiter>, Integer, 
     @Inject
     protected GetRecruitersUseCase(@Named("jobScheduler") Scheduler jobScheduler,
                                    @Named("postJobScheduler") Scheduler postJobScheduler,
-                                   CompositeDisposable compositeDisposable,
                                    RecruiterRepository recruiterRepository) {
-        super(jobScheduler, postJobScheduler, compositeDisposable);
+        super(jobScheduler, postJobScheduler);
         this.recruiterRepository = recruiterRepository;
     }
 

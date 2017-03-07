@@ -8,7 +8,6 @@ import javax.inject.Named;
 
 import io.reactivex.Scheduler;
 import io.reactivex.Single;
-import io.reactivex.disposables.CompositeDisposable;
 
 public class LogoutUseCase extends BaseUseCase<Object, Void, Void> {
 
@@ -18,9 +17,8 @@ public class LogoutUseCase extends BaseUseCase<Object, Void, Void> {
     @Inject
     protected LogoutUseCase(@Named("jobScheduler") Scheduler jobScheduler,
                             @Named("postJobScheduler") Scheduler postJobScheduler,
-                            CompositeDisposable compositeDisposable,
                             UserRepository userRepository) {
-        super(jobScheduler, postJobScheduler, compositeDisposable);
+        super(jobScheduler, postJobScheduler);
         this.userRepository = userRepository;
     }
 

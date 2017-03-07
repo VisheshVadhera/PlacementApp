@@ -9,7 +9,6 @@ import javax.inject.Named;
 
 import io.reactivex.Scheduler;
 import io.reactivex.Single;
-import io.reactivex.disposables.CompositeDisposable;
 
 /**
  * Created by vishesh on 24/2/17.
@@ -21,9 +20,8 @@ public class GetProfileUseCase extends BaseUseCase<UserProfile, Integer, Object>
     @Inject
     protected GetProfileUseCase(@Named("jobScheduler") Scheduler jobScheduler,
                                 @Named("postJobScheduler") Scheduler postJobScheduler,
-                                CompositeDisposable compositeDisposable,
                                 UserRepository userRepository) {
-        super(jobScheduler, postJobScheduler, compositeDisposable);
+        super(jobScheduler, postJobScheduler);
         this.userRepository = userRepository;
     }
 

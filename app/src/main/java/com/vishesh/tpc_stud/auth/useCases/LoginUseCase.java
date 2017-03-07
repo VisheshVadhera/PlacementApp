@@ -11,7 +11,6 @@ import javax.inject.Named;
 
 import io.reactivex.Scheduler;
 import io.reactivex.Single;
-import io.reactivex.disposables.CompositeDisposable;
 
 /**
  * Created by vishesh on 14/2/17.
@@ -23,9 +22,8 @@ public class LoginUseCase extends BaseUseCase<AccessToken, Map<String, String>, 
     @Inject
     protected LoginUseCase(@Named("jobScheduler") Scheduler jobScheduler,
                            @Named("postJobScheduler") Scheduler postJobScheduler,
-                           CompositeDisposable compositeDisposable,
                            UserRepository userRepository) {
-        super(jobScheduler, postJobScheduler, compositeDisposable);
+        super(jobScheduler, postJobScheduler);
         this.userRepository = userRepository;
     }
 

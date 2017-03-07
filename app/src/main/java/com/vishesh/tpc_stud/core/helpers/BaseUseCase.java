@@ -16,11 +16,10 @@ public abstract class BaseUseCase<Output, Input1, Input2> {
     private final CompositeDisposable compositeDisposable;
 
     protected BaseUseCase(Scheduler jobScheduler,
-                          Scheduler postJobScheduler,
-                          CompositeDisposable compositeDisposable) {
+                          Scheduler postJobScheduler) {
         this.jobScheduler = jobScheduler;
         this.postJobScheduler = postJobScheduler;
-        this.compositeDisposable = compositeDisposable;
+        this.compositeDisposable = new CompositeDisposable();
     }
 
     public void execute(DisposableSingleObserver<Output> disposableObserver,
