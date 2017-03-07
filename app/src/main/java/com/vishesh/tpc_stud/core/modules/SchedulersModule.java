@@ -6,7 +6,6 @@ import dagger.Module;
 import dagger.Provides;
 import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -25,10 +24,5 @@ public class SchedulersModule {
     @Named("postJobScheduler")
     public Scheduler providePostJobScheduler() {
         return AndroidSchedulers.mainThread();
-    }
-
-    @Provides
-    public CompositeDisposable provideCompositeDisposable(){
-        return new CompositeDisposable();
     }
 }

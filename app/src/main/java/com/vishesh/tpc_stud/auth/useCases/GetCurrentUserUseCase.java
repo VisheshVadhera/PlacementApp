@@ -9,24 +9,23 @@ import javax.inject.Named;
 
 import io.reactivex.Scheduler;
 import io.reactivex.Single;
-import io.reactivex.disposables.CompositeDisposable;
 
 
-public class GetCurrentUserUseCase extends BaseUseCase<User, Void, Void>{
+public class GetCurrentUserUseCase extends BaseUseCase<User, Object, Object>{
 
     private final UserRepository userRepository;
 
     @Inject
-    protected GetCurrentUserUseCase(@Named("jobScheduler") Scheduler jobScheduler,
-                                    @Named("postJobScheduler") Scheduler postJobScheduler,
-                                    CompositeDisposable compositeDisposable,
-                                    UserRepository userRepository) {
-        super(jobScheduler, postJobScheduler, compositeDisposable);
+    public GetCurrentUserUseCase(@Named("jobScheduler") Scheduler jobScheduler,
+                                 @Named("postJobScheduler") Scheduler postJobScheduler,
+                                 UserRepository userRepository) {
+        super(jobScheduler, postJobScheduler);
         this.userRepository = userRepository;
     }
 
+
     @Override
-    protected Single<User> buildObservable(Void aVoid, Void bVoid) {
+    public Single<User> buildObservable(Object o, Object o2) {
         return userRepository.getCurrentUser();
     }
 }

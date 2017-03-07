@@ -11,23 +11,22 @@ import javax.inject.Named;
 
 import io.reactivex.Scheduler;
 import io.reactivex.Single;
-import io.reactivex.disposables.CompositeDisposable;
 
-public class GetRecruitersUseCase extends BaseUseCase<List<Recruiter>, Integer, Void>{
+public class GetRecruitersUseCase extends BaseUseCase<List<Recruiter>, Integer, Object>{
 
     private final RecruiterRepository recruiterRepository;
 
     @Inject
-    protected GetRecruitersUseCase(@Named("jobScheduler") Scheduler jobScheduler,
-                                   @Named("postJobScheduler") Scheduler postJobScheduler,
-                                   CompositeDisposable compositeDisposable,
-                                   RecruiterRepository recruiterRepository) {
-        super(jobScheduler, postJobScheduler, compositeDisposable);
+    public GetRecruitersUseCase(@Named("jobScheduler") Scheduler jobScheduler,
+                                @Named("postJobScheduler") Scheduler postJobScheduler,
+                                RecruiterRepository recruiterRepository) {
+        super(jobScheduler, postJobScheduler);
         this.recruiterRepository = recruiterRepository;
     }
 
+
     @Override
-    protected Single<List<Recruiter>> buildObservable(Integer userId, Void aVoid) {
+    public Single<List<Recruiter>> buildObservable(Integer userId, Object o) {
         return recruiterRepository.getRecruiters(userId);
     }
 }
