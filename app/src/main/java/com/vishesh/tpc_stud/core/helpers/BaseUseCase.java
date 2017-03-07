@@ -37,7 +37,7 @@ public abstract class BaseUseCase<Output, Input1, Input2> {
         }
     }
 
-    protected abstract Single<Output> buildObservable(Input1 input1, Input2 input2);
+    public abstract Single<Output> buildObservable(Input1 input1, Input2 input2);
 
     private void addDisposable(Disposable disposable) {
         compositeDisposable.add(disposable);

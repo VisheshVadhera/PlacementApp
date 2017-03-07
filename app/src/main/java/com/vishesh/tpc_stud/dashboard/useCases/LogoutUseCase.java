@@ -9,21 +9,22 @@ import javax.inject.Named;
 import io.reactivex.Scheduler;
 import io.reactivex.Single;
 
-public class LogoutUseCase extends BaseUseCase<Object, Void, Void> {
+public class LogoutUseCase extends BaseUseCase<Object, Object, Object> {
 
 
     private UserRepository userRepository;
 
     @Inject
-    protected LogoutUseCase(@Named("jobScheduler") Scheduler jobScheduler,
-                            @Named("postJobScheduler") Scheduler postJobScheduler,
-                            UserRepository userRepository) {
+    public LogoutUseCase(@Named("jobScheduler") Scheduler jobScheduler,
+                         @Named("postJobScheduler") Scheduler postJobScheduler,
+                         UserRepository userRepository) {
         super(jobScheduler, postJobScheduler);
         this.userRepository = userRepository;
     }
 
+
     @Override
-    protected Single<Object> buildObservable(Void aVoid, Void aVoid2) {
+    public Single<Object> buildObservable(Object o, Object o2) {
         return userRepository.logout();
     }
 }

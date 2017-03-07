@@ -64,7 +64,7 @@ public class UseCaseTest {
         }
 
         @Override
-        protected Single<Object> buildObservable(Object o, Object o2) {
+        public Single<Object> buildObservable(Object o, Object o2) {
             return Single.just(new Object());
         }
 
