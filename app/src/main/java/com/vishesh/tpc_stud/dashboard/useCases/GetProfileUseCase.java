@@ -18,15 +18,15 @@ public class GetProfileUseCase extends BaseUseCase<UserProfile, Integer, Object>
     private final UserRepository userRepository;
 
     @Inject
-    protected GetProfileUseCase(@Named("jobScheduler") Scheduler jobScheduler,
-                                @Named("postJobScheduler") Scheduler postJobScheduler,
-                                UserRepository userRepository) {
+    public GetProfileUseCase(@Named("jobScheduler") Scheduler jobScheduler,
+                             @Named("postJobScheduler") Scheduler postJobScheduler,
+                             UserRepository userRepository) {
         super(jobScheduler, postJobScheduler);
         this.userRepository = userRepository;
     }
 
     @Override
-    protected Single<UserProfile> buildObservable(Integer userId, Object o) {
+    public Single<UserProfile> buildObservable(Integer userId, Object o) {
         return userRepository.getProfile(userId);
     }
 }
