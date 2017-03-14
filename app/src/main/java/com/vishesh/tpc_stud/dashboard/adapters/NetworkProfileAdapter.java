@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.hannesdorfmann.adapterdelegates3.AdapterDelegate;
 import com.vishesh.tpc_stud.R;
-import com.vishesh.tpc_stud.core.utils.UiUtils;
+import com.vishesh.tpc_stud.core.utils.StringFormatUtils;
 import com.vishesh.tpc_stud.dashboard.models.NetworkProfile;
 
 import java.util.List;
@@ -56,7 +56,7 @@ public class NetworkProfileAdapter extends AdapterDelegate<List<NetworkProfile>>
 
         networkProfileViewHolder
                 .textNetworkProfileAction
-                .setText(UiUtils
+                .setText(StringFormatUtils
                         .createSpacedString(context.getString(R.string.network_profile_value),
                                 networkProfile.getNetwork().getNetworkName()));
     }

@@ -12,7 +12,7 @@ import com.hannesdorfmann.adapterdelegates3.AdapterDelegate;
 import com.squareup.picasso.Picasso;
 import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.core.models.User;
-import com.vishesh.tpc_stud.core.utils.UiUtils;
+import com.vishesh.tpc_stud.core.utils.StringFormatUtils;
 
 import java.util.List;
 
@@ -56,7 +56,7 @@ public class ProfileHeaderAdapterDelegate extends AdapterDelegate<User> {
                 .load(user.getPicUrl())
                 .into(headerViewHolder.imageProfilePicture);
 
-        headerViewHolder.textFullName.setText(UiUtils.createSpacedString(user.getFirstName(), user.getLastName()));
+        headerViewHolder.textFullName.setText(StringFormatUtils.createSpacedString(user.getFirstName(), user.getLastName()));
         headerViewHolder.textEmail.setText(user.getEmail());
     }
 
