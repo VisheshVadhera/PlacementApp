@@ -2,7 +2,8 @@ package com.vishesh.tpc_stud;
 
 import com.vishesh.tpc_stud.core.helpers.BaseUseCase;
 
-import org.assertj.core.api.Assertions;
+import junit.framework.Assert;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -52,8 +53,7 @@ public class UseCaseTest {
         useCase.execute(observer, o, o);
         useCase.dispose();
 
-        Assertions.assertThat(observer.isDisposed())
-                .isTrue();
+        Assert.assertTrue(observer.isDisposed());
     }
 
     private static class UseCaseTestClass extends BaseUseCase<Object, Object, Object> {
