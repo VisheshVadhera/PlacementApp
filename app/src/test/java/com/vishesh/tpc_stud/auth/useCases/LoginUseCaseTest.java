@@ -1,6 +1,5 @@
-package com.vishesh.tpc_stud.auth;
+package com.vishesh.tpc_stud.auth.useCases;
 
-import com.vishesh.tpc_stud.auth.useCases.GetCurrentUserUseCase;
 import com.vishesh.tpc_stud.core.repos.UserRepository;
 
 import org.junit.Before;
@@ -9,6 +8,9 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import io.reactivex.Scheduler;
 
 import static org.mockito.Mockito.verify;
@@ -16,9 +18,9 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.verifyZeroInteractions;
 
 @RunWith(MockitoJUnitRunner.class)
-public class GetCurrentUseCaseTest {
+public class LoginUseCaseTest {
 
-    private GetCurrentUserUseCase getCurrentUserUseCase;
+    private LoginUseCase loginUseCase;
 
     @Mock
     private Scheduler jobScheduler;
@@ -27,22 +29,24 @@ public class GetCurrentUseCaseTest {
     @Mock
     private UserRepository userRepository;
 
+
     @Before
     public void setup() {
-        getCurrentUserUseCase = new GetCurrentUserUseCase(jobScheduler,
+        loginUseCase = new LoginUseCase(jobScheduler,
                 postJobScheduler, userRepository);
     }
 
     @Test
-    public void testGetCurrentUseCaseObservable() {
+    public void testLoginUseCaseObservable() {
+        Map<String, String> map = new HashMap<>();
         Object o = new Object();
-        Object o2 = new Object();
+        loginUseCase.buildObservable(map, o);
 
-        getCurrentUserUseCase.buildObservable(o, o2);
-
-        verify(userRepository).getCurrentUser();
+        verify(userRepository).emailLogin(map);
         verifyNoMoreInteractions(userRepository);
         verifyZeroInteractions(jobScheduler);
         verifyZeroInteractions(postJobScheduler);
     }
+
+
 }

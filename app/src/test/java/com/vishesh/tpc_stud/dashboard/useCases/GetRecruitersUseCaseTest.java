@@ -1,7 +1,7 @@
-package com.vishesh.tpc_stud.dashboard;
+package com.vishesh.tpc_stud.dashboard.useCases;
 
-import com.vishesh.tpc_stud.core.repos.UserRepository;
-import com.vishesh.tpc_stud.dashboard.useCases.GetProfileUseCase;
+import com.vishesh.tpc_stud.dashboard.repos.RecruiterRepository;
+import com.vishesh.tpc_stud.dashboard.useCases.GetRecruitersUseCase;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -17,34 +17,34 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.verifyZeroInteractions;
 
 @RunWith(MockitoJUnitRunner.class)
-public class GetProfileUseCaseTest {
+public class GetRecruitersUseCaseTest {
 
-    private GetProfileUseCase getProfileUseCase;
+    private GetRecruitersUseCase getRecruitersUseCase;
 
     @Mock
     private Scheduler jobScheduler;
     @Mock
     private Scheduler postJobScheduler;
     @Mock
-    private UserRepository userRepository;
+    private RecruiterRepository recruiterRepository;
 
     @Before
     public void setup() {
-        getProfileUseCase = new GetProfileUseCase(jobScheduler,
-                postJobScheduler, userRepository);
+        getRecruitersUseCase = new GetRecruitersUseCase(
+                jobScheduler, postJobScheduler, recruiterRepository
+        );
     }
 
     @Test
-    public void testGetProfileUseCaseObservable() {
+    public void testGetRecruiterUseCaseObservable() {
         Integer userId = anyInt();
         Object o = new Object();
 
-        getProfileUseCase.buildObservable(userId, o);
+        getRecruitersUseCase.buildObservable(userId, o);
 
-        verify(userRepository).getProfile(userId);
-        verifyNoMoreInteractions(userRepository);
+        verify(recruiterRepository).getRecruiters(userId);
+        verifyNoMoreInteractions(recruiterRepository);
         verifyZeroInteractions(jobScheduler);
         verifyZeroInteractions(postJobScheduler);
     }
-
 }

@@ -1,4 +1,4 @@
-package com.vishesh.tpc_stud.auth;
+package com.vishesh.tpc_stud.auth.presenters;
 
 import android.os.Parcel;
 import android.support.annotation.Nullable;
