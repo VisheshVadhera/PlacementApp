@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.fernandocejas.arrow.optional.Optional;
 import com.vishesh.tpc_stud.R;
+import com.vishesh.tpc_stud.core.utils.DateFormatUtils;
 import com.vishesh.tpc_stud.core.utils.StringFormatUtils;
 import com.vishesh.tpc_stud.dashboard.models.RecruiterModel;
 
@@ -49,7 +50,7 @@ public class RecruiterItemAdapter extends RecyclerView.Adapter<RecruiterItemAdap
                             .getJobOffer().getPayPackage()));
             holder.textRecruiterName.setText(recruiterModel.getName());
             holder.textProcessDateValue
-                    .setText(StringFormatUtils
+                    .setText(DateFormatUtils
                             .toDateFormattedString(recruiterModel.getProcessDate()));
         }
     }
