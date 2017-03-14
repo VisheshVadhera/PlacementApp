@@ -11,7 +11,6 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import io.reactivex.Single;
-import io.reactivex.functions.Function;
 
 /**
  * Created by vishesh on 18/2/17.
@@ -20,42 +19,25 @@ import io.reactivex.functions.Function;
 public class UserRepository {
 
     private final AuthService authService;
-    private final LocalCache localCache;
     private UserService userService;
 
     @Inject
     public UserRepository(AuthService authService,
-                          LocalCache localCache,
                           UserService userService) {
         this.authService = authService;
-        this.localCache = localCache;
         this.userService = userService;
     }
 
     public Single<AccessToken> emailLogin(Map<String, String> params) {
-        return authService.emailLogin(params)
-                .map(new Function<AccessToken, AccessToken>() {
-                    @Override
-                    public AccessToken apply(AccessToken accessToken) throws Exception {
-                        localCache.saveAccessToken(accessToken.getAccessToken());
-                        return accessToken;
-                    }
-                });
+        return authService.emailLogin(params);
     }
 
-    public Single<User> updateUser(final Integer userId, User user) {
+    public Single<User> updateUser(final int userId, User user) {
         return userService.updateUser(userId, user);
     }
 
     public Single<User> getCurrentUser() {
-        return userService.getCurrentUser()
-                .map(new Function<User, User>() {
-                    @Override
-                    public User apply(User user) throws Exception {
-                        localCache.saveUserId(user.getId());
-                        return user;
-                    }
-                });
+        return userService.getCurrentUser();
     }
 
     public Single<Object> logout() {

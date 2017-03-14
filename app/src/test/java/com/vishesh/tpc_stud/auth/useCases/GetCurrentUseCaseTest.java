@@ -1,7 +1,7 @@
-package com.vishesh.tpc_stud.dashboard;
+package com.vishesh.tpc_stud.auth.useCases;
 
+import com.vishesh.tpc_stud.auth.useCases.GetCurrentUserUseCase;
 import com.vishesh.tpc_stud.core.repos.UserRepository;
-import com.vishesh.tpc_stud.dashboard.useCases.LogoutUseCase;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -16,9 +16,9 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.verifyZeroInteractions;
 
 @RunWith(MockitoJUnitRunner.class)
-public class LogoutUseCaseTest {
+public class GetCurrentUseCaseTest {
 
-    private LogoutUseCase logoutUseCase;
+    private GetCurrentUserUseCase getCurrentUserUseCase;
 
     @Mock
     private Scheduler jobScheduler;
@@ -29,18 +29,18 @@ public class LogoutUseCaseTest {
 
     @Before
     public void setup() {
-        logoutUseCase = new LogoutUseCase(jobScheduler,
+        getCurrentUserUseCase = new GetCurrentUserUseCase(jobScheduler,
                 postJobScheduler, userRepository);
     }
 
     @Test
-    public void testLogoutUseCaseObservable(){
+    public void testGetCurrentUseCaseObservable() {
         Object o = new Object();
         Object o2 = new Object();
 
-        logoutUseCase.buildObservable(o, o2);
+        getCurrentUserUseCase.buildObservable(o, o2);
 
-        verify(userRepository).logout();
+        verify(userRepository).getCurrentUser();
         verifyNoMoreInteractions(userRepository);
         verifyZeroInteractions(jobScheduler);
         verifyZeroInteractions(postJobScheduler);

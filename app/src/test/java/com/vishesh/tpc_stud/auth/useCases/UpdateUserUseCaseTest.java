@@ -1,4 +1,4 @@
-package com.vishesh.tpc_stud.auth;
+package com.vishesh.tpc_stud.auth.useCases;
 
 import com.vishesh.tpc_stud.auth.useCases.UpdateUserUseCase;
 import com.vishesh.tpc_stud.core.models.User;

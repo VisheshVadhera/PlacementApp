@@ -55,7 +55,7 @@
             android:exported="true"
             android:label="@string/title_activity_dashboard"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".splash.SplashActivity"></activity>
+        <activity android:name=".splash.views.SplashActivity"></activity>
     </application>
 
 </manifest>

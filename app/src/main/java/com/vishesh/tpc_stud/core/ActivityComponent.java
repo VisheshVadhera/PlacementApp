@@ -8,7 +8,7 @@ import com.vishesh.tpc_stud.core.scopes.PerActivity;
 import com.vishesh.tpc_stud.dashboard.views.DashboardFragment;
 import com.vishesh.tpc_stud.dashboard.views.ProfileFragment;
 import com.vishesh.tpc_stud.dashboard.views.RecruitersFragment;
-import com.vishesh.tpc_stud.splash.SplashFragment;
+import com.vishesh.tpc_stud.splash.views.SplashFragment;
 
 import dagger.Component;
 

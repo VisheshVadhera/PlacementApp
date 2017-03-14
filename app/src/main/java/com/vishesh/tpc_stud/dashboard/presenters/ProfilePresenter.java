@@ -117,6 +117,7 @@ public class ProfilePresenter
 
         @Override
         public void onSuccess(User user) {
+            localCache.saveUserId(user.getId());
             userOptional = Optional.of(user);
             getProfileUseCase.execute(new ProfileObserver(), localCache.getUserId(), null);
         }

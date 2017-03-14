@@ -7,6 +7,7 @@ import com.facebook.accountkit.ui.LoginType;
 import com.vishesh.tpc_stud.auth.models.AccessToken;
 import com.vishesh.tpc_stud.auth.useCases.LoginUseCase;
 import com.vishesh.tpc_stud.core.presenters.BasePresenter;
+import com.vishesh.tpc_stud.core.repos.LocalCache;
 import com.vishesh.tpc_stud.core.views.BaseView;
 
 import java.util.HashMap;
@@ -25,10 +26,13 @@ public class LoginPresenter extends BasePresenter {
     private LoginView loginView;
 
     private final LoginUseCase loginUseCase;
+    private final LocalCache localCache;
+
 
     @Inject
-    public LoginPresenter(LoginUseCase loginUseCase) {
+    public LoginPresenter(LoginUseCase loginUseCase, LocalCache localCache) {
         this.loginUseCase = loginUseCase;
+        this.localCache = localCache;
     }
 
     public void setView(LoginView loginView) {
@@ -87,6 +91,7 @@ public class LoginPresenter extends BasePresenter {
 
         @Override
         public void onSuccess(AccessToken value) {
+            localCache.saveAccessToken(value.getAccessToken());
             loginView.hideLoader();
             loginView.openDashboard();
         }

@@ -1,4 +1,4 @@
-package com.vishesh.tpc_stud.splash;
+package com.vishesh.tpc_stud.splash.views;
 
 import android.os.Bundle;
 

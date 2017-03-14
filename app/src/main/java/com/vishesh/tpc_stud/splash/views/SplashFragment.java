@@ -1,4 +1,4 @@
-package com.vishesh.tpc_stud.splash;
+package com.vishesh.tpc_stud.splash.views;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import com.vishesh.tpc_stud.auth.views.LoginFragment;
 import com.vishesh.tpc_stud.core.ActivityComponent;
 import com.vishesh.tpc_stud.core.views.BaseFragment;
 import com.vishesh.tpc_stud.dashboard.views.DashboardFragment;
+import com.vishesh.tpc_stud.splash.presenters.SplashPresenter;
 
 import javax.inject.Inject;
 

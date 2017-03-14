@@ -38,7 +38,7 @@ public class UseCaseTest {
         observer = new TestDisposableObserver<>();
     }
 
-    @Test()
+    @Test
     public void onNullObserverPassed_useCaseShouldFail() {
         expectedException.expect(NullPointerException.class);
         Object o = new Object();
