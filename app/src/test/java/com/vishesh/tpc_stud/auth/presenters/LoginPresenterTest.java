@@ -7,8 +7,8 @@ import com.facebook.accountkit.AccessToken;
 import com.facebook.accountkit.AccountKitError;
 import com.facebook.accountkit.AccountKitLoginResult;
 import com.facebook.accountkit.ui.AccountKitConfiguration;
-import com.vishesh.tpc_stud.auth.presenters.LoginPresenter;
 import com.vishesh.tpc_stud.auth.useCases.LoginUseCase;
+import com.vishesh.tpc_stud.core.repos.LocalCache;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -32,6 +32,8 @@ public class LoginPresenterTest {
     private LoginUseCase loginUseCase;
     @Mock
     private LoginPresenter.LoginView loginView;
+    @Mock
+    private LocalCache localCache;
 
     private LoginPresenter loginPresenter;
 
@@ -39,7 +41,7 @@ public class LoginPresenterTest {
     public void setUp() {
         MockitoAnnotations.initMocks(this);
 
-        loginPresenter = new LoginPresenter(loginUseCase);
+        loginPresenter = new LoginPresenter(loginUseCase, localCache);
         loginPresenter.setView(loginView);
     }
 

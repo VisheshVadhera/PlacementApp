@@ -5,6 +5,7 @@ import android.support.test.runner.AndroidJUnit4;
 import android.support.v4.app.Fragment;
 
 import com.vishesh.tpc_stud.R;
+import com.vishesh.tpc_stud.splash.views.SplashActivity;
 
 import org.junit.Rule;
 import org.junit.Test;
