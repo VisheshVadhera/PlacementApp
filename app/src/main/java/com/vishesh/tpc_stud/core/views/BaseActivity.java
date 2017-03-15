@@ -14,11 +14,6 @@ import com.vishesh.tpc_stud.core.dagger.TpcStudAppComponent;
  */
 public class BaseActivity extends AppCompatActivity {
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
     protected void addFragment(int containerViewId, Fragment fragment) {
         getSupportFragmentManager()
                 .beginTransaction()

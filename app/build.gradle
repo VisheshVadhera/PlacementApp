@@ -171,6 +171,10 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
 
+    androidTestCompile("com.android.support.test.espresso:espresso-intents:${espressoVersion}") {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+
     androidTestCompile('com.squareup.assertj:assertj-android:1.1.1') {
         exclude group: 'com.android.support', module: 'support-annotations'
     }

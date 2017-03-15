@@ -1,14 +1,11 @@
 package com.vishesh.tpc_stud.core.dagger;
 
-
 import dagger.Component;
 
 @PerActivity
 @Component(
-        dependencies = {AppComponent.class},
+        dependencies = {TestAppComponent.class},
         modules = {ActivityModule.class, SchedulersModule.class,
                 MockApiServiceModule.class})
-public interface ActivityComponent extends TpcStudActivityComponent {
-
-
+public interface TestActivityComponent extends TpcStudActivityComponent {
 }
