@@ -2,8 +2,9 @@ package com.vishesh.tpc_stud.core;
 
 import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.core.dagger.AppModule;
-import com.vishesh.tpc_stud.core.dagger.RetrofitModule;
+import com.vishesh.tpc_stud.core.dagger.DaggerTestAppComponent;
 import com.vishesh.tpc_stud.core.dagger.MockDataModule;
+import com.vishesh.tpc_stud.core.dagger.RetrofitModule;
 
 public class MockTpcStudApplication extends TpcStudApplication {
 

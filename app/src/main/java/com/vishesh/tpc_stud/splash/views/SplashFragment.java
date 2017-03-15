@@ -7,7 +7,6 @@ import android.view.View;
 
 import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.auth.views.LoginFragment;
-import com.vishesh.tpc_stud.core.dagger.ActivityComponent;
 import com.vishesh.tpc_stud.core.views.BaseFragment;
 import com.vishesh.tpc_stud.dashboard.views.DashboardFragment;
 import com.vishesh.tpc_stud.splash.presenters.SplashPresenter;
@@ -27,8 +26,7 @@ public class SplashFragment
 
     @Override
     protected void injectDependencies() {
-        getDependencyInjector(ActivityComponent.class)
-                .inject(this);
+        getDependencyInjector().inject(this);
     }
 
     @Override

@@ -1,18 +1,20 @@
 package com.vishesh.tpc_stud.core.dagger;
 
-import com.vishesh.tpc_stud.core.helpers.Bus;
-import com.vishesh.tpc_stud.core.repos.LocalCache;
-
-import retrofit2.Retrofit;
-import retrofit2.mock.MockRetrofit;
+import com.vishesh.tpc_stud.auth.views.LoginFragment;
+import com.vishesh.tpc_stud.dashboard.views.DashboardFragment;
+import com.vishesh.tpc_stud.dashboard.views.ProfileFragment;
+import com.vishesh.tpc_stud.dashboard.views.RecruitersFragment;
+import com.vishesh.tpc_stud.splash.views.SplashFragment;
 
 public interface TpcStudAppComponent {
 
-    Retrofit retrofit();
+    void inject(LoginFragment loginFragment);
 
-    LocalCache localCache();
+    void inject(DashboardFragment dashboardFragment);
 
-    MockRetrofit mockRetrofit();
+    void inject(RecruitersFragment recruitersFragment);
 
-    Bus bus();
+    void inject(ProfileFragment profileFragment);
+
+    void inject(SplashFragment splashFragment);
 }

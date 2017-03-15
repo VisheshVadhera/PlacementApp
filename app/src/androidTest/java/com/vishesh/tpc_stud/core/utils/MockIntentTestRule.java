@@ -22,6 +22,5 @@ public class MockIntentTestRule<T extends BaseActivity> extends IntentsTestRule<
     @Override
     protected void beforeActivityLaunched() {
         super.beforeActivityLaunched();
-        getActivity().
     }
 }

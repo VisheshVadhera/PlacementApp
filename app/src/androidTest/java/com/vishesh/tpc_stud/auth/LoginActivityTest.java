@@ -1,13 +1,12 @@
 package com.vishesh.tpc_stud.auth;
 
-import android.support.test.espresso.intent.rule.IntentsTestRule;
+import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.v4.app.Fragment;
 
 import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.auth.views.LoginActivity;
 
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;

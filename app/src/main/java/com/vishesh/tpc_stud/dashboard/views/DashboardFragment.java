@@ -21,7 +21,6 @@ import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic
 import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.auth.views.LoginFragment;
 import com.vishesh.tpc_stud.auth.views.UserNameActivity;
-import com.vishesh.tpc_stud.core.dagger.ActivityComponent;
 import com.vishesh.tpc_stud.core.views.BaseFragment;
 import com.vishesh.tpc_stud.dashboard.adapters.SectionsPagerAdapter;
 import com.vishesh.tpc_stud.dashboard.presenters.DashboardPresenter;
@@ -48,8 +47,7 @@ public class DashboardFragment
     @BindView(R.id.container)
     ViewPager viewPager;
 
-    @Inject
-    SectionsPagerAdapter sectionsPagerAdapter;
+    private SectionsPagerAdapter sectionsPagerAdapter;
 
     @Inject
     DashboardPresenter dashboardPresenter;
@@ -70,7 +68,7 @@ public class DashboardFragment
 
     @Override
     protected void injectDependencies() {
-        getDependencyInjector(ActivityComponent.class)
+        getDependencyInjector()
                 .inject(this);
     }
 
@@ -124,6 +122,7 @@ public class DashboardFragment
     public void setupTabs() {
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 
+        sectionsPagerAdapter = new SectionsPagerAdapter(getActivity().getSupportFragmentManager());
         sectionsPagerAdapter.addFragment(0, RecruitersFragment.newInstance());
         sectionsPagerAdapter.addFragment(1, ProfileFragment.newInstance());
 

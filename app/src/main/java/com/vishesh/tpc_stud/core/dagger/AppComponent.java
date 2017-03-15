@@ -9,7 +9,8 @@ import dagger.Component;
  */
 @Singleton
 @Component(modules = {AppModule.class, MockRetrofitModule.class,
-        RetrofitModule.class, DataModule.class})
+        RetrofitModule.class, DataModule.class,
+        SchedulersModule.class, MockApiServiceModule.class})
 public interface AppComponent extends TpcStudAppComponent {
 
 }

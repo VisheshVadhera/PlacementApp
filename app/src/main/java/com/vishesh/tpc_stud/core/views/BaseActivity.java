@@ -1,12 +1,9 @@
 package com.vishesh.tpc_stud.core.views;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 
 import com.vishesh.tpc_stud.core.TpcStudApplication;
-import com.vishesh.tpc_stud.core.dagger.ActivityModule;
 import com.vishesh.tpc_stud.core.dagger.TpcStudAppComponent;
 
 /**
@@ -21,11 +18,7 @@ public class BaseActivity extends AppCompatActivity {
                 .commit();
     }
 
-    protected TpcStudAppComponent getApplicationComponent(){
+    public TpcStudAppComponent getApplicationComponent(){
         return ((TpcStudApplication) getApplication()).getTpcStudAppComponent();
-    }
-
-    protected ActivityModule getActivityModule(){
-        return new ActivityModule(this);
     }
 }
