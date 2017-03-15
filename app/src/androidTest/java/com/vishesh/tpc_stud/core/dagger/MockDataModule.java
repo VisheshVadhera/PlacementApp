@@ -1,4 +1,4 @@
-package com.vishesh.tpc_stud.core.modules;
+package com.vishesh.tpc_stud.core.dagger;
 
 import com.vishesh.tpc_stud.core.repos.FakePreferencesCache;
 import com.vishesh.tpc_stud.core.repos.LocalCache;

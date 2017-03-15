@@ -3,7 +3,7 @@ package com.vishesh.tpc_stud.core;
 import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.core.dagger.AppModule;
 import com.vishesh.tpc_stud.core.dagger.RetrofitModule;
-import com.vishesh.tpc_stud.core.modules.MockDataModule;
+import com.vishesh.tpc_stud.core.dagger.MockDataModule;
 
 public class MockTpcStudApplication extends TpcStudApplication {
 

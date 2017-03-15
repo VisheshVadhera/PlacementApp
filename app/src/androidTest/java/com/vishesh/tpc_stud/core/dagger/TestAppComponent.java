@@ -1,10 +1,10 @@
-package com.vishesh.tpc_stud.core;
+package com.vishesh.tpc_stud.core.dagger;
 
 import com.vishesh.tpc_stud.core.dagger.AppModule;
 import com.vishesh.tpc_stud.core.dagger.MockRetrofitModule;
 import com.vishesh.tpc_stud.core.dagger.RetrofitModule;
 import com.vishesh.tpc_stud.core.dagger.TpcStudAppComponent;
-import com.vishesh.tpc_stud.core.modules.MockDataModule;
+import com.vishesh.tpc_stud.core.dagger.MockDataModule;
 
 import javax.inject.Singleton;
 

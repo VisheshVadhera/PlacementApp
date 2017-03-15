@@ -18,7 +18,7 @@ android {
                 account_kit_client_token: ACCOUNT_KIT_CLIENT_TOKEN,
                 ak_login_protocol_scheme: "ak${FACEBOOK_APP_ID}"
         ]
-        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+        testInstrumentationRunner 'com.vishesh.tpc_stud.core.MockTestRunner'
     }
     buildTypes {
         debug {
