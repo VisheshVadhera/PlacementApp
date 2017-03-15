@@ -1,4 +1,4 @@
-package com.vishesh.tpc_stud.core.modules;
+package com.vishesh.tpc_stud.core.dagger;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.vishesh.tpc_stud.core.repos.LocalCache;

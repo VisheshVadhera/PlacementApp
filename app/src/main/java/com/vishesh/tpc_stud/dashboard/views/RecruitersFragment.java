@@ -7,7 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.vishesh.tpc_stud.R;
-import com.vishesh.tpc_stud.core.ActivityComponent;
+import com.vishesh.tpc_stud.core.dagger.ActivityComponent;
 import com.vishesh.tpc_stud.core.views.BaseFragment;
 import com.vishesh.tpc_stud.dashboard.adapters.RecruiterItemAdapter;
 import com.vishesh.tpc_stud.dashboard.models.RecruiterModel;

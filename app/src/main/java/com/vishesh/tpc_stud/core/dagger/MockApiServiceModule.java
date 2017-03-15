@@ -1,10 +1,9 @@
-package com.vishesh.tpc_stud.core;
+package com.vishesh.tpc_stud.core.dagger;
 
 import com.vishesh.tpc_stud.auth.services.AuthService;
 import com.vishesh.tpc_stud.auth.services.MockAuthService;
 import com.vishesh.tpc_stud.auth.services.MockUserService;
 import com.vishesh.tpc_stud.auth.services.UserService;
-import com.vishesh.tpc_stud.core.scopes.PerActivity;
 import com.vishesh.tpc_stud.dashboard.services.MockRecruiterService;
 import com.vishesh.tpc_stud.dashboard.services.RecruiterService;
 

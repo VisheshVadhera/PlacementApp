@@ -1,4 +1,4 @@
-package com.vishesh.tpc_stud.core.modules;
+package com.vishesh.tpc_stud.core.dagger;
 
 import android.content.Context;
 import android.preference.PreferenceManager;

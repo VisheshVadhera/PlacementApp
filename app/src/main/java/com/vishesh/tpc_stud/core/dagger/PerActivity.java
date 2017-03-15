@@ -1,4 +1,4 @@
-package com.vishesh.tpc_stud.core.scopes;
+package com.vishesh.tpc_stud.core.dagger;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;

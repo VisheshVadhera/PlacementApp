@@ -1,6 +1,6 @@
 package com.vishesh.tpc_stud.dashboard.mappers;
 
-import com.vishesh.tpc_stud.core.scopes.PerActivity;
+import com.vishesh.tpc_stud.core.dagger.PerActivity;
 import com.vishesh.tpc_stud.dashboard.models.JobOffer;
 import com.vishesh.tpc_stud.dashboard.models.Recruiter;
 import com.vishesh.tpc_stud.dashboard.models.RecruiterModel;

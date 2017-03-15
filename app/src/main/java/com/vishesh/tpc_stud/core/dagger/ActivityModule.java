@@ -1,4 +1,4 @@
-package com.vishesh.tpc_stud.core.modules;
+package com.vishesh.tpc_stud.core.dagger;
 
 
 import android.app.Activity;
@@ -6,7 +6,6 @@ import android.content.Context;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 
-import com.vishesh.tpc_stud.core.scopes.PerActivity;
 import com.vishesh.tpc_stud.dashboard.adapters.SectionsPagerAdapter;
 
 import dagger.Module;
