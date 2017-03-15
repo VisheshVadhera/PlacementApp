@@ -1,7 +1,6 @@
 package com.vishesh.tpc_stud.core.modules;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.vishesh.tpc_stud.core.repos.LocalCache;
@@ -26,13 +25,8 @@ public class DataModule {
 
     @Provides
     @Singleton
-    SharedPreferences provideSharedPreferences() {
-        return PreferenceManager.getDefaultSharedPreferences(context);
-    }
-
-    @Provides
-    @Singleton
-    LocalCache provideLocalCache(SharedPreferences sharedPreferences) {
-        return new PreferencesCache(sharedPreferences);
+    LocalCache provideLocalCache() {
+        return new PreferencesCache(PreferenceManager
+                .getDefaultSharedPreferences(context));
     }
 }

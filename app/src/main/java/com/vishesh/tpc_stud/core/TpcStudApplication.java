@@ -14,7 +14,7 @@ import net.danlew.android.joda.JodaTimeAndroid;
  */
 public class TpcStudApplication extends Application {
 
-    private AppComponent appComponent;
+    protected AppComponent appComponent;
 
     @Override
     public void onCreate() {
@@ -29,7 +29,7 @@ public class TpcStudApplication extends Application {
         JodaTimeAndroid.init(this);
     }
 
-    private void setupDagger() {
+    protected void setupDagger() {
         appComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
                 .dataModule(new DataModule(getApplicationContext()))
