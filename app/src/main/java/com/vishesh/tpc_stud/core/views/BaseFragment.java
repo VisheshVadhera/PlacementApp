@@ -65,9 +65,6 @@ public abstract class BaseFragment extends Fragment {
     protected TpcStudAppComponent getDependencyInjector() {
         return ((BaseActivity) getActivity()).getApplicationComponent();
     }
-    /*protected <T> T getDependencyInjector(Class<T> injectorType){
-        return injectorType.cast(((DependencyInjector<T>) getActivity()).getInjector());
-    }*/
 
     protected abstract void injectDependencies();
 
