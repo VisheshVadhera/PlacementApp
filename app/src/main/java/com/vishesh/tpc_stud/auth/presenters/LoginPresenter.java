@@ -4,6 +4,7 @@ import com.facebook.accountkit.AccountKitLoginResult;
 import com.facebook.accountkit.ui.AccountKitActivity;
 import com.facebook.accountkit.ui.AccountKitConfiguration;
 import com.facebook.accountkit.ui.LoginType;
+import com.vishesh.tpc_stud.auth.constants.AuthConstants;
 import com.vishesh.tpc_stud.auth.models.AccessToken;
 import com.vishesh.tpc_stud.auth.useCases.LoginUseCase;
 import com.vishesh.tpc_stud.core.helpers.EspressoIdlingResource;
@@ -23,7 +24,6 @@ import io.reactivex.observers.DisposableSingleObserver;
  */
 public class LoginPresenter extends BasePresenter {
 
-    public static final String LOGIN_CANCELLED = "Login Cancelled";
     private LoginView loginView;
 
     private final LoginUseCase loginUseCase;
@@ -57,13 +57,13 @@ public class LoginPresenter extends BasePresenter {
             message = accountKitLoginResult.getError().getErrorType().getMessage();
             loginView.showMessage(message);
         } else if (accountKitLoginResult.wasCancelled()) {
-            loginView.showMessage(LOGIN_CANCELLED);
+            loginView.showMessage(AuthConstants.LOGIN_CANCELLED);
         } else if (accountKitLoginResult.getAuthorizationCode() != null) {
             Map<String, String> map = new HashMap<>();
             map.put("authorizationCode", accountKitLoginResult.getAuthorizationCode());
             loginView.showLoader();
 
-            EspressoIdlingResource.increment();
+
             loginUseCase.execute(new LoginObserver(), map, null);
         }
     }
@@ -93,7 +93,6 @@ public class LoginPresenter extends BasePresenter {
 
         @Override
         public void onSuccess(AccessToken value) {
-            EspressoIdlingResource.decrement();
             localCache.saveAccessToken(value.getAccessToken());
             loginView.hideLoader();
             loginView.openDashboard();
@@ -101,7 +100,6 @@ public class LoginPresenter extends BasePresenter {
 
         @Override
         public void onError(Throwable e) {
-            EspressoIdlingResource.decrement();
             loginView.hideLoader();
             handleError(e);
         }
