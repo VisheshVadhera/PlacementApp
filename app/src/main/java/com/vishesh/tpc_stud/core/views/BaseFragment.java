@@ -7,10 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.vishesh.tpc_stud.R;
-import com.vishesh.tpc_stud.core.helpers.DependencyInjector;
+import com.vishesh.tpc_stud.core.dagger.TpcStudAppComponent;
+import com.vishesh.tpc_stud.core.utils.UiUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,8 +27,7 @@ public abstract class BaseFragment extends Fragment {
     protected Unbinder unbinder;
 
     public void showMessage(String message) {
-        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT)
-                .show();
+        UiUtils.showToast(getContext(), message);
     }
 
     @Override
@@ -59,12 +58,12 @@ public abstract class BaseFragment extends Fragment {
         unbinder.unbind();
     }
 
-    protected void finish(){
+    protected void finish() {
         getActivity().finish();
     }
 
-    protected <T> T getDependencyInjector(Class<T> injectorType){
-        return injectorType.cast(((DependencyInjector<T>) getActivity()).getInjector());
+    protected TpcStudAppComponent getDependencyInjector() {
+        return ((BaseActivity) getActivity()).getApplicationComponent();
     }
 
     protected abstract void injectDependencies();

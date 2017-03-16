@@ -8,7 +8,7 @@ import android.support.v4.app.Fragment;
 import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.dashboard.views.DashboardActivity;
 
-import org.assertj.core.api.Assertions;
+import org.assertj.core.api.*;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.hannesdorfmann.adapterdelegates3.AdapterDelegate;
 import com.vishesh.tpc_stud.R;
-import com.vishesh.tpc_stud.core.utils.UiUtils;
+import com.vishesh.tpc_stud.core.utils.StringFormatUtils;
 import com.vishesh.tpc_stud.dashboard.models.UserProfile;
 
 import java.util.List;
@@ -53,7 +53,7 @@ public class CourseAdapterDelegate extends AdapterDelegate<UserProfile> {
         CourseViewHolder courseViewHolder = (CourseViewHolder) holder;
 
         courseViewHolder.textCourseLabel.setText(context.getString(R.string.course_label));
-        courseViewHolder.textCourseValue.setText(UiUtils
+        courseViewHolder.textCourseValue.setText(StringFormatUtils
                 .createSpacedString(userProfile.getCourse().getBranch(),
                         userProfile.getCourse().getDegree().getDegreeName()));
     }

@@ -13,7 +13,6 @@ import com.facebook.accountkit.ui.AccountKitActivity;
 import com.facebook.accountkit.ui.AccountKitConfiguration;
 import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.auth.presenters.LoginPresenter;
-import com.vishesh.tpc_stud.core.ActivityComponent;
 import com.vishesh.tpc_stud.core.views.BaseFragment;
 import com.vishesh.tpc_stud.dashboard.views.DashboardFragment;
 
@@ -49,7 +48,7 @@ public class LoginFragment
 
     @Override
     public void injectDependencies() {
-        getDependencyInjector(ActivityComponent.class)
+        getDependencyInjector()
                 .inject(this);
     }
 

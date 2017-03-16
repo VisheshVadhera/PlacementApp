@@ -9,7 +9,8 @@ import android.widget.TextView;
 
 import com.fernandocejas.arrow.optional.Optional;
 import com.vishesh.tpc_stud.R;
-import com.vishesh.tpc_stud.core.utils.UiUtils;
+import com.vishesh.tpc_stud.core.utils.DateFormatUtils;
+import com.vishesh.tpc_stud.core.utils.StringFormatUtils;
 import com.vishesh.tpc_stud.dashboard.models.RecruiterModel;
 
 import java.util.List;
@@ -45,12 +46,12 @@ public class RecruiterItemAdapter extends RecyclerView.Adapter<RecruiterItemAdap
             holder.textJobOfferTitle.setText(recruiterModel.getJobOffer().getJobTitle());
             holder.textJobOfferDescription.setText(recruiterModel.getJobOffer().getDescription());
             holder.textPayPackageValue
-                    .setText(UiUtils.toRupeeFormattedString(recruiterModel
+                    .setText(StringFormatUtils.toRupeeFormattedString(recruiterModel
                             .getJobOffer().getPayPackage()));
             holder.textRecruiterName.setText(recruiterModel.getName());
             holder.textProcessDateValue
-                    .setText(UiUtils
-                            .toFormattedDate(recruiterModel.getProcessDate()));
+                    .setText(DateFormatUtils
+                            .toDateFormattedString(recruiterModel.getProcessDate()));
         }
     }
 

@@ -1,4 +1,4 @@
-package com.vishesh.tpc_stud.core;
+package com.vishesh.tpc_stud.core.dagger;
 
 import java.util.concurrent.TimeUnit;
 

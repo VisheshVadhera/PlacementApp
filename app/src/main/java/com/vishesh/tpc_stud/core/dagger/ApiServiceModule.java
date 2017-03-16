@@ -1,9 +1,10 @@
-package com.vishesh.tpc_stud.core.modules;
+package com.vishesh.tpc_stud.core.dagger;
 
 import com.vishesh.tpc_stud.auth.services.AuthService;
 import com.vishesh.tpc_stud.auth.services.UserService;
-import com.vishesh.tpc_stud.core.scopes.PerActivity;
 import com.vishesh.tpc_stud.dashboard.services.RecruiterService;
+
+import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -16,19 +17,19 @@ import retrofit2.Retrofit;
 public class ApiServiceModule {
 
     @Provides
-    @PerActivity
+    @Singleton
     public AuthService provideAuthService(Retrofit retrofit) {
         return retrofit.create(AuthService.class);
     }
 
     @Provides
-    @PerActivity
+    @Singleton
     public UserService provideUserService(Retrofit retrofit) {
         return retrofit.create(UserService.class);
     }
 
     @Provides
-    @PerActivity
+    @Singleton
     public RecruiterService provideRecruiterService(Retrofit retrofit) {
         return retrofit.create(RecruiterService.class);
     }
