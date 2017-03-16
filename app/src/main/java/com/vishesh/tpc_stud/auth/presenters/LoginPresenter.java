@@ -6,6 +6,7 @@ import com.facebook.accountkit.ui.AccountKitConfiguration;
 import com.facebook.accountkit.ui.LoginType;
 import com.vishesh.tpc_stud.auth.models.AccessToken;
 import com.vishesh.tpc_stud.auth.useCases.LoginUseCase;
+import com.vishesh.tpc_stud.core.helpers.EspressoIdlingResource;
 import com.vishesh.tpc_stud.core.presenters.BasePresenter;
 import com.vishesh.tpc_stud.core.repos.LocalCache;
 import com.vishesh.tpc_stud.core.views.BaseView;
@@ -27,7 +28,6 @@ public class LoginPresenter extends BasePresenter {
 
     private final LoginUseCase loginUseCase;
     private final LocalCache localCache;
-
 
     @Inject
     public LoginPresenter(LoginUseCase loginUseCase, LocalCache localCache) {
@@ -62,6 +62,8 @@ public class LoginPresenter extends BasePresenter {
             Map<String, String> map = new HashMap<>();
             map.put("authorizationCode", accountKitLoginResult.getAuthorizationCode());
             loginView.showLoader();
+
+            EspressoIdlingResource.increment();
             loginUseCase.execute(new LoginObserver(), map, null);
         }
     }
@@ -91,6 +93,7 @@ public class LoginPresenter extends BasePresenter {
 
         @Override
         public void onSuccess(AccessToken value) {
+            EspressoIdlingResource.decrement();
             localCache.saveAccessToken(value.getAccessToken());
             loginView.hideLoader();
             loginView.openDashboard();
@@ -98,6 +101,7 @@ public class LoginPresenter extends BasePresenter {
 
         @Override
         public void onError(Throwable e) {
+            EspressoIdlingResource.decrement();
             loginView.hideLoader();
             handleError(e);
         }

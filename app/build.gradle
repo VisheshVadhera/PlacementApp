@@ -142,6 +142,8 @@ dependencies {
     //Persistent Job Queue
     compile "com.evernote:android-job:${androidJobQueueVersion}"
 
+    compile "com.android.support.test.espresso:espresso-idling-resource:${espressoVersion}"
+
     //For executing unit tests locally
     testCompile "junit:junit:${junitVersion}"
     testCompile "org.mockito:mockito-all:${mockitoVersion}"
