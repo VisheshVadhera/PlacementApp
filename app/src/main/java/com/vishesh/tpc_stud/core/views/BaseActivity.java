@@ -1,23 +1,18 @@
 package com.vishesh.tpc_stud.core.views;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.support.annotation.VisibleForTesting;
+import android.support.test.espresso.IdlingResource;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 
-import com.vishesh.tpc_stud.core.AppComponent;
 import com.vishesh.tpc_stud.core.TpcStudApplication;
-import com.vishesh.tpc_stud.core.modules.ActivityModule;
+import com.vishesh.tpc_stud.core.dagger.TpcStudAppComponent;
+import com.vishesh.tpc_stud.core.helpers.EspressoIdlingResource;
 
 /**
  * Created by vishesh on 12/2/17.
  */
 public class BaseActivity extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     protected void addFragment(int containerViewId, Fragment fragment) {
         getSupportFragmentManager()
@@ -26,11 +21,12 @@ public class BaseActivity extends AppCompatActivity {
                 .commit();
     }
 
-    protected AppComponent getApplicationComponent(){
-        return ((TpcStudApplication) getApplication()).getAppComponent();
+    public TpcStudAppComponent getApplicationComponent(){
+        return ((TpcStudApplication) getApplication()).getTpcStudAppComponent();
     }
 
-    protected ActivityModule getActivityModule(){
-        return new ActivityModule(this);
+    @VisibleForTesting
+    public IdlingResource getCountingIdlingResource() {
+        return EspressoIdlingResource.getIdlingResource();
     }
 }

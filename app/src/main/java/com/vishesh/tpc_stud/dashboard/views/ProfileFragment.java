@@ -12,7 +12,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.vishesh.tpc_stud.R;
-import com.vishesh.tpc_stud.core.ActivityComponent;
 import com.vishesh.tpc_stud.core.helpers.Bus;
 import com.vishesh.tpc_stud.core.models.User;
 import com.vishesh.tpc_stud.core.utils.FileUtils;
@@ -56,7 +55,7 @@ public class ProfileFragment
 
     @Override
     protected void injectDependencies() {
-        getDependencyInjector(ActivityComponent.class)
+        getDependencyInjector()
                 .inject(this);
     }
 

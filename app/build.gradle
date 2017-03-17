@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.0"
+    buildToolsVersion '25.0.0'
 
     defaultConfig {
         applicationId "com.vishesh.tpc_stud"
@@ -18,9 +18,12 @@ android {
                 account_kit_client_token: ACCOUNT_KIT_CLIENT_TOKEN,
                 ak_login_protocol_scheme: "ak${FACEBOOK_APP_ID}"
         ]
-        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+        testInstrumentationRunner 'com.vishesh.tpc_stud.core.MockTestRunner'
     }
     buildTypes {
+        debug {
+            testCoverageEnabled false
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -139,6 +142,8 @@ dependencies {
     //Persistent Job Queue
     compile "com.evernote:android-job:${androidJobQueueVersion}"
 
+    compile "com.android.support.test.espresso:espresso-idling-resource:${espressoVersion}"
+
     //For executing unit tests locally
     testCompile "junit:junit:${junitVersion}"
     testCompile "org.mockito:mockito-all:${mockitoVersion}"
@@ -168,8 +173,14 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
 
-    testCompile('com.squareup.assertj:assertj-android:1.1.1') {
+    androidTestCompile("com.android.support.test.espresso:espresso-intents:${espressoVersion}") {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
+
+    androidTestCompile('com.squareup.assertj:assertj-android:1.1.1') {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+
+    androidTestAnnotationProcessor "com.google.dagger:dagger-compiler:${daggerVersion}"
 
 }
