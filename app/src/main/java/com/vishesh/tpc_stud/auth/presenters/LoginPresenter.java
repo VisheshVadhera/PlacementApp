@@ -7,7 +7,6 @@ import com.facebook.accountkit.ui.LoginType;
 import com.vishesh.tpc_stud.auth.constants.AuthConstants;
 import com.vishesh.tpc_stud.auth.models.AccessToken;
 import com.vishesh.tpc_stud.auth.useCases.LoginUseCase;
-import com.vishesh.tpc_stud.core.helpers.EspressoIdlingResource;
 import com.vishesh.tpc_stud.core.presenters.BasePresenter;
 import com.vishesh.tpc_stud.core.repos.LocalCache;
 import com.vishesh.tpc_stud.core.views.BaseView;
@@ -51,19 +50,18 @@ public class LoginPresenter extends BasePresenter {
 
     public void onEmailLoginResultReceived(AccountKitLoginResult accountKitLoginResult) {
 
-        String message;
-
         if (accountKitLoginResult.getError() != null) {
-            message = accountKitLoginResult.getError().getErrorType().getMessage();
-            loginView.showMessage(message);
+
+            loginView.showMessage(accountKitLoginResult.getError().getErrorType().getMessage());
+
         } else if (accountKitLoginResult.wasCancelled()) {
+
             loginView.showMessage(AuthConstants.LOGIN_CANCELLED);
+
         } else if (accountKitLoginResult.getAuthorizationCode() != null) {
             Map<String, String> map = new HashMap<>();
             map.put("authorizationCode", accountKitLoginResult.getAuthorizationCode());
             loginView.showLoader();
-
-
             loginUseCase.execute(new LoginObserver(), map, null);
         }
     }

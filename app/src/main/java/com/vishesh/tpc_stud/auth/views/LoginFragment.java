@@ -66,7 +66,6 @@ public class LoginFragment
     public void openDashboard() {
         Intent dashboardIntent = DashboardFragment.createIntent(getActivity());
         startActivity(dashboardIntent);
-
         finish();
     }
 

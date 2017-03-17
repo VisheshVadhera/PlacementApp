@@ -11,7 +11,6 @@ import android.widget.RelativeLayout;
 
 import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.core.dagger.TpcStudAppComponent;
-import com.vishesh.tpc_stud.core.utils.UiUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,7 +25,6 @@ public abstract class BaseFragment extends Fragment {
     RelativeLayout relativeLayoutLoader;
 
     protected Unbinder unbinder;
-
     protected Snackbar snackbar;
 
     @Override
@@ -40,12 +38,17 @@ public abstract class BaseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(getLayoutId(), container, false);
         unbinder = ButterKnife.bind(this, view);
-//        snackbar = Snackbar.make(view, "", Snackbar.LENGTH_SHORT);
         return view;
     }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        snackbar = Snackbar.make(view, "", Snackbar.LENGTH_SHORT);
+    }
+
     public void showMessage(String message) {
-        UiUtils.showToast(getContext(), message);
+        snackbar.setText(message);
+        snackbar.show();
     }
 
     public void showLoader() {
