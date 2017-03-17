@@ -56,7 +56,8 @@ public class UserNameActivity extends BaseActivity {
     @OnClick(R.id.button_continue)
     public void onClick() {
         setResult(Activity.RESULT_OK,
-                DashboardFragment.createUserNameIntent(editTextFirstName.getText().toString(),
+                DashboardFragment.createUserNameIntent(
+                        editTextFirstName.getText().toString(),
                         editTextLastName.getText().toString()));
     }
 
