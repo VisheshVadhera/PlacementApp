@@ -44,7 +44,7 @@ public class DashboardFragment
     Toolbar toolbar;
     @BindView(R.id.tabs)
     TabLayout tabLayout;
-    @BindView(R.id.container)
+    @BindView(R.id.view_pager_dashboard)
     ViewPager viewPager;
 
     private SectionsPagerAdapter sectionsPagerAdapter;

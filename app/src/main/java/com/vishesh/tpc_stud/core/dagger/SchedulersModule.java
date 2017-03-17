@@ -17,7 +17,7 @@ public class SchedulersModule {
     @Provides
     @Named("jobScheduler")
     public Scheduler provideJobScheduler() {
-        return Schedulers.newThread();
+        return Schedulers.io();
     }
 
     @Provides
