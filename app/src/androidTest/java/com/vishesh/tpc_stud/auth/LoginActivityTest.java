@@ -50,13 +50,13 @@ public class LoginActivityTest {
      * <p>
      * For login flow, partition the state space as follows:
      * <p>
-     * Successful login and no cancellation by the user,
-     * Successful login and cancellation by the user,
-     * Unsuccessful login.
+     * 1. Successful login and no cancellation by the user,
+     * 2. Successful login and cancellation by the user,
+     * 3. Unsuccessful login.
      */
     private static final String FAKE_AUTH_CODE = "123";
     private static final String FAKE_ACCESS_TOKEN = "abc";
-    public static final int FAKE_TOKEN_REFRESH_INTERVAL = 24;
+    private static final int FAKE_TOKEN_REFRESH_INTERVAL = 24;
 
     @Rule
     public IntentsTestRule<LoginActivity> loginActivityIntentsTestRule =
