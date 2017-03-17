@@ -52,11 +52,11 @@ public class LoginPresenter extends BasePresenter {
 
         if (accountKitLoginResult.getError() != null) {
 
-            loginView.showMessage(accountKitLoginResult.getError().getErrorType().getMessage());
+            loginView.showMessage(AuthConstants.ACCOUNT_KIT_ERROR_MSG);
 
         } else if (accountKitLoginResult.wasCancelled()) {
 
-            loginView.showMessage(AuthConstants.LOGIN_CANCELLED);
+            loginView.showMessage(AuthConstants.LOGIN_CANCELLED_MSG);
 
         } else if (accountKitLoginResult.getAuthorizationCode() != null) {
             Map<String, String> map = new HashMap<>();

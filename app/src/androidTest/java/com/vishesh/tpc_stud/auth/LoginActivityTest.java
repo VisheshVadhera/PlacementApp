@@ -9,7 +9,9 @@ import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.facebook.accountkit.AccessToken;
+import com.facebook.accountkit.AccountKitError;
 import com.facebook.accountkit.AccountKitLoginResult;
+import com.facebook.accountkit.internal.InternalAccountKitError;
 import com.facebook.accountkit.ui.AccountKitActivity;
 import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.auth.constants.AuthConstants;
@@ -18,7 +20,6 @@ import com.vishesh.tpc_stud.dashboard.views.DashboardActivity;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -55,6 +56,7 @@ public class LoginActivityTest {
      */
     private static final String FAKE_AUTH_CODE = "123";
     private static final String FAKE_ACCESS_TOKEN = "abc";
+    public static final int FAKE_TOKEN_REFRESH_INTERVAL = 24;
 
     @Rule
     public IntentsTestRule<LoginActivity> loginActivityIntentsTestRule =
@@ -89,6 +91,7 @@ public class LoginActivityTest {
         onView(withText(R.string.action_logout))
                 .check(matches(isDisplayed()));
     }
+
     /**
      * Covers the following case:
      * Successful login and cancellation by the user
@@ -96,14 +99,14 @@ public class LoginActivityTest {
     @Test
     public void clickLoginButton_successFulLogin_cancelled_showSnackBar() {
 
-        ActivityResult activityResult = createSuccessfulLoginButCancelledResultStub();
+        ActivityResult activityResult = createSuccessfulLoginCancelledResultStub();
 
         intending(hasExtraWithKey(AccountKitActivity.ACCOUNT_KIT_ACTIVITY_CONFIGURATION))
                 .respondWith(activityResult);
 
         onView(withId(R.id.button_login)).perform(click());
 
-        onView(withText(AuthConstants.LOGIN_CANCELLED))
+        onView(withText(AuthConstants.LOGIN_CANCELLED_MSG))
                 .check(matches(withEffectiveVisibility(
                         Visibility.VISIBLE)));
     }
@@ -112,9 +115,19 @@ public class LoginActivityTest {
      * Covers the following case:
      * unsuccessful login
      */
-    @Ignore
+    @Test
     public void clickLoginButton_unsuccessfulLogin() {
-        throw new AssertionError("To be implemented");
+
+        ActivityResult activityResult = createUnsuccessfulLoginResultStub();
+
+        intending(hasExtraWithKey(AccountKitActivity.ACCOUNT_KIT_ACTIVITY_CONFIGURATION))
+                .respondWith(activityResult);
+
+        onView(withId(R.id.button_login)).perform(click());
+
+        onView(withText(AuthConstants.ACCOUNT_KIT_ERROR_MSG))
+                .check(matches(withEffectiveVisibility(
+                        Visibility.VISIBLE)));
     }
 
     @After
@@ -136,7 +149,7 @@ public class LoginActivityTest {
         return new ActivityResult(Activity.RESULT_OK, intent);
     }
 
-    private ActivityResult createSuccessfulLoginButCancelledResultStub(){
+    private ActivityResult createSuccessfulLoginCancelledResultStub() {
         Intent intent = new Intent();
         AccountKitLoginResult accountKitLoginResult = new FakeAccountKitLoginResult(
                 null,
@@ -144,13 +157,33 @@ public class LoginActivityTest {
                 true,
                 null,
                 "authState",
-                24);
+                FAKE_TOKEN_REFRESH_INTERVAL);
         intent.putExtra(AccountKitLoginResult.RESULT_KEY, accountKitLoginResult);
         return new ActivityResult(Activity.RESULT_OK, intent);
     }
 
     private AccessToken getAccessToken() {
         return new AccessToken(FAKE_ACCESS_TOKEN,
-                "1", "appId", 24, new Date());
+                "1", "appId", FAKE_TOKEN_REFRESH_INTERVAL, new Date());
+    }
+
+    private ActivityResult createUnsuccessfulLoginResultStub() {
+        Intent intent = new Intent();
+        AccountKitLoginResult accountKitLoginResult = new FakeAccountKitLoginResult(
+                null,
+                null,
+                false,
+                getAccountKitError(),
+                null,
+                FAKE_TOKEN_REFRESH_INTERVAL
+        );
+        intent.putExtra(AccountKitLoginResult.RESULT_KEY, accountKitLoginResult);
+        return new ActivityResult(Activity.RESULT_OK, intent);
+    }
+
+    private AccountKitError getAccountKitError() {
+        return new AccountKitError(
+                AccountKitError.Type.NETWORK_CONNECTION_ERROR,
+                InternalAccountKitError.NO_NETWORK_CONNECTION);
     }
 }

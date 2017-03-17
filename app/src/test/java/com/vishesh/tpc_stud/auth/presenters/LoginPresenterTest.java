@@ -156,7 +156,7 @@ public class LoginPresenterTest {
         };
 
         loginPresenter.onEmailLoginResultReceived(accountKitLoginResult);
-        verify(loginView).showMessage(AuthConstants.LOGIN_CANCELLED);
+        verify(loginView).showMessage(AuthConstants.LOGIN_CANCELLED_MSG);
     }
 
     @Test
