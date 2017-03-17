@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.0"
+    buildToolsVersion '25.0.0'
 
     defaultConfig {
         applicationId "com.vishesh.tpc_stud"
@@ -178,12 +178,6 @@ dependencies {
     }
 
     androidTestCompile('com.squareup.assertj:assertj-android:1.1.1') {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    }
-
-    androidTestCompile ("com.jakewharton.espresso:okhttp3-idling-resource:1.0.0"){
-        exclude group: 'com.squareup.okhttp3', module: 'okhttp'
-        exclude group: 'com.squareup.okio', module: 'okio'
         exclude group: 'com.android.support', module: 'support-annotations'
     }
 

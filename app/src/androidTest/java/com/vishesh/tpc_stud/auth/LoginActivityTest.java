@@ -6,14 +6,12 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.Espresso;
-import android.support.test.espresso.IdlingResource;
 import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.facebook.accountkit.AccessToken;
 import com.facebook.accountkit.AccountKitLoginResult;
 import com.facebook.accountkit.ui.AccountKitActivity;
-import com.jakewharton.espresso.OkHttp3IdlingResource;
 import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.auth.views.LoginActivity;
 import com.vishesh.tpc_stud.core.TpcStudApplication;
@@ -58,7 +56,6 @@ public class LoginActivityTest {
      * Successful login and cancellation by the user,
      * Unsuccessful login.
      */
-
     @Inject
     OkHttpClient okHttpClient;
 
@@ -79,13 +76,9 @@ public class LoginActivityTest {
         TestAppComponent testAppComponent = (TestAppComponent) tpcStudApplication.getTpcStudAppComponent();
         testAppComponent.inject(this);
 
-        /*Espresso.registerIdlingResources(
-                loginActivityIntentsTestRule.getActivity().getCountingIdlingResource());*/
-        IdlingResource idlingResource = OkHttp3IdlingResource.create(
-                "okhttp", okHttpClient);
-        Espresso.registerIdlingResources(idlingResource);
+        Espresso.registerIdlingResources(
+                loginActivityIntentsTestRule.getActivity().getCountingIdlingResource());
     }
-
     /**
      * Covers the following case:
      * Successful login and no cancellation by the user
@@ -154,7 +147,6 @@ public class LoginActivityTest {
         intent.putExtra(AccountKitLoginResult.RESULT_KEY, accountKitLoginResult);
         return new ActivityResult(Activity.RESULT_OK, intent);
     }
-
 
     private AccessToken getAccessToken() {
         return new AccessToken(FAKE_ACCESS_TOKEN,
