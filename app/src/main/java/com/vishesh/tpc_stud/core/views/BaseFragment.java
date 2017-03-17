@@ -2,6 +2,7 @@ package com.vishesh.tpc_stud.core.views;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +11,6 @@ import android.widget.RelativeLayout;
 
 import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.core.dagger.TpcStudAppComponent;
-import com.vishesh.tpc_stud.core.utils.UiUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,10 +25,7 @@ public abstract class BaseFragment extends Fragment {
     RelativeLayout relativeLayoutLoader;
 
     protected Unbinder unbinder;
-
-    public void showMessage(String message) {
-        UiUtils.showToast(getContext(), message);
-    }
+    protected Snackbar snackbar;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,6 +39,16 @@ public abstract class BaseFragment extends Fragment {
         View view = inflater.inflate(getLayoutId(), container, false);
         unbinder = ButterKnife.bind(this, view);
         return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        snackbar = Snackbar.make(view, "", Snackbar.LENGTH_SHORT);
+    }
+
+    public void showMessage(String message) {
+        snackbar.setText(message);
+        snackbar.show();
     }
 
     public void showLoader() {

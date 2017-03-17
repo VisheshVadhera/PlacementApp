@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.0"
+    buildToolsVersion '25.0.0'
 
     defaultConfig {
         applicationId "com.vishesh.tpc_stud"
@@ -22,7 +22,7 @@ android {
     }
     buildTypes {
         debug {
-            testCoverageEnabled true
+            testCoverageEnabled false
         }
         release {
             minifyEnabled false
@@ -142,6 +142,8 @@ dependencies {
     //Persistent Job Queue
     compile "com.evernote:android-job:${androidJobQueueVersion}"
 
+    compile "com.android.support.test.espresso:espresso-idling-resource:${espressoVersion}"
+
     //For executing unit tests locally
     testCompile "junit:junit:${junitVersion}"
     testCompile "org.mockito:mockito-all:${mockitoVersion}"
@@ -180,4 +182,5 @@ dependencies {
     }
 
     androidTestAnnotationProcessor "com.google.dagger:dagger-compiler:${daggerVersion}"
+
 }

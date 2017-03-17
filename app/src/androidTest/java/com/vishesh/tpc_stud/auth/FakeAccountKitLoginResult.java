@@ -26,7 +26,7 @@ class FakeAccountKitLoginResult implements AccountKitLoginResult {
         }
     };
 
-    private FakeAccountKitLoginResult(AccessToken accessToken,
+    public FakeAccountKitLoginResult(AccessToken accessToken,
                                       String authorizationCode,
                                       boolean cancelled,
                                       AccountKitError error,

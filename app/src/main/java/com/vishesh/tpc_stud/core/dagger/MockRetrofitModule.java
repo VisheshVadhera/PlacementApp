@@ -1,7 +1,5 @@
 package com.vishesh.tpc_stud.core.dagger;
 
-import java.util.concurrent.TimeUnit;
-
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -22,9 +20,9 @@ public class MockRetrofitModule {
     public MockRetrofit provideMockRetrofit(Retrofit retrofit) {
         
         NetworkBehavior behavior = NetworkBehavior.create();
-        behavior.setDelay((long) NETWORK_DELAY_SECONDS, TimeUnit.SECONDS);
+/*        behavior.setDelay((long) NETWORK_DELAY_SECONDS, TimeUnit.SECONDS);
         behavior.setVariancePercent(NETWORK_DELAY_VARIANCE_PERCENT);
-//        behavior.setFailurePercent(NETWORK_FAILURE_PERCENT);
+        behavior.setFailurePercent(NETWORK_FAILURE_PERCENT);*/
 
         return new MockRetrofit.Builder(retrofit)
                 .networkBehavior(behavior)

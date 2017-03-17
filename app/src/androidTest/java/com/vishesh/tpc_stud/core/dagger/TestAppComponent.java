@@ -1,5 +1,7 @@
 package com.vishesh.tpc_stud.core.dagger;
 
+import com.vishesh.tpc_stud.auth.LoginActivityTest;
+
 import javax.inject.Singleton;
 
 import dagger.Component;
@@ -10,5 +12,7 @@ import dagger.Component;
         RetrofitModule.class, MockDataModule.class,
         SchedulersModule.class, MockApiServiceModule.class})
 public interface TestAppComponent extends TpcStudAppComponent {
+
+    void inject(LoginActivityTest loginActivityTest);
 
 }

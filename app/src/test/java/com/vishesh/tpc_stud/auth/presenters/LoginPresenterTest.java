@@ -7,6 +7,7 @@ import com.facebook.accountkit.AccessToken;
 import com.facebook.accountkit.AccountKitError;
 import com.facebook.accountkit.AccountKitLoginResult;
 import com.facebook.accountkit.ui.AccountKitConfiguration;
+import com.vishesh.tpc_stud.auth.constants.AuthConstants;
 import com.vishesh.tpc_stud.auth.useCases.LoginUseCase;
 import com.vishesh.tpc_stud.core.repos.LocalCache;
 
@@ -155,7 +156,7 @@ public class LoginPresenterTest {
         };
 
         loginPresenter.onEmailLoginResultReceived(accountKitLoginResult);
-        verify(loginView).showMessage(LoginPresenter.LOGIN_CANCELLED);
+        verify(loginView).showMessage(AuthConstants.LOGIN_CANCELLED_MSG);
     }
 
     @Test

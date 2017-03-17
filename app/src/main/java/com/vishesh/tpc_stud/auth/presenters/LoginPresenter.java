@@ -4,6 +4,7 @@ import com.facebook.accountkit.AccountKitLoginResult;
 import com.facebook.accountkit.ui.AccountKitActivity;
 import com.facebook.accountkit.ui.AccountKitConfiguration;
 import com.facebook.accountkit.ui.LoginType;
+import com.vishesh.tpc_stud.auth.constants.AuthConstants;
 import com.vishesh.tpc_stud.auth.models.AccessToken;
 import com.vishesh.tpc_stud.auth.useCases.LoginUseCase;
 import com.vishesh.tpc_stud.core.presenters.BasePresenter;
@@ -22,12 +23,10 @@ import io.reactivex.observers.DisposableSingleObserver;
  */
 public class LoginPresenter extends BasePresenter {
 
-    public static final String LOGIN_CANCELLED = "Login Cancelled";
     private LoginView loginView;
 
     private final LoginUseCase loginUseCase;
     private final LocalCache localCache;
-
 
     @Inject
     public LoginPresenter(LoginUseCase loginUseCase, LocalCache localCache) {
@@ -51,13 +50,14 @@ public class LoginPresenter extends BasePresenter {
 
     public void onEmailLoginResultReceived(AccountKitLoginResult accountKitLoginResult) {
 
-        String message;
-
         if (accountKitLoginResult.getError() != null) {
-            message = accountKitLoginResult.getError().getErrorType().getMessage();
-            loginView.showMessage(message);
+
+            loginView.showMessage(AuthConstants.ACCOUNT_KIT_ERROR_MSG);
+
         } else if (accountKitLoginResult.wasCancelled()) {
-            loginView.showMessage(LOGIN_CANCELLED);
+
+            loginView.showMessage(AuthConstants.LOGIN_CANCELLED_MSG);
+
         } else if (accountKitLoginResult.getAuthorizationCode() != null) {
             Map<String, String> map = new HashMap<>();
             map.put("authorizationCode", accountKitLoginResult.getAuthorizationCode());
