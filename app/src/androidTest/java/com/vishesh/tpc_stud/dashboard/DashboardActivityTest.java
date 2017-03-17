@@ -39,7 +39,7 @@ public class DashboardActivityTest {
     /**
      * Testing Strategy
      *
-     * Partition the possible user actions as follows:
+     * Partition the possible user interactions as follows:
      *
      * 1. Click on the logout menu item, and login screen should pop up.
      * 2. Swipe left and profile fragment should be made visible.
