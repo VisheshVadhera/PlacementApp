@@ -73,6 +73,12 @@ public class MockUserService implements UserService {
                 .logout();
     }
 
+    @Override
+    public Single<List<NetworkProfile>> getNetworkProfiles(int userId) {
+        return delegate.returningResponse(getNetworkProfiles(userId))
+                .getNetworkProfiles(userId);
+    }
+
     private List<NetworkProfile> getNetworkProfiles() {
         List<NetworkProfile> networkProfiles = new ArrayList<>();
 
@@ -102,7 +108,7 @@ public class MockUserService implements UserService {
         return course;
     }
 
-    public Double getGpa() {
+    private Double getGpa() {
         return 8.7;
     }
 }

@@ -21,6 +21,7 @@ import com.vishesh.tpc_stud.dashboard.busEvents.CvTapEvent;
 import com.vishesh.tpc_stud.dashboard.busEvents.NetworkProfileTapEvent;
 import com.vishesh.tpc_stud.dashboard.models.UserProfile;
 import com.vishesh.tpc_stud.dashboard.presenters.ProfilePresenter;
+import com.vishesh.tpc_stud.networkProfiles.views.NetworkProfilesFragment;
 
 import java.io.File;
 
@@ -100,7 +101,8 @@ public class ProfileFragment
 
     @Override
     public void openNetworkProfilesScreen() {
-//        Intent networkProfilesIntent =
+        Intent networkProfilesIntent = NetworkProfilesFragment.createIntent(getContext());
+        startActivity(networkProfilesIntent);
     }
 
     @NeedsPermission(Manifest.permission.READ_EXTERNAL_STORAGE)

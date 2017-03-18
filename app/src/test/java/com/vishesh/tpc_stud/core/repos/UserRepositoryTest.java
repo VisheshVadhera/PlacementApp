@@ -72,4 +72,11 @@ public class UserRepositoryTest {
 
         verify(userService).getProfile(MOCK_USER_ID);
     }
+
+    @Test
+    public void testGetNetworkProfiles() {
+        userRepository.getNetworkProfiles(MOCK_USER_ID);
+
+        verify(userService).getNetworkProfiles(MOCK_USER_ID);
+    }
 }

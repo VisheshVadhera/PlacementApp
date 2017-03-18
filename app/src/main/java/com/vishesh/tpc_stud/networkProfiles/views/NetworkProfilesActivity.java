@@ -1,4 +1,4 @@
-package com.vishesh.tpc_stud.networkProfiles;
+package com.vishesh.tpc_stud.networkProfiles.views;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
