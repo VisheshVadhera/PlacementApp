@@ -8,7 +8,10 @@ import android.view.View;
 
 import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.core.views.BaseFragment;
+import com.vishesh.tpc_stud.dashboard.models.NetworkProfile;
 import com.vishesh.tpc_stud.networkProfiles.presenters.NetworkProfilesPresenter;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -44,6 +47,11 @@ public class NetworkProfilesFragment
     public void onStart() {
         super.onStart();
         networkProfilesPresenter.onStart();
+    }
+
+    @Override
+    public void showNetworkProfiles(List<NetworkProfile> networkProfiles) {
+
     }
 
     @Override

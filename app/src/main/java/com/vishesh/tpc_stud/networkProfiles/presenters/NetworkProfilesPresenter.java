@@ -19,6 +19,7 @@ public class NetworkProfilesPresenter extends BasePresenter {
     private final LocalCache localCache;
 
     private NetworkProfilesView networkProfilesView;
+    private List<NetworkProfile> networkProfiles;
 
     @Inject
     public NetworkProfilesPresenter(GetNetworkProfilesUseCase getNetworkProfilesUseCase,
@@ -54,6 +55,7 @@ public class NetworkProfilesPresenter extends BasePresenter {
 
     public interface NetworkProfilesView extends BaseView {
 
+        void showNetworkProfiles(List<NetworkProfile> networkProfiles);
     }
 
     private final class NetworkProfilesObserver extends DisposableSingleObserver<List<NetworkProfile>> {
@@ -61,7 +63,8 @@ public class NetworkProfilesPresenter extends BasePresenter {
         @Override
         public void onSuccess(List<NetworkProfile> networkProfiles) {
             networkProfilesView.hideLoader();
-
+            NetworkProfilesPresenter.this.networkProfiles = networkProfiles;
+            networkProfilesView.showNetworkProfiles(networkProfiles);
         }
 
         @Override
