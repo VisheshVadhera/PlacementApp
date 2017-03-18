@@ -23,12 +23,12 @@ import butterknife.ButterKnife;
 /**
  * Created by vishesh on 25/2/17.
  */
-public class NetworkProfileAdapter extends AdapterDelegate<List<NetworkProfile>> {
+public class NetworkProfileAdapterDelegate extends AdapterDelegate<List<NetworkProfile>> {
 
     private final Context context;
 
     @Inject
-    public NetworkProfileAdapter(Context context) {
+    public NetworkProfileAdapterDelegate(Context context) {
         this.context = context;
     }
 
@@ -45,7 +45,8 @@ public class NetworkProfileAdapter extends AdapterDelegate<List<NetworkProfile>>
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull List<NetworkProfile> items, int position, @NonNull RecyclerView.ViewHolder holder, @NonNull List<Object> payloads) {
+    protected void onBindViewHolder(@NonNull List<NetworkProfile> items, int position,
+                                    @NonNull RecyclerView.ViewHolder holder, @NonNull List<Object> payloads) {
 
         NetworkProfile networkProfile = items.get(position - items.size() - 2);
         NetworkProfileViewHolder networkProfileViewHolder = (NetworkProfileViewHolder) holder;

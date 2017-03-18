@@ -23,7 +23,7 @@ public class ProfileItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private final GpaAdapterDelegate gpaAdapterDelegate;
     private final CvAdapterDelegate cvAdapterDelegate;
     private final CourseAdapterDelegate courseAdapterDelegate;
-    private final NetworkProfileAdapter networkProfileAdapter;
+    private final NetworkProfileAdapterDelegate networkProfileAdapterDelegate;
 
     private User user;
     private UserProfile userProfile;
@@ -33,12 +33,12 @@ public class ProfileItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                               GpaAdapterDelegate gpaAdapterDelegate,
                               CvAdapterDelegate cvAdapterDelegate,
                               CourseAdapterDelegate courseAdapterDelegate,
-                              NetworkProfileAdapter networkProfileAdapter) {
+                              NetworkProfileAdapterDelegate networkProfileAdapterDelegate) {
         this.profileHeaderAdapterDelegate = profileHeaderAdapterDelegate;
         this.gpaAdapterDelegate = gpaAdapterDelegate;
         this.cvAdapterDelegate = cvAdapterDelegate;
         this.courseAdapterDelegate = courseAdapterDelegate;
-        this.networkProfileAdapter = networkProfileAdapter;
+        this.networkProfileAdapterDelegate = networkProfileAdapterDelegate;
     }
 
     public void setData(User user, UserProfile userProfile) {
@@ -58,7 +58,7 @@ public class ProfileItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             case VIEW_TYPE_COURSE:
                 return courseAdapterDelegate.onCreateViewHolder(parent);
             default:
-                return networkProfileAdapter.onCreateViewHolder(parent);
+                return networkProfileAdapterDelegate.onCreateViewHolder(parent);
         }
     }
 
@@ -78,7 +78,7 @@ public class ProfileItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 courseAdapterDelegate.onBindViewHolder(userProfile, position, holder, null);
                 break;
             default:
-                networkProfileAdapter.onBindViewHolder(userProfile.getNetworkProfiles(),
+                networkProfileAdapterDelegate.onBindViewHolder(userProfile.getNetworkProfiles(),
                         position, holder, null);
                 break;
         }
