@@ -18,6 +18,7 @@ import com.vishesh.tpc_stud.core.utils.FileUtils;
 import com.vishesh.tpc_stud.core.views.BaseFragment;
 import com.vishesh.tpc_stud.dashboard.adapters.ProfileItemAdapter;
 import com.vishesh.tpc_stud.dashboard.busEvents.CvTapEvent;
+import com.vishesh.tpc_stud.dashboard.busEvents.NetworkProfileTapEvent;
 import com.vishesh.tpc_stud.dashboard.models.UserProfile;
 import com.vishesh.tpc_stud.dashboard.presenters.ProfilePresenter;
 
@@ -97,6 +98,11 @@ public class ProfileFragment
         startActivity(pdfIntent);
     }
 
+    @Override
+    public void openNetworkProfilesScreen() {
+//        Intent networkProfilesIntent =
+    }
+
     @NeedsPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
     void showFileChooser(String fileType) {
         Intent fileChooserIntent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -146,6 +152,8 @@ public class ProfileFragment
         public void accept(Object event) throws Exception {
             if (event instanceof CvTapEvent) {
                 profilePresenter.onCvTapped();
+            } else if (event instanceof NetworkProfileTapEvent) {
+                profilePresenter.onNetworkProfileTapped();
             }
         }
     }

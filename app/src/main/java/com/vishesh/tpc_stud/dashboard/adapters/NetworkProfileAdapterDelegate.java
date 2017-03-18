@@ -14,6 +14,7 @@ import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.core.helpers.Bus;
+import com.vishesh.tpc_stud.dashboard.busEvents.NetworkProfileTapEvent;
 import com.vishesh.tpc_stud.dashboard.models.NetworkProfile;
 
 import java.util.List;
@@ -22,6 +23,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by vishesh on 25/2/17.
@@ -70,7 +72,7 @@ public class NetworkProfileAdapterDelegate extends AdapterDelegate<List<NetworkP
                 .setImageDrawable(navigateNextIcon);
     }
 
-    static class NetworkProfileViewHolder extends RecyclerView.ViewHolder {
+    class NetworkProfileViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.text_network_profile_item_label)
         TextView textNetworkProfileItemLabel;
@@ -82,6 +84,10 @@ public class NetworkProfileAdapterDelegate extends AdapterDelegate<List<NetworkP
             ButterKnife.bind(this, itemView);
         }
 
+        @OnClick(R.id.image_network_profile_navigate_next)
+        void onClick() {
+            bus.post(new NetworkProfileTapEvent());
+        }
 
     }
 }

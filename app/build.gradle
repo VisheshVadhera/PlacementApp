@@ -71,6 +71,7 @@ repositories {
 }
 
 
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -123,7 +124,7 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.1.0'
 
     //Iconics for material design icons
-    compile "com.mikepenz:iconics-core:2.8.2@aar"
+    compile 'com.mikepenz:iconics-core:2.8.2@aar'
     compile 'com.mikepenz:google-material-typeface:3.0.1.0.original@aar'
 
     //Retrofit mock
