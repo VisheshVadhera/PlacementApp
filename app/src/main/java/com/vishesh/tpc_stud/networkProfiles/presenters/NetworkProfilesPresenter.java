@@ -53,9 +53,15 @@ public class NetworkProfilesPresenter extends BasePresenter {
                 localCache.getUserId(), new Object());
     }
 
+    public void onNetworkProfileItemClicked(NetworkProfile networkProfile) {
+        networkProfilesView.openExternalLink(networkProfile.getUrl());
+    }
+
     public interface NetworkProfilesView extends BaseView {
 
         void showNetworkProfiles(List<NetworkProfile> networkProfiles);
+
+        void openExternalLink(String url);
     }
 
     private final class NetworkProfilesObserver extends DisposableSingleObserver<List<NetworkProfile>> {

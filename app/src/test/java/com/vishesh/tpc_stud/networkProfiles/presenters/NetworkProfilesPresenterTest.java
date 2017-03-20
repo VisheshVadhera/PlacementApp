@@ -1,6 +1,8 @@
 package com.vishesh.tpc_stud.networkProfiles.presenters;
 
 import com.vishesh.tpc_stud.core.repos.LocalCache;
+import com.vishesh.tpc_stud.dashboard.models.Network;
+import com.vishesh.tpc_stud.dashboard.models.NetworkProfile;
 import com.vishesh.tpc_stud.networkProfiles.useCases.GetNetworkProfilesUseCase;
 
 import org.junit.Before;
@@ -14,7 +16,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import io.reactivex.observers.DisposableSingleObserver;
 
 import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.anyInt;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -46,6 +48,19 @@ public class NetworkProfilesPresenterTest {
         verify(networkProfilesView).showLoader();
         verify(getNetworkProfilesUseCase).execute(any(DisposableSingleObserver.class),
                 anyInt(), Mockito.any(Object.class));
+    }
+
+    @Test
+    public void onNetworkItemClicked_openExternalUrl() {
+        String fakeUrl = "fakeUrl";
+
+        NetworkProfile networkProfile = new NetworkProfile();
+        networkProfile.setNetwork(Network.GITHUB);
+        networkProfile.setUrl(fakeUrl);
+
+        networkProfilesPresenter.onNetworkProfileItemClicked(networkProfile);
+
+        verify(networkProfilesView).openExternalLink(fakeUrl);
     }
 
 }

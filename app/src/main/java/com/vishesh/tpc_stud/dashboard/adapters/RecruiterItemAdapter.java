@@ -65,7 +65,7 @@ public class RecruiterItemAdapter extends RecyclerView.Adapter<RecruiterItemAdap
         return recruitersOptional.isPresent() ? recruitersOptional.get().size() : 0;
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.text_job_offer_title)
         TextView textJobOfferTitle;
@@ -78,7 +78,7 @@ public class RecruiterItemAdapter extends RecyclerView.Adapter<RecruiterItemAdap
         @BindView(R.id.text_pay_package_value)
         TextView textPayPackageValue;
 
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }

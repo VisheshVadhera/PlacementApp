@@ -32,6 +32,7 @@ android {
     sourceSets {
         main {
             res.srcDirs = [
+                    'src/main/res/networkProfiles',
                     'src/main/res/splash',
                     'src/main/res/dashboard',
                     'src/main/res/core',

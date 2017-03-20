@@ -76,7 +76,7 @@ public class NetworkProfileAdapterDelegate extends AdapterDelegate<List<NetworkP
 
         @BindView(R.id.text_network_profile_item_label)
         TextView textNetworkProfileItemLabel;
-        @BindView(R.id.image_network_profile_navigate_next)
+        @BindView(R.id.image_network_profile_item)
         ImageButton imageNetworkProfileNext;
 
         public NetworkProfileViewHolder(View itemView) {
@@ -84,7 +84,7 @@ public class NetworkProfileAdapterDelegate extends AdapterDelegate<List<NetworkP
             ButterKnife.bind(this, itemView);
         }
 
-        @OnClick(R.id.image_network_profile_navigate_next)
+        @OnClick(R.id.image_network_profile_item)
         void onClick() {
             bus.post(new NetworkProfileTapEvent());
         }

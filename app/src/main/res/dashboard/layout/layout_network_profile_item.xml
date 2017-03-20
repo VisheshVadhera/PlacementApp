@@ -14,7 +14,7 @@
         android:textSize="16sp" />
 
     <ImageButton
-        android:id="@+id/image_network_profile_navigate_next"
+        android:id="@+id/image_network_profile_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"

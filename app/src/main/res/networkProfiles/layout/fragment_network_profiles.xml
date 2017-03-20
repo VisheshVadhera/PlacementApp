@@ -26,4 +26,9 @@
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@android:drawable/ic_dialog_email" />
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_network_profiles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
 </android.support.design.widget.CoordinatorLayout>
