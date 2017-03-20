@@ -24,4 +24,14 @@ public class NetworkProfile {
     public void setNetwork(Network network) {
         this.network = network;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof NetworkProfile)) {
+            return false;
+        }
+        NetworkProfile networkProfile = (NetworkProfile) obj;
+        return this.getUrl().equals(networkProfile.getUrl()) &&
+                this.getNetwork().equals(networkProfile.getNetwork());
+    }
 }

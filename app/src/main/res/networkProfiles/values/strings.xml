@@ -2,4 +2,9 @@
 <resources>
 
     <string name="network_profile_item_value">Open Profile</string>
+
+    <string name="fab_github_title">Github</string>
+    <string name="fab_linkedin_title">LinkedIn</string>
+    <string name="fab_other_title">Other</string>
+
 </resources>

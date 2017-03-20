@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
+import android.support.annotation.StringRes;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -14,11 +14,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.core.helpers.Bus;
 import com.vishesh.tpc_stud.core.views.BaseFragment;
+import com.vishesh.tpc_stud.dashboard.models.Network;
 import com.vishesh.tpc_stud.dashboard.models.NetworkProfile;
 import com.vishesh.tpc_stud.networkProfiles.adapters.NetworkProfileItemAdapter;
 import com.vishesh.tpc_stud.networkProfiles.busEvents.NetworkProfileItemClickedEvent;
@@ -38,10 +41,10 @@ public class NetworkProfilesFragment
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @BindView(R.id.fab)
-    FloatingActionButton fab;
     @BindView(R.id.recycler_view_network_profiles)
     RecyclerView recyclerViewNetworkProfiles;
+    @BindView(R.id.fab_menu)
+    FloatingActionsMenu floatingActionsMenu;
 
     @Inject
     NetworkProfilesPresenter networkProfilesPresenter;
@@ -96,6 +99,47 @@ public class NetworkProfilesFragment
     }
 
     @Override
+    public void allowGitHubProfileAddition() {
+        FloatingActionButton fab = createFab(R.string.fab_github_title);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                networkProfilesPresenter.addNetworkProfileClicked(Network.GITHUB);
+            }
+        });
+        floatingActionsMenu.addButton(fab);
+    }
+
+    @Override
+    public void allowLinkedProfileAddition() {
+        FloatingActionButton fab = createFab(R.string.fab_linkedin_title);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                networkProfilesPresenter.addNetworkProfileClicked(Network.LINKEDIN);
+            }
+        });
+        floatingActionsMenu.addButton(fab);
+    }
+
+    @Override
+    public void allowOtherProfilesAddition() {
+        FloatingActionButton fab = createFab(R.string.fab_other_title);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                networkProfilesPresenter.addNetworkProfileClicked(Network.OTHER);
+            }
+        });
+        floatingActionsMenu.addButton(fab);
+    }
+
+    @Override
+    public void askForProfileUrl() {
+
+    }
+
+    @Override
     protected void injectDependencies() {
         getDependencyInjector().inject(this);
     }
@@ -118,6 +162,15 @@ public class NetworkProfilesFragment
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeAsUpIndicator(iconicsDrawable);
         }
+    }
+
+    private FloatingActionButton createFab(@StringRes int titleRes) {
+        FloatingActionButton actionButton = new FloatingActionButton(getContext());
+        actionButton.setTitle(getString(titleRes));
+        actionButton.setColorNormal(android.R.color.white);
+        actionButton.setColorPressedResId(R.color.white_pressed);
+        actionButton.setSize(FloatingActionButton.SIZE_NORMAL);
+        return actionButton;
     }
 
     private class BusEventConsumer implements Consumer<Object> {
