@@ -7,9 +7,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -92,6 +94,7 @@ public class NetworkProfilesFragment
     @Override
     public void showNetworkProfiles(List<NetworkProfile> networkProfiles) {
         networkProfileItemAdapter.setData(networkProfiles);
+        recyclerViewNetworkProfiles.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerViewNetworkProfiles.setAdapter(networkProfileItemAdapter);
     }
 
@@ -183,7 +186,9 @@ public class NetworkProfilesFragment
         final ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
 
         IconicsDrawable iconicsDrawable = new IconicsDrawable(getContext())
-                .icon(GoogleMaterial.Icon.gmd_arrow_back);
+                .icon(GoogleMaterial.Icon.gmd_arrow_back)
+                .sizeDp(16)
+                .color(ContextCompat.getColor(getContext(), android.R.color.white));
 
         if (actionBar != null) {
             actionBar.setTitle(R.string.title_activity_network_profiles);

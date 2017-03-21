@@ -1,5 +1,7 @@
 package com.vishesh.tpc_stud.auth.services;
 
+import android.support.annotation.NonNull;
+
 import com.vishesh.tpc_stud.core.models.User;
 import com.vishesh.tpc_stud.dashboard.models.Course;
 import com.vishesh.tpc_stud.dashboard.models.Degree;
@@ -18,7 +20,6 @@ import retrofit2.mock.MockRetrofit;
 
 public class MockUserService implements UserService {
 
-    private final MockRetrofit mockRetrofit;
     private final BehaviorDelegate<UserService> delegate;
 
     private static User mockUser = getMockUser();
@@ -34,7 +35,6 @@ public class MockUserService implements UserService {
     }
 
     public MockUserService(MockRetrofit mockRetrofit) {
-        this.mockRetrofit = mockRetrofit;
         delegate = mockRetrofit.create(UserService.class);
     }
 
@@ -60,7 +60,7 @@ public class MockUserService implements UserService {
         mockUserProfile.setCourse(getCourse());
         mockUserProfile.setCvUrl(getCvUrl());
         mockUserProfile.setGpa(getGpa());
-        mockUserProfile.setNetworkProfiles(getNetworkProfiles());
+        mockUserProfile.setNetworkProfiles(getStubNetworkProfiles());
 
         return delegate
                 .returningResponse(mockUserProfile)
@@ -75,31 +75,43 @@ public class MockUserService implements UserService {
 
     @Override
     public Single<List<NetworkProfile>> getNetworkProfiles(int userId) {
-        return delegate.returningResponse(getNetworkProfiles(userId))
+        return delegate.returningResponse(getStubNetworkProfiles())
                 .getNetworkProfiles(userId);
     }
 
     @Override
     public Single<NetworkProfile> saveNetworkProfile(@Path("userId") Integer userId, @Body NetworkProfile networkProfile) {
-        return delegate.returningResponse(saveNetworkProfile(userId, networkProfile))
+        return delegate.returningResponse(getStubGithubNetworkProfile())
                 .saveNetworkProfile(userId, networkProfile);
     }
 
-    private List<NetworkProfile> getNetworkProfiles() {
+    private List<NetworkProfile> getStubNetworkProfiles() {
         List<NetworkProfile> networkProfiles = new ArrayList<>();
 
-        NetworkProfile networkProfile = new NetworkProfile();
-        networkProfile.setNetwork(Network.GITHUB);
-        networkProfile.setUrl("https://github.com");
+        NetworkProfile networkProfile = getStubGithubNetworkProfile();
 
-        NetworkProfile networkProfile1 = new NetworkProfile();
-        networkProfile1.setNetwork(Network.LINKEDIN);
-        networkProfile1.setUrl("http://linkedin.com");
+        NetworkProfile networkProfile1 = getStubLinkedInNetworkProfile();
 
         networkProfiles.add(networkProfile);
         networkProfiles.add(networkProfile1);
 
         return networkProfiles;
+    }
+
+    @NonNull
+    private NetworkProfile getStubGithubNetworkProfile() {
+        NetworkProfile networkProfile = new NetworkProfile();
+        networkProfile.setNetwork(Network.GITHUB);
+        networkProfile.setUrl("https://github.com");
+        return networkProfile;
+    }
+
+    @NonNull
+    private NetworkProfile getStubLinkedInNetworkProfile() {
+        NetworkProfile networkProfile1 = new NetworkProfile();
+        networkProfile1.setNetwork(Network.LINKEDIN);
+        networkProfile1.setUrl("http://linkedin.com");
+        return networkProfile1;
     }
 
     private String getCvUrl() {
