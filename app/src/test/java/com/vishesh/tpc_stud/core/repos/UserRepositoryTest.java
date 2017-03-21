@@ -83,7 +83,7 @@ public class UserRepositoryTest {
     }
 
     @Test
-    public void saveNetworkProfile() throws Exception {
+    public void tesSaveNetworkProfile() throws Exception {
         NetworkProfile networkProfile = new NetworkProfile();
         networkProfile.setNetwork(Network.GITHUB);
         networkProfile.setUrl("fakeUrl");
