@@ -58,8 +58,9 @@
         <activity android:name=".splash.views.SplashActivity" />
         <activity
             android:name=".networkProfiles.views.NetworkProfilesActivity"
+            android:exported="true"
             android:label="@string/title_activity_network_profiles"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

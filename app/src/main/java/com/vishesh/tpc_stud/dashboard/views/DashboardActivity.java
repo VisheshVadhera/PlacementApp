@@ -14,9 +14,8 @@ public class DashboardActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        if(savedInstanceState == null){
+        if (savedInstanceState == null) {
             addFragment(R.id.fragment_container, new DashboardFragment());
         }
     }
-
 }

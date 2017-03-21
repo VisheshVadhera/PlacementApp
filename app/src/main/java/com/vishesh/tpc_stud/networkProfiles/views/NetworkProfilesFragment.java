@@ -115,7 +115,7 @@ public class NetworkProfilesFragment
     }
 
     @Override
-    public void allowLinkedProfileAddition() {
+    public void allowLinkedInProfileAddition() {
         FloatingActionButton fab = createFab(R.string.fab_linkedin_title);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

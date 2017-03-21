@@ -103,7 +103,7 @@ public class NetworkProfilesPresenter extends BasePresenter {
 
         void allowGitHubProfileAddition();
 
-        void allowLinkedProfileAddition();
+        void allowLinkedInProfileAddition();
 
         void allowOtherProfilesAddition();
 
@@ -122,7 +122,7 @@ public class NetworkProfilesPresenter extends BasePresenter {
             if (!isNetworkProfilePresent(Network.GITHUB)) {
                 networkProfilesView.allowGitHubProfileAddition();
             } else if (!isNetworkProfilePresent(Network.LINKEDIN)) {
-                networkProfilesView.allowLinkedProfileAddition();
+                networkProfilesView.allowLinkedInProfileAddition();
             } else {
                 networkProfilesView.allowOtherProfilesAddition();
             }

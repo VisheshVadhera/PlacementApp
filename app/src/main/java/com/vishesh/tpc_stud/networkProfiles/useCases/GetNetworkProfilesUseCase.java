@@ -18,9 +18,9 @@ public class GetNetworkProfilesUseCase
     private final UserRepository userRepository;
 
     @Inject
-    protected GetNetworkProfilesUseCase(@Named("jobScheduler") Scheduler jobScheduler,
-                                        @Named("postJobScheduler") Scheduler postJobScheduler,
-                                        UserRepository userRepository) {
+    public GetNetworkProfilesUseCase(@Named("jobScheduler") Scheduler jobScheduler,
+                                     @Named("postJobScheduler") Scheduler postJobScheduler,
+                                     UserRepository userRepository) {
         super(jobScheduler, postJobScheduler);
         this.userRepository = userRepository;
     }

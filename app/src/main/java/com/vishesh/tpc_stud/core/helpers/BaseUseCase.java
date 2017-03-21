@@ -4,8 +4,6 @@ import io.reactivex.Scheduler;
 import io.reactivex.Single;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Action;
-import io.reactivex.functions.Consumer;
 import io.reactivex.observers.DisposableSingleObserver;
 
 /**
@@ -17,7 +15,7 @@ public abstract class BaseUseCase<Output, Input1, Input2> {
     private final Scheduler postJobScheduler;
     private final CompositeDisposable compositeDisposable;
 
-    protected BaseUseCase(Scheduler jobScheduler,
+    public BaseUseCase(Scheduler jobScheduler,
                           Scheduler postJobScheduler) {
         this.jobScheduler = jobScheduler;
         this.postJobScheduler = postJobScheduler;
@@ -28,8 +26,8 @@ public abstract class BaseUseCase<Output, Input1, Input2> {
                         Input1 input1, Input2 input2) {
         Single<Output> single = buildObservable(input1, input2)
                 .subscribeOn(jobScheduler)
-                .observeOn(postJobScheduler)
-                .doOnSubscribe(new Consumer<Disposable>() {
+                .observeOn(postJobScheduler);
+                /*.doOnSubscribe(new Consumer<Disposable>() {
                     @Override
                     public void accept(Disposable disposable) throws Exception {
                         EspressoIdlingResource.increment();
@@ -40,7 +38,7 @@ public abstract class BaseUseCase<Output, Input1, Input2> {
                     public void run() throws Exception {
                         EspressoIdlingResource.decrement();
                     }
-                });
+                });*/
         addDisposable(single.subscribeWith(disposableObserver));
 
     }
