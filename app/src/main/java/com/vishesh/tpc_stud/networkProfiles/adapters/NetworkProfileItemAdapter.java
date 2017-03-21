@@ -83,6 +83,4 @@ public class NetworkProfileItemAdapter extends RecyclerView.Adapter<NetworkProfi
             ButterKnife.bind(this, itemView);
         }
     }
-
-
 }

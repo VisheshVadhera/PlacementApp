@@ -97,7 +97,7 @@ public class StringFormatUtilsTest {
     }
 
     @Test
-    public void testIsUrlValid_ValidUrl() {
+    public void testIsUrlValid_httpValidUrl() {
         String s = "https://github.com";
 
         assertTrue(StringFormatUtils.isUrlValid(s));

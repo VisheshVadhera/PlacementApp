@@ -109,7 +109,7 @@ public class NetworkProfilesPresenter extends BasePresenter {
 
         void askForProfileUrl(Network network);
 
-        void showUpdateNetworkProfiles(List<NetworkProfile> networkProfiles);
+        void showUpdatedNetworkProfiles(List<NetworkProfile> networkProfiles);
     }
 
     private final class NetworkProfilesObserver extends DisposableSingleObserver<List<NetworkProfile>> {
@@ -145,7 +145,7 @@ public class NetworkProfilesPresenter extends BasePresenter {
         public void onSuccess(NetworkProfile networkProfile) {
             networkProfilesView.hideLoader();
             networkProfiles.add(networkProfile);
-            networkProfilesView.showUpdateNetworkProfiles(networkProfiles);
+            networkProfilesView.showUpdatedNetworkProfiles(networkProfiles);
         }
 
         @Override

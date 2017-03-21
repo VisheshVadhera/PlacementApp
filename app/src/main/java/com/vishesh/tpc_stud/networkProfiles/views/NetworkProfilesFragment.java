@@ -108,41 +108,41 @@ public class NetworkProfilesFragment
     @Override
     public void allowGitHubProfileAddition() {
         FloatingActionButton fab = createFab(R.string.fab_github_title);
+        floatingActionsMenu.addButton(fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 networkProfilesPresenter.onAddNetworkProfileClicked(Network.GITHUB);
             }
         });
-        floatingActionsMenu.addButton(fab);
     }
 
     @Override
     public void allowLinkedInProfileAddition() {
         FloatingActionButton fab = createFab(R.string.fab_linkedin_title);
+        floatingActionsMenu.addButton(fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 networkProfilesPresenter.onAddNetworkProfileClicked(Network.LINKEDIN);
             }
         });
-        floatingActionsMenu.addButton(fab);
     }
 
     @Override
     public void allowOtherProfilesAddition() {
         FloatingActionButton fab = createFab(R.string.fab_other_title);
+        floatingActionsMenu.addButton(fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 networkProfilesPresenter.onAddNetworkProfileClicked(Network.OTHER);
             }
         });
-        floatingActionsMenu.addButton(fab);
     }
 
     @Override
-    public void showUpdateNetworkProfiles(List<NetworkProfile> networkProfiles) {
+    public void showUpdatedNetworkProfiles(List<NetworkProfile> networkProfiles) {
         networkProfileItemAdapter.notifyItemInserted(networkProfiles.size() - 1);
     }
 
