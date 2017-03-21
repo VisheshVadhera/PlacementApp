@@ -149,6 +149,12 @@ dependencies {
     //For floating action button menu
     compile 'com.getbase:floatingactionbutton:1.10.1'
 
+    // For user input validations
+    compile (group: 'commons-validator', name: 'commons-validator', version: '1.4.0'){
+        exclude group: 'commons-logging', module: 'commons-logging'
+    }
+
+
     //For executing unit tests locally
     testCompile "junit:junit:${junitVersion}"
     testCompile "org.mockito:mockito-all:${mockitoVersion}"

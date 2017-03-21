@@ -33,4 +33,8 @@ public interface UserService {
 
     @GET("users/{userId}/profile/networkProfiles")
     Single<List<NetworkProfile>> getNetworkProfiles(int userId);
+
+    @POST("users/{userId}/profile/networkProfiles")
+    Single<NetworkProfile> saveNetworkProfile(@Path("userId") Integer userId,
+                                              @Body NetworkProfile networkProfile);
 }

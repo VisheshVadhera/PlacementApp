@@ -3,6 +3,8 @@ package com.vishesh.tpc_stud.core.repos;
 import com.vishesh.tpc_stud.auth.services.AuthService;
 import com.vishesh.tpc_stud.auth.services.UserService;
 import com.vishesh.tpc_stud.core.models.User;
+import com.vishesh.tpc_stud.dashboard.models.Network;
+import com.vishesh.tpc_stud.dashboard.models.NetworkProfile;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -78,5 +80,16 @@ public class UserRepositoryTest {
         userRepository.getNetworkProfiles(MOCK_USER_ID);
 
         verify(userService).getNetworkProfiles(MOCK_USER_ID);
+    }
+
+    @Test
+    public void saveNetworkProfile() throws Exception {
+        NetworkProfile networkProfile = new NetworkProfile();
+        networkProfile.setNetwork(Network.GITHUB);
+        networkProfile.setUrl("fakeUrl");
+
+        userRepository.saveNetworkProfile(MOCK_USER_ID, networkProfile);
+
+        verify(userService).saveNetworkProfile(MOCK_USER_ID, networkProfile);
     }
 }

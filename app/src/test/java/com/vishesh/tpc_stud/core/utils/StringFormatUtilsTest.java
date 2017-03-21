@@ -4,10 +4,15 @@ import org.junit.Test;
 
 import java.math.BigDecimal;
 
-import static junit.framework.Assert.assertEquals;
-
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class StringFormatUtilsTest {
+    /**
+     * Testing Strategy:
+     */
+
 
     @Test
     public void testToRupeeFormattedString_positiveInput() {
@@ -68,5 +73,33 @@ public class StringFormatUtilsTest {
         String s2 = "abc";
 
         StringFormatUtils.createSpacedString(s1, s2);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void testIsUrlValid_nullInput_expectNullPointerException() {
+        String s = null;
+
+        StringFormatUtils.isUrlValid(s);
+    }
+
+    @Test
+    public void testIsUrlValid_UrlContainingOnlyWww() {
+        String s = "http://www";
+
+        assertFalse(StringFormatUtils.isUrlValid(s));
+    }
+
+    @Test
+    public void testIsUrlValid_EmptyUrl() {
+        String s = "";
+
+        assertFalse(StringFormatUtils.isUrlValid(s));
+    }
+
+    @Test
+    public void testIsUrlValid_ValidUrl() {
+        String s = "https://github.com";
+
+        assertTrue(StringFormatUtils.isUrlValid(s));
     }
 }

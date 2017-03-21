@@ -53,4 +53,8 @@ public class UserRepository {
     public Single<List<NetworkProfile>> getNetworkProfiles(int userId) {
         return userService.getNetworkProfiles(userId);
     }
+
+    public Single<NetworkProfile> saveNetworkProfile(int userId, NetworkProfile networkProfile) {
+        return userService.saveNetworkProfile(userId, networkProfile);
+    }
 }

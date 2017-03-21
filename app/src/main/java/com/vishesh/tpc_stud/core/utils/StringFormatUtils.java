@@ -2,11 +2,16 @@ package com.vishesh.tpc_stud.core.utils;
 
 import com.fernandocejas.arrow.checks.Preconditions;
 
+import org.apache.commons.validator.routines.UrlValidator;
+
 import java.math.BigDecimal;
 
 public class StringFormatUtils {
 
     private static final String RUPEE_PREFIX = "Rs.";
+    private static final String HTTP_SCHEME = "http";
+    private static final String HTTPS_SCHEME = "https";
+
 
     private StringFormatUtils() {
         throw new AssertionError("Can't instantiate StringFormatUtils");
@@ -39,5 +44,21 @@ public class StringFormatUtils {
         Preconditions.checkNotNull(s1);
         Preconditions.checkNotNull(s2);
         return String.format("%s %s", s1, s2);
+    }
+
+    /**
+     * Checks if a given string is a valid url or not.
+     *
+     * @param url Should be non null.
+     * @return whether url is valid or not.
+     * @throws NullPointerException if url==null.
+     */
+    public static boolean isUrlValid(String url) {
+        Preconditions.checkNotNull(url);
+
+        String[] schemes = {HTTP_SCHEME, HTTPS_SCHEME};
+        UrlValidator urlValidator = new UrlValidator(schemes);
+
+        return urlValidator.isValid(url);
     }
 }

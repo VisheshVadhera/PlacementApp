@@ -2,10 +2,13 @@ package com.vishesh.tpc_stud.networkProfiles.presenters;
 
 import com.vishesh.tpc_stud.core.presenters.BasePresenter;
 import com.vishesh.tpc_stud.core.repos.LocalCache;
+import com.vishesh.tpc_stud.core.utils.StringFormatUtils;
 import com.vishesh.tpc_stud.core.views.BaseView;
 import com.vishesh.tpc_stud.dashboard.models.Network;
 import com.vishesh.tpc_stud.dashboard.models.NetworkProfile;
+import com.vishesh.tpc_stud.networkProfiles.constants.NetworkProfileConstants;
 import com.vishesh.tpc_stud.networkProfiles.useCases.GetNetworkProfilesUseCase;
+import com.vishesh.tpc_stud.networkProfiles.useCases.SaveNetworkProfileUseCase;
 
 import java.util.List;
 
@@ -17,15 +20,19 @@ import io.reactivex.observers.DisposableSingleObserver;
 public class NetworkProfilesPresenter extends BasePresenter {
 
     private final GetNetworkProfilesUseCase getNetworkProfilesUseCase;
+    private final SaveNetworkProfileUseCase saveNetworkProfileUseCase;
     private final LocalCache localCache;
 
     private NetworkProfilesView networkProfilesView;
+
     private List<NetworkProfile> networkProfiles;
 
     @Inject
     public NetworkProfilesPresenter(GetNetworkProfilesUseCase getNetworkProfilesUseCase,
+                                    SaveNetworkProfileUseCase saveNetworkProfileUseCase,
                                     LocalCache localCache) {
         this.getNetworkProfilesUseCase = getNetworkProfilesUseCase;
+        this.saveNetworkProfileUseCase = saveNetworkProfileUseCase;
         this.localCache = localCache;
     }
 
@@ -58,8 +65,25 @@ public class NetworkProfilesPresenter extends BasePresenter {
         networkProfilesView.openExternalLink(networkProfile.getUrl());
     }
 
-    public void addNetworkProfileClicked(Network network) {
-        networkProfilesView.askForProfileUrl();
+    public void onAddNetworkProfileClicked(Network network) {
+        networkProfilesView.askForProfileUrl(network);
+    }
+
+    public void onNewNetworkProfileSaveClicked(String userInput, Network network) {
+
+        if (StringFormatUtils.isUrlValid(userInput)) {
+
+            NetworkProfile networkProfile = new NetworkProfile();
+            networkProfile.setUrl(userInput);
+            networkProfile.setNetwork(network);
+
+            networkProfilesView.showLoader();
+            saveNetworkProfileUseCase.execute(new NetworkProfileObserver(),
+                    localCache.getUserId(),
+                    networkProfile);
+        } else {
+            networkProfilesView.showMessage(NetworkProfileConstants.INVALID_URL_MESSAGE);
+        }
     }
 
     private boolean isNetworkProfilePresent(Network network) {
@@ -83,7 +107,9 @@ public class NetworkProfilesPresenter extends BasePresenter {
 
         void allowOtherProfilesAddition();
 
-        void askForProfileUrl();
+        void askForProfileUrl(Network network);
+
+        void showUpdateNetworkProfiles(List<NetworkProfile> networkProfiles);
     }
 
     private final class NetworkProfilesObserver extends DisposableSingleObserver<List<NetworkProfile>> {
@@ -93,9 +119,6 @@ public class NetworkProfilesPresenter extends BasePresenter {
 
             NetworkProfilesPresenter.this.networkProfiles = networkProfiles;
 
-            networkProfilesView.hideLoader();
-            networkProfilesView.showNetworkProfiles(networkProfiles);
-
             if (!isNetworkProfilePresent(Network.GITHUB)) {
                 networkProfilesView.allowGitHubProfileAddition();
             } else if (!isNetworkProfilePresent(Network.LINKEDIN)) {
@@ -103,6 +126,26 @@ public class NetworkProfilesPresenter extends BasePresenter {
             } else {
                 networkProfilesView.allowOtherProfilesAddition();
             }
+
+            networkProfilesView.hideLoader();
+            networkProfilesView.showNetworkProfiles(networkProfiles);
+
+        }
+
+        @Override
+        public void onError(Throwable e) {
+            networkProfilesView.hideLoader();
+            handleError(e);
+        }
+    }
+
+    private final class NetworkProfileObserver extends DisposableSingleObserver<NetworkProfile> {
+
+        @Override
+        public void onSuccess(NetworkProfile networkProfile) {
+            networkProfilesView.hideLoader();
+            networkProfiles.add(networkProfile);
+            networkProfilesView.showUpdateNetworkProfiles(networkProfiles);
         }
 
         @Override

@@ -79,6 +79,12 @@ public class MockUserService implements UserService {
                 .getNetworkProfiles(userId);
     }
 
+    @Override
+    public Single<NetworkProfile> saveNetworkProfile(@Path("userId") Integer userId, @Body NetworkProfile networkProfile) {
+        return delegate.returningResponse(saveNetworkProfile(userId, networkProfile))
+                .saveNetworkProfile(userId, networkProfile);
+    }
+
     private List<NetworkProfile> getNetworkProfiles() {
         List<NetworkProfile> networkProfiles = new ArrayList<>();
 
