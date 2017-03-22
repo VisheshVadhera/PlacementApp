@@ -22,7 +22,7 @@ android {
     }
     buildTypes {
         debug {
-            testCoverageEnabled false
+            debuggable true
         }
         release {
             minifyEnabled false
@@ -32,6 +32,7 @@ android {
     sourceSets {
         main {
             res.srcDirs = [
+                    'src/main/res/networkProfiles',
                     'src/main/res/splash',
                     'src/main/res/dashboard',
                     'src/main/res/core',
@@ -69,6 +70,7 @@ ext {
 repositories {
     jcenter()
 }
+
 
 
 dependencies {
@@ -123,8 +125,8 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.1.0'
 
     //Iconics for material design icons
-    compile "com.mikepenz:iconics-core:2.8.2@aar"
-    compile 'com.mikepenz:material-design-iconic-typeface:2.2.0.2@aar'
+    compile 'com.mikepenz:iconics-core:2.8.2@aar'
+    compile 'com.mikepenz:google-material-typeface:3.0.1.0.original@aar'
 
     //Retrofit mock
     compile "com.squareup.retrofit2:retrofit-mock:${retrofitVersion}"
@@ -143,6 +145,14 @@ dependencies {
     compile "com.evernote:android-job:${androidJobQueueVersion}"
 
     compile "com.android.support.test.espresso:espresso-idling-resource:${espressoVersion}"
+
+    //For floating action button menu
+    compile 'com.getbase:floatingactionbutton:1.10.1'
+
+    // For user input validations
+    compile (group: 'commons-validator', name: 'commons-validator', version: '1.4.0'){
+        exclude group: 'commons-logging', module: 'commons-logging'
+    }
 
     //For executing unit tests locally
     testCompile "junit:junit:${junitVersion}"

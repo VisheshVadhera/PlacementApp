@@ -82,6 +82,10 @@ public class ProfilePresenter
         }
     }
 
+    public void onNetworkProfileTapped() {
+        profileView.openNetworkProfilesScreen();
+    }
+
     public void onFileReceived(File file) {
 
     }
@@ -93,6 +97,8 @@ public class ProfilePresenter
         void openFileExplorer(String fileType);
 
         void openPdfViewer(String pdfUrl);
+
+        void openNetworkProfilesScreen();
     }
 
     private final class ProfileObserver extends DisposableSingleObserver<UserProfile> {

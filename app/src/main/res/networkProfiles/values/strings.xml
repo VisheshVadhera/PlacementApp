@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="network_profile_item_value">Open Profile</string>
+
+    <string name="fab_github_title">Github</string>
+    <string name="fab_linkedin_title">LinkedIn</string>
+    <string name="fab_other_title">Other</string>
+
+    <string name="network_profile_url_dialog_message">Enter the profile url</string>
+    <string name="network_profile_url_dialog_positive">Done</string>
+    <string name="network_profile_url_dialog_negative">Cancel</string>
+
+</resources>

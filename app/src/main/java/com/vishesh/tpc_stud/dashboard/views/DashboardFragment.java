@@ -16,8 +16,8 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.jakewharton.rxbinding2.support.design.widget.RxTabLayout;
+import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
-import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic;
 import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.auth.views.LoginFragment;
 import com.vishesh.tpc_stud.auth.views.UserNameActivity;
@@ -131,11 +131,11 @@ public class DashboardFragment
 
         IconicsDrawable homeIcon = new IconicsDrawable(getContext())
                 .sizeDp(20)
-                .icon(MaterialDesignIconic.Icon.gmi_home);
+                .icon(GoogleMaterial.Icon.gmd_home);
 
         IconicsDrawable profileIcon = new IconicsDrawable(getContext())
                 .sizeDp(20)
-                .icon(MaterialDesignIconic.Icon.gmi_account_box);
+                .icon(GoogleMaterial.Icon.gmd_account_circle);
 
         tabLayout.getTabAt(0).setIcon(homeIcon);
         tabLayout.getTabAt(1).setIcon(profileIcon);

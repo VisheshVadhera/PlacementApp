@@ -17,8 +17,8 @@ public abstract class BaseUseCase<Output, Input1, Input2> {
     private final Scheduler postJobScheduler;
     private final CompositeDisposable compositeDisposable;
 
-    protected BaseUseCase(Scheduler jobScheduler,
-                          Scheduler postJobScheduler) {
+    public BaseUseCase(Scheduler jobScheduler,
+                       Scheduler postJobScheduler) {
         this.jobScheduler = jobScheduler;
         this.postJobScheduler = postJobScheduler;
         this.compositeDisposable = new CompositeDisposable();
