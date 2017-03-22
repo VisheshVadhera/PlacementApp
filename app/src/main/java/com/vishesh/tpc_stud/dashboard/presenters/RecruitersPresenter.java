@@ -58,6 +58,7 @@ public class RecruitersPresenter extends BasePresenter {
 
     @Override
     public void destroy() {
+        getRecruitersUseCase.dispose();
         recruitersView = null;
     }
 

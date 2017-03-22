@@ -48,7 +48,9 @@ public class NetworkProfilesPresenter extends BasePresenter {
 
     @Override
     public void destroy() {
-
+        getNetworkProfilesUseCase.dispose();
+        saveNetworkProfileUseCase.dispose();
+        networkProfilesView = null;
     }
 
     public void setNetworkProfilesView(NetworkProfilesView networkProfilesView) {
