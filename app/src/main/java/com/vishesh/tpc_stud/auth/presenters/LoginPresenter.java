@@ -18,9 +18,6 @@ import javax.inject.Inject;
 
 import io.reactivex.observers.DisposableSingleObserver;
 
-/**
- * Created by vishesh on 12/2/17.
- */
 public class LoginPresenter extends BasePresenter {
 
     private LoginView loginView;

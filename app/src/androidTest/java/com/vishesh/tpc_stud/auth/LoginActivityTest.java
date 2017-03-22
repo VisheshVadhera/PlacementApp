@@ -60,7 +60,7 @@ public class LoginActivityTest {
 
     @Rule
     public IntentsTestRule<LoginActivity> loginActivityIntentsTestRule =
-            new IntentsTestRule<LoginActivity>(LoginActivity.class);
+            new IntentsTestRule<>(LoginActivity.class);
 
     @Before
     public void registerIdlingResource() {

@@ -9,9 +9,6 @@ import com.vishesh.tpc_stud.core.TpcStudApplication;
 import com.vishesh.tpc_stud.core.dagger.TpcStudAppComponent;
 import com.vishesh.tpc_stud.core.helpers.EspressoIdlingResource;
 
-/**
- * Created by vishesh on 12/2/17.
- */
 public class BaseActivity extends AppCompatActivity {
 
     protected void addFragment(int containerViewId, Fragment fragment) {

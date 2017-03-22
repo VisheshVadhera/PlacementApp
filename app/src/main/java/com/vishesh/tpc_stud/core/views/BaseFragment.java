@@ -16,16 +16,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-/**
- * Created by vishesh on 17/2/17.
- */
 public abstract class BaseFragment extends Fragment {
 
     @BindView(R.id.layout_loader)
     RelativeLayout relativeLayoutLoader;
 
-    protected Unbinder unbinder;
-    protected Snackbar snackbar;
+    private Unbinder unbinder;
+    private Snackbar snackbar;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

@@ -50,7 +50,7 @@ public class NetworkProfilesActivityTest {
 
     @Rule
     public IntentsTestRule<NetworkProfilesActivity> networkProfilesActivityIntentsTestRule =
-            new IntentsTestRule<NetworkProfilesActivity>(NetworkProfilesActivity.class);
+            new IntentsTestRule<>(NetworkProfilesActivity.class);
 
     @Before
     public void registerIdlingResource() {

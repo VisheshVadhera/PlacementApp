@@ -8,9 +8,6 @@ import com.vishesh.tpc_stud.dashboard.models.UserProfile;
 
 import javax.inject.Inject;
 
-/**
- * Created by vishesh on 24/2/17.
- */
 public class ProfileItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final int VIEW_TYPE_HEADER = 0;

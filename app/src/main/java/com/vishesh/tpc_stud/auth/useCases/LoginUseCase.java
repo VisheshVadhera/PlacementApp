@@ -12,9 +12,6 @@ import javax.inject.Named;
 import io.reactivex.Scheduler;
 import io.reactivex.Single;
 
-/**
- * Created by vishesh on 14/2/17.
- */
 public class LoginUseCase extends BaseUseCase<AccessToken, Map<String, String>, Object> {
 
     private final UserRepository userRepository;
@@ -28,7 +25,7 @@ public class LoginUseCase extends BaseUseCase<AccessToken, Map<String, String>, 
     }
 
     @Override
-    public Single<AccessToken> buildObservable(Map<String, String> map, Object o) {
+    public Single<AccessToken> buildSingle(Map<String, String> map, Object o) {
         return userRepository.emailLogin(map);
     }
 }

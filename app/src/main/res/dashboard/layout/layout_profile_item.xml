@@ -9,8 +9,8 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:gravity="center_vertical"
-        android:text="CV"
         android:textSize="16sp" />
 
     <TextView
@@ -18,9 +18,10 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_toLeftOf="@id/text_profile_item_label"
+        android:layout_toStartOf="@id/text_profile_item_label"
         android:gravity="center_vertical"
-        android:text="Open CV"
         android:textSize="16sp" />
 
     <View

@@ -6,7 +6,7 @@ public class EspressoIdlingResource {
 
     private static final String RESOURCE = "GLOBAL";
 
-    private static SimpleIdlingResource simpleIdlingResource =
+    private static final SimpleIdlingResource simpleIdlingResource =
             new SimpleIdlingResource(RESOURCE, new AtomicInteger(0));
 
     public static void increment() {

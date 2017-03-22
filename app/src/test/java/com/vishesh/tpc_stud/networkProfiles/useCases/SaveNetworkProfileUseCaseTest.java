@@ -35,7 +35,7 @@ public class SaveNetworkProfileUseCaseTest {
     }
 
     @Test
-    public void buildObservable() throws Exception {
+    public void testSaveNetworkProfileUseCaseSingle() throws Exception {
 
         Integer userId = 1;
 
@@ -43,7 +43,7 @@ public class SaveNetworkProfileUseCaseTest {
         networkProfile.setNetwork(Network.GITHUB);
         networkProfile.setUrl("fakeUrl");
 
-        saveNetworkProfileUseCase.buildObservable(userId, networkProfile);
+        saveNetworkProfileUseCase.buildSingle(userId, networkProfile);
 
         verify(userRepository).saveNetworkProfile(userId, networkProfile);
         verifyNoMoreInteractions(userRepository);

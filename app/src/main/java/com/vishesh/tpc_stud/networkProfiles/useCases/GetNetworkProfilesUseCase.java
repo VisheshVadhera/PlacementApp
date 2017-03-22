@@ -26,7 +26,7 @@ public class GetNetworkProfilesUseCase
     }
 
     @Override
-    public Single<List<NetworkProfile>> buildObservable(Integer userId, Object o) {
+    public Single<List<NetworkProfile>> buildSingle(Integer userId, Object o) {
         return userRepository.getNetworkProfiles(userId);
     }
 }

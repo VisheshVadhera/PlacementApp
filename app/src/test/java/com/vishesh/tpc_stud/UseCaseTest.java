@@ -27,7 +27,7 @@ public class UseCaseTest {
     @Mock
     private Scheduler mockJobScheduler;
 
-    private Scheduler mockPostJobScheduler = new TestScheduler();
+    private final Scheduler mockPostJobScheduler = new TestScheduler();
 
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
@@ -64,7 +64,7 @@ public class UseCaseTest {
         }
 
         @Override
-        public Single<Object> buildObservable(Object o, Object o2) {
+        public Single<Object> buildSingle(Object o, Object o2) {
             return Single.just(new Object());
         }
 

@@ -40,7 +40,7 @@ public class UserNameActivityTest {
 
     @Rule
     public ActivityTestRule<UserNameActivity> userNameActivityActivityTestRule =
-            new ActivityTestRule<UserNameActivity>(UserNameActivity.class);
+            new ActivityTestRule<>(UserNameActivity.class);
 
     /**
      * Covers the following:

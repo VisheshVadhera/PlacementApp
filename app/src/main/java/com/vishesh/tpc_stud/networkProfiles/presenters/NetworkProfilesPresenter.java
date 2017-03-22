@@ -48,7 +48,9 @@ public class NetworkProfilesPresenter extends BasePresenter {
 
     @Override
     public void destroy() {
-
+        getNetworkProfilesUseCase.dispose();
+        saveNetworkProfileUseCase.dispose();
+        networkProfilesView = null;
     }
 
     public void setNetworkProfilesView(NetworkProfilesView networkProfilesView) {
@@ -86,13 +88,13 @@ public class NetworkProfilesPresenter extends BasePresenter {
         }
     }
 
-    private boolean isNetworkProfilePresent(Network network) {
+    private boolean isNetworkProfileAbsent(Network network) {
         for (NetworkProfile networkProfile : networkProfiles) {
             if (networkProfile.getNetwork().equals(network)) {
-                return true;
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
     public interface NetworkProfilesView extends BaseView {
@@ -119,9 +121,9 @@ public class NetworkProfilesPresenter extends BasePresenter {
 
             NetworkProfilesPresenter.this.networkProfiles = networkProfiles;
 
-            if (!isNetworkProfilePresent(Network.GITHUB)) {
+            if (isNetworkProfileAbsent(Network.GITHUB)) {
                 networkProfilesView.allowGitHubProfileAddition();
-            } else if (!isNetworkProfilePresent(Network.LINKEDIN)) {
+            } else if (isNetworkProfileAbsent(Network.LINKEDIN)) {
                 networkProfilesView.allowLinkedInProfileAddition();
             } else {
                 networkProfilesView.allowOtherProfilesAddition();

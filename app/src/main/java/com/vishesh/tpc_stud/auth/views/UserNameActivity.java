@@ -111,4 +111,12 @@ public class UserNameActivity extends BaseActivity {
                 })
                 .subscribe(disposableObserver);
     }
+
+    /**
+     * Disable back button
+     */
+    @Override
+    public void onBackPressed() {
+
+    }
 }

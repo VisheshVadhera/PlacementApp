@@ -22,9 +22,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-/**
- * Created by vishesh on 25/2/17.
- */
 public class ProfileHeaderAdapterDelegate extends AdapterDelegate<User> {
 
     private final Context context;
