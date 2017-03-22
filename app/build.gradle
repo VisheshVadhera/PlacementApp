@@ -32,13 +32,14 @@ android {
     sourceSets {
         main {
             res.srcDirs = [
+                    'src/main/res/gpa',
                     'src/main/res/networkProfiles',
                     'src/main/res/splash',
                     'src/main/res/dashboard',
                     'src/main/res/core',
                     'src/main/res/auth',
                     'src/main/res'
-            ]
+                    , 'src/main/res/gpa/layout']
         }
     }
 }
@@ -150,7 +151,7 @@ dependencies {
     compile 'com.getbase:floatingactionbutton:1.10.1'
 
     // For user input validations
-    compile (group: 'commons-validator', name: 'commons-validator', version: '1.4.0'){
+    compile(group: 'commons-validator', name: 'commons-validator', version: '1.4.0') {
         exclude group: 'commons-logging', module: 'commons-logging'
     }
 
