@@ -35,7 +35,8 @@ public class GpaPresenter extends BasePresenter {
 
     @Override
     public void destroy() {
-
+        getGpaUseCase.dispose();
+        gpaView = null;
     }
 
     public void setView(GpaView gpaView) {

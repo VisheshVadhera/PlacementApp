@@ -23,7 +23,7 @@ public class GetGpaUseCase extends BaseUseCase<Gpa, Integer, Object> {
     }
 
     @Override
-    public Single<Gpa> buildSingle(Integer integer, Object o) {
-        return null;
+    public Single<Gpa> buildSingle(Integer userId, Object o) {
+        return userRepository.getGpa(userId);
     }
 }

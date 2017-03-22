@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.core.views.BaseFragment;
+import com.vishesh.tpc_stud.gpa.adapters.GpaItemAdapter;
 import com.vishesh.tpc_stud.gpa.models.Gpa;
 import com.vishesh.tpc_stud.gpa.presenters.GpaPresenter;
 
@@ -33,6 +35,8 @@ public class GpaFragment
     @BindView(R.id.recycler_view_gpa)
     RecyclerView recyclerViewGpa;
 
+    private GpaItemAdapter gpaItemAdapter;
+
     @Inject
     GpaPresenter gpaPresenter;
 
@@ -45,6 +49,7 @@ public class GpaFragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = super.onCreateView(inflater, container, savedInstanceState);
         setupToolbar();
+        gpaItemAdapter = new GpaItemAdapter(getContext());
         return view;
     }
 
@@ -89,6 +94,8 @@ public class GpaFragment
 
     @Override
     public void showGpa(Gpa gpa) {
-
+        gpaItemAdapter.setData(gpa.getCpis());
+        recyclerViewGpa.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerViewGpa.setAdapter(gpaItemAdapter);
     }
 }
