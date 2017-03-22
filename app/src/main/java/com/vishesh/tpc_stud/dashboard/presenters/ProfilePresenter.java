@@ -53,7 +53,9 @@ public class ProfilePresenter
 
     @Override
     public void destroy() {
-
+        getCurrentUserUseCase.dispose();
+        getProfileUseCase.dispose();
+        profileView = null;
     }
 
     public void setProfileView(ProfileView profileView) {
