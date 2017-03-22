@@ -1,7 +1,10 @@
 package com.vishesh.tpc_stud.auth.services;
 
 import com.vishesh.tpc_stud.core.models.User;
+import com.vishesh.tpc_stud.dashboard.models.NetworkProfile;
 import com.vishesh.tpc_stud.dashboard.models.UserProfile;
+
+import java.util.List;
 
 import io.reactivex.Single;
 import retrofit2.http.Body;
@@ -27,4 +30,11 @@ public interface UserService {
 
     @POST("users/{userId}/logout")
     Single<Object> logout();
+
+    @GET("users/{userId}/profile/networkProfiles")
+    Single<List<NetworkProfile>> getNetworkProfiles(int userId);
+
+    @POST("users/{userId}/profile/networkProfiles")
+    Single<NetworkProfile> saveNetworkProfile(@Path("userId") Integer userId,
+                                              @Body NetworkProfile networkProfile);
 }

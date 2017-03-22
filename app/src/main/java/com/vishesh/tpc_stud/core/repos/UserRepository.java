@@ -4,8 +4,10 @@ import com.vishesh.tpc_stud.auth.models.AccessToken;
 import com.vishesh.tpc_stud.auth.services.AuthService;
 import com.vishesh.tpc_stud.auth.services.UserService;
 import com.vishesh.tpc_stud.core.models.User;
+import com.vishesh.tpc_stud.dashboard.models.NetworkProfile;
 import com.vishesh.tpc_stud.dashboard.models.UserProfile;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -44,7 +46,15 @@ public class UserRepository {
         return userService.logout();
     }
 
-    public Single<UserProfile> getProfile(Integer userId) {
+    public Single<UserProfile> getProfile(int userId) {
         return userService.getProfile(userId);
+    }
+
+    public Single<List<NetworkProfile>> getNetworkProfiles(int userId) {
+        return userService.getNetworkProfiles(userId);
+    }
+
+    public Single<NetworkProfile> saveNetworkProfile(int userId, NetworkProfile networkProfile) {
+        return userService.saveNetworkProfile(userId, networkProfile);
     }
 }
