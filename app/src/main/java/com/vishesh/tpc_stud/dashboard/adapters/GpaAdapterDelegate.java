@@ -19,10 +19,6 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Created by vishesh on 25/2/17.
- */
-
 public class GpaAdapterDelegate extends AdapterDelegate<UserProfile> {
 
     private final Context context;

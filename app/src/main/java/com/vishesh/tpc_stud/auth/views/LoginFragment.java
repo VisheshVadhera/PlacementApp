@@ -20,9 +20,6 @@ import javax.inject.Inject;
 
 import butterknife.OnClick;
 
-/**
- * Created by vishesh on 12/2/17.
- */
 public class LoginFragment
         extends BaseFragment
         implements LoginPresenter.LoginView {

@@ -12,9 +12,6 @@ import javax.inject.Named;
 import io.reactivex.Scheduler;
 import io.reactivex.Single;
 
-/**
- * Created by vishesh on 14/2/17.
- */
 public class LoginUseCase extends BaseUseCase<AccessToken, Map<String, String>, Object> {
 
     private final UserRepository userRepository;

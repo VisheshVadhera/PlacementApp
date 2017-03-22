@@ -10,9 +10,6 @@ import dagger.Module;
 import dagger.Provides;
 import retrofit2.Retrofit;
 
-/**
- * Created by vishesh on 15/2/17.
- */
 @Module
 public class ApiServiceModule {
 

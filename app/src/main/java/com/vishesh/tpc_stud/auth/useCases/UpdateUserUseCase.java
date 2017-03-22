@@ -10,9 +10,6 @@ import javax.inject.Named;
 import io.reactivex.Scheduler;
 import io.reactivex.Single;
 
-/**
- * Created by vishesh on 19/2/17.
- */
 public class UpdateUserUseCase extends BaseUseCase<User, Integer, User>{
 
     private final UserRepository userRepository;

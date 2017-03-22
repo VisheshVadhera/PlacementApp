@@ -11,9 +11,6 @@ import com.vishesh.tpc_stud.core.dagger.RetrofitModule;
 
 import net.danlew.android.joda.JodaTimeAndroid;
 
-/**
- * Created by vishesh on 2/2/17.
- */
 public class TpcStudApplication extends Application {
 
     TpcStudAppComponent tpcStudAppComponent;

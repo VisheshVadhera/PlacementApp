@@ -18,10 +18,6 @@ import javax.inject.Inject;
 
 import io.reactivex.observers.DisposableSingleObserver;
 
-/**
- * Created by vishesh on 24/2/17.
- */
-
 public class ProfilePresenter
         extends BasePresenter {
 

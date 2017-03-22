@@ -3,10 +3,6 @@ package com.vishesh.tpc_stud.core.utils;
 import android.content.Context;
 import android.widget.Toast;
 
-/**
- * Created by vishesh on 24/2/17.
- */
-
 class UiUtils {
 
     private UiUtils() {

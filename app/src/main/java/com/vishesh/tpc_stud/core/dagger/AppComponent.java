@@ -4,9 +4,6 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 
-/**
- * Created by vishesh on 12/2/17.
- */
 @Singleton
 @Component(modules = {AppModule.class, MockRetrofitModule.class,
         RetrofitModule.class, DataModule.class,

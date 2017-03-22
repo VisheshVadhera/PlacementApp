@@ -14,10 +14,6 @@ import javax.inject.Inject;
 
 import io.reactivex.Single;
 
-/**
- * Created by vishesh on 18/2/17.
- */
-
 public class UserRepository {
 
     private final AuthService authService;

@@ -16,9 +16,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-/**
- * Created by vishesh on 17/2/17.
- */
 public abstract class BaseFragment extends Fragment {
 
     @BindView(R.id.layout_loader)
