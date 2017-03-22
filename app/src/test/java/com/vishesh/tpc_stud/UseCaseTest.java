@@ -27,7 +27,7 @@ public class UseCaseTest {
     @Mock
     private Scheduler mockJobScheduler;
 
-    private Scheduler mockPostJobScheduler = new TestScheduler();
+    private final Scheduler mockPostJobScheduler = new TestScheduler();
 
     @Rule
     public ExpectedException expectedException = ExpectedException.none();

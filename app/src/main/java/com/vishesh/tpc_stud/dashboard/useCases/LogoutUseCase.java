@@ -12,7 +12,7 @@ import io.reactivex.Single;
 public class LogoutUseCase extends BaseUseCase<Object, Object, Object> {
 
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Inject
     public LogoutUseCase(@Named("jobScheduler") Scheduler jobScheduler,

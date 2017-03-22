@@ -18,7 +18,7 @@ import retrofit2.mock.MockRetrofit;
 
 public class MockRecruiterService implements RecruiterService {
 
-    private BehaviorDelegate<RecruiterService> delegate;
+    private final BehaviorDelegate<RecruiterService> delegate;
 
     public MockRecruiterService(MockRetrofit mockRetrofit) {
         delegate = mockRetrofit.create(RecruiterService.class);

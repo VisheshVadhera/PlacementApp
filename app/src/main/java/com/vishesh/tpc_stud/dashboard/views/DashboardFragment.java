@@ -36,9 +36,9 @@ public class DashboardFragment
         extends BaseFragment
         implements DashboardPresenter.DashboardView {
 
-    public static final int USER_NAME_REQUEST_CODE = 101;
-    public static final String EXTRA_FIRST_NAME = "EXTRA_FIRST_NAME";
-    public static final String EXTRA_LAST_NAME = "EXTRA_LAST_NAME";
+    private static final int USER_NAME_REQUEST_CODE = 101;
+    private static final String EXTRA_FIRST_NAME = "EXTRA_FIRST_NAME";
+    private static final String EXTRA_LAST_NAME = "EXTRA_LAST_NAME";
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;

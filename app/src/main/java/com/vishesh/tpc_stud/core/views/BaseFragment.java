@@ -24,8 +24,8 @@ public abstract class BaseFragment extends Fragment {
     @BindView(R.id.layout_loader)
     RelativeLayout relativeLayoutLoader;
 
-    protected Unbinder unbinder;
-    protected Snackbar snackbar;
+    private Unbinder unbinder;
+    private Snackbar snackbar;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

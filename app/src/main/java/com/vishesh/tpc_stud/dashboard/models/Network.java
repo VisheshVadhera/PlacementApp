@@ -8,7 +8,7 @@ public enum Network {
 
     GITHUB("Github"), LINKEDIN("LinkedIn"), WEBSITE("Website"), OTHER("Other");
 
-    private String networkName;
+    private final String networkName;
 
     Network(String networkName) {
         this.networkName = networkName;

@@ -22,7 +22,7 @@ public class MockUserService implements UserService {
 
     private final BehaviorDelegate<UserService> delegate;
 
-    private static User mockUser = getMockUser();
+    private static final User mockUser = getMockUser();
 
     private static User getMockUser() {
         User mockUser = new User();

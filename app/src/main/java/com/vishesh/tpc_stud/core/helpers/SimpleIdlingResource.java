@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class SimpleIdlingResource implements IdlingResource {
 
-    public static final String COUNTER_CORRUPTED_MESSAGE = "Counter has been corrupted";
+    private static final String COUNTER_CORRUPTED_MESSAGE = "Counter has been corrupted";
     private final String resourceName;
     private final AtomicInteger counter;
 

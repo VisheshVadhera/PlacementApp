@@ -21,7 +21,7 @@ import io.reactivex.Single;
 public class UserRepository {
 
     private final AuthService authService;
-    private UserService userService;
+    private final UserService userService;
 
     @Inject
     public UserRepository(AuthService authService,
