@@ -20,7 +20,6 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginTop="8dp"
-            android:text="Name"
             android:textSize="32sp" />
 
         <TextView
@@ -29,7 +28,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/text_job_offer_title"
             android:layout_marginTop="8dp"
-            android:text="Company Name"
             android:textSize="20sp" />
 
         <TextView
@@ -40,7 +38,6 @@
             android:layout_marginTop="16dp"
             android:ellipsize="end"
             android:maxLines="2"
-            android:text="Description"
             android:textSize="12sp" />
 
         <TextView
@@ -70,7 +67,6 @@
             android:layout_below="@id/text_process_date_label"
             android:layout_marginTop="8dp"
             android:gravity="start"
-            android:text="January 5, 2017"
             android:textSize="12sp" />
 
         <TextView
@@ -80,7 +76,6 @@
             android:gravity="end"
             android:layout_below="@id/text_pay_package_label"
             android:layout_marginTop="8dp"
-            android:text="Rs 800000"
             android:textSize="12sp" />
 
     </RelativeLayout>
