@@ -5,5 +5,7 @@
 
     <string name="title_activity_network_profiles">Network Profiles</string>
 
+    <string name="title_activity_gpa">G.P.A.</string>
+
     <string name="button_continue_text">Continue</string>
 </resources>
