@@ -90,11 +90,11 @@ class FakeAccountKitLoginResult implements AccountKitLoginResult {
     }
 
     private FakeAccountKitLoginResult(Parcel parcel) {
-        this.accessToken = (AccessToken) parcel.readParcelable(AccessToken.class.getClassLoader());
+        this.accessToken = parcel.readParcelable(AccessToken.class.getClassLoader());
         this.authorizationCode = parcel.readString();
         this.finalAuthorizationState = parcel.readString();
         this.tokenRefreshIntervalInSeconds = parcel.readLong();
-        this.error = (AccountKitError) parcel.readParcelable(AccountKitError.class.getClassLoader());
+        this.error = parcel.readParcelable(AccountKitError.class.getClassLoader());
         this.cancelled = parcel.readByte() == 1;
     }
 }

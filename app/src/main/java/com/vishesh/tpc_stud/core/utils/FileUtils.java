@@ -14,9 +14,6 @@ public class FileUtils {
 
     /**
      * See this for the reference: https://github.com/iPaulPro/aFileChooser
-     * @param context
-     * @param uri
-     * @return
      */
     public static File getFileForUri(final Context context, final Uri uri) {
         String path = null;
