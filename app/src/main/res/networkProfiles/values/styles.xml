@@ -1,0 +1,7 @@
+<resources>
+
+    <style name="fab_menu_style">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+</resources>

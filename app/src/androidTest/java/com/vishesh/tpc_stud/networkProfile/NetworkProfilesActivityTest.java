@@ -82,17 +82,13 @@ public class NetworkProfilesActivityTest {
                         isDisplayed()));
         floatingActionButton.perform(click());
 
-        ViewInteraction appCompatEditText = onView(
-                allOf(withId(R.id.edit_text_url), isDisplayed()));
-        appCompatEditText.perform(click());
-
         ViewInteraction editText = onView(
                 allOf(withId(R.id.edit_text_url),
                         childAtPosition(
                                 childAtPosition(
                                         withId(R.id.custom),
                                         0),
-                                0),
+                                1),
                         isDisplayed()));
         editText.check(matches(isDisplayed()));
     }

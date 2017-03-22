@@ -1,7 +1,6 @@
 package com.vishesh.tpc_stud.networkProfiles.views;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,7 +8,6 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,7 +15,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
@@ -57,7 +54,8 @@ public class NetworkProfilesFragment
     NetworkProfileItemAdapter networkProfileItemAdapter;
     @Inject
     Bus bus;
-    private AlertDialog alertDialog;
+
+    private AddNetworkProfileDialog addNetworkProfileDialog;
 
     public static Intent createIntent(Context context) {
         return new Intent(context, NetworkProfilesActivity.class);
@@ -73,7 +71,7 @@ public class NetworkProfilesFragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
         setupToolbar();
-        setupUrlDialog();
+        setupNetworkProfileDialog();
         return rootView;
     }
 
@@ -149,25 +147,18 @@ public class NetworkProfilesFragment
     @Override
     public void askForProfileUrl(final Network network) {
 
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_add_network_profile_url, null);
-        final EditText editText = (EditText) view.findViewById(R.id.edit_text_url);
-
-        alertDialog.setTitle(network.getNetworkName());
-        alertDialog.setView(view);
-
-        alertDialog.setButton(DialogInterface.BUTTON_POSITIVE,
-                getString(R.string.network_profile_url_dialog_positive),
-                new DialogInterface.OnClickListener() {
+        addNetworkProfileDialog.setPositiveButton(R.string.network_profile_url_dialog_positive,
+                new View.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String userInput = editText.getText().toString();
+                    public void onClick(View v) {
+                        String userInput = addNetworkProfileDialog.getUserInput();
                         networkProfilesPresenter
                                 .onNewNetworkProfileSaveClicked(userInput, network);
-                        alertDialog.hide();
+                        addNetworkProfileDialog.dismiss();
                     }
                 });
 
-        alertDialog.show();
+        addNetworkProfileDialog.show();
     }
 
     @Override
@@ -197,23 +188,21 @@ public class NetworkProfilesFragment
         }
     }
 
-    private void setupUrlDialog() {
-        alertDialog = new AlertDialog.Builder(getContext())
-                .setMessage(R.string.network_profile_url_dialog_message)
-                .create();
+    private void setupNetworkProfileDialog() {
+        addNetworkProfileDialog = new AddNetworkProfileDialog(getContext());
 
-        alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE,
-                getString(R.string.network_profile_url_dialog_negative),
-                new DialogInterface.OnClickListener() {
+        addNetworkProfileDialog.setTitle(R.string.network_profile_url_dialog_message);
+        addNetworkProfileDialog.setNegativeButton(R.string.network_profile_url_dialog_negative,
+                new View.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        alertDialog.hide();
+                    public void onClick(View v) {
+                        addNetworkProfileDialog.dismiss();
                     }
                 });
     }
 
     private FloatingActionButton createFab(@StringRes int titleRes) {
-        FloatingActionButton actionButton = new FloatingActionButton(getContext());
+        FloatingActionButton actionButton = new FloatingActionButton(getActivity().getBaseContext());
         actionButton.setTitle(getString(titleRes));
         actionButton.setColorNormalResId(android.R.color.white);
         actionButton.setColorPressedResId(R.color.white_pressed);
