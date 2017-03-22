@@ -37,12 +37,12 @@ public class GetNetworkProfilesUseCaseTest {
     }
 
     @Test
-    public void testGetNetworkProfilesUseCaseObservable() {
+    public void testGetNetworkProfilesUseCaseSingle() {
 
         Integer userId = anyInt();
         Object o = new Object();
 
-        getNetworkProfilesUseCase.buildObservable(userId, o);
+        getNetworkProfilesUseCase.buildSingle(userId, o);
 
         verify(userRepository).getNetworkProfiles(userId);
         verifyNoMoreInteractions(userRepository);

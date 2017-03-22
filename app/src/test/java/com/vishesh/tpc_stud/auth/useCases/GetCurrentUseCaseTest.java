@@ -1,6 +1,5 @@
 package com.vishesh.tpc_stud.auth.useCases;
 
-import com.vishesh.tpc_stud.auth.useCases.GetCurrentUserUseCase;
 import com.vishesh.tpc_stud.core.repos.UserRepository;
 
 import org.junit.Before;
@@ -34,11 +33,11 @@ public class GetCurrentUseCaseTest {
     }
 
     @Test
-    public void testGetCurrentUseCaseObservable() {
+    public void testGetCurrentUseCaseSingle() {
         Object o = new Object();
         Object o2 = new Object();
 
-        getCurrentUserUseCase.buildObservable(o, o2);
+        getCurrentUserUseCase.buildSingle(o, o2);
 
         verify(userRepository).getCurrentUser();
         verifyNoMoreInteractions(userRepository);

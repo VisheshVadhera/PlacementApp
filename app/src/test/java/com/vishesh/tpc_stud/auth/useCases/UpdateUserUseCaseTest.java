@@ -1,6 +1,5 @@
 package com.vishesh.tpc_stud.auth.useCases;
 
-import com.vishesh.tpc_stud.auth.useCases.UpdateUserUseCase;
 import com.vishesh.tpc_stud.core.models.User;
 import com.vishesh.tpc_stud.core.repos.UserRepository;
 
@@ -37,11 +36,11 @@ public class UpdateUserUseCaseTest {
     }
 
     @Test
-    public void testUpdateUserUseCaseObservable() {
+    public void testUpdateUserUseCaseSingle() {
         Integer userId = anyInt();
         User user = any(User.class);
 
-        updateUserUseCase.buildObservable(userId, user);
+        updateUserUseCase.buildSingle(userId, user);
 
         verify(userRepository).updateUser(userId, user);
         verifyNoMoreInteractions(userRepository);

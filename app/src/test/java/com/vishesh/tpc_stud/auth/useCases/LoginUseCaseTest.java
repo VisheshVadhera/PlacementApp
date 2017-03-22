@@ -37,10 +37,10 @@ public class LoginUseCaseTest {
     }
 
     @Test
-    public void testLoginUseCaseObservable() {
+    public void testLoginUseCaseSingle() {
         Map<String, String> map = new HashMap<>();
         Object o = new Object();
-        loginUseCase.buildObservable(map, o);
+        loginUseCase.buildSingle(map, o);
 
         verify(userRepository).emailLogin(map);
         verifyNoMoreInteractions(userRepository);

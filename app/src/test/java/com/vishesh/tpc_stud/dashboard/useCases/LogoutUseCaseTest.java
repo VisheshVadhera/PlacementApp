@@ -1,7 +1,6 @@
 package com.vishesh.tpc_stud.dashboard.useCases;
 
 import com.vishesh.tpc_stud.core.repos.UserRepository;
-import com.vishesh.tpc_stud.dashboard.useCases.LogoutUseCase;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -34,11 +33,11 @@ public class LogoutUseCaseTest {
     }
 
     @Test
-    public void testLogoutUseCaseObservable(){
+    public void testLogoutUseCaseSingle(){
         Object o = new Object();
         Object o2 = new Object();
 
-        logoutUseCase.buildObservable(o, o2);
+        logoutUseCase.buildSingle(o, o2);
 
         verify(userRepository).logout();
         verifyNoMoreInteractions(userRepository);

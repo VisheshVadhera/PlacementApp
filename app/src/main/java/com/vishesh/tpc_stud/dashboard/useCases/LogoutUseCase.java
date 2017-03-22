@@ -24,7 +24,7 @@ public class LogoutUseCase extends BaseUseCase<Object, Object, Object> {
 
 
     @Override
-    public Single<Object> buildObservable(Object o, Object o2) {
+    public Single<Object> buildSingle(Object o, Object o2) {
         return userRepository.logout();
     }
 }

@@ -26,7 +26,7 @@ public class UpdateUserUseCase extends BaseUseCase<User, Integer, User>{
     }
 
     @Override
-    public Single<User> buildObservable(Integer userId, User user) {
+    public Single<User> buildSingle(Integer userId, User user) {
         return userRepository.updateUser(userId, user);
     }
 }

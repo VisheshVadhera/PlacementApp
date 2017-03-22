@@ -1,7 +1,6 @@
 package com.vishesh.tpc_stud.dashboard.useCases;
 
 import com.vishesh.tpc_stud.core.repos.UserRepository;
-import com.vishesh.tpc_stud.dashboard.useCases.GetProfileUseCase;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -35,11 +34,11 @@ public class GetProfileUseCaseTest {
     }
 
     @Test
-    public void testGetProfileUseCaseObservable() {
+    public void testGetProfileUseCaseSingle() {
         Integer userId = anyInt();
         Object o = new Object();
 
-        getProfileUseCase.buildObservable(userId, o);
+        getProfileUseCase.buildSingle(userId, o);
 
         verify(userRepository).getProfile(userId);
         verifyNoMoreInteractions(userRepository);

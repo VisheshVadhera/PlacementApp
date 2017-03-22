@@ -26,7 +26,7 @@ public class GetProfileUseCase extends BaseUseCase<UserProfile, Integer, Object>
     }
 
     @Override
-    public Single<UserProfile> buildObservable(Integer userId, Object o) {
+    public Single<UserProfile> buildSingle(Integer userId, Object o) {
         return userRepository.getProfile(userId);
     }
 }

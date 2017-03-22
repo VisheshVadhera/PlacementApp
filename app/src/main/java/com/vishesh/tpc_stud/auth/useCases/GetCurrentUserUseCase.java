@@ -25,7 +25,7 @@ public class GetCurrentUserUseCase extends BaseUseCase<User, Object, Object>{
 
 
     @Override
-    public Single<User> buildObservable(Object o, Object o2) {
+    public Single<User> buildSingle(Object o, Object o2) {
         return userRepository.getCurrentUser();
     }
 }
