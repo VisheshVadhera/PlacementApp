@@ -18,7 +18,7 @@ public class SplashActivityTest {
 
     @Rule
     public ActivityTestRule<SplashActivity> splashActivityActivityTestRule =
-            new ActivityTestRule<SplashActivity>(SplashActivity.class);
+            new ActivityTestRule<>(SplashActivity.class);
 
 
     @Test

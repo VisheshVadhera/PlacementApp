@@ -4,7 +4,6 @@ import android.text.TextUtils;
 
 import com.vishesh.tpc_stud.auth.useCases.GetCurrentUserUseCase;
 import com.vishesh.tpc_stud.auth.useCases.UpdateUserUseCase;
-import com.vishesh.tpc_stud.core.helpers.EspressoIdlingResource;
 import com.vishesh.tpc_stud.core.models.User;
 import com.vishesh.tpc_stud.core.presenters.BasePresenter;
 import com.vishesh.tpc_stud.core.repos.LocalCache;
