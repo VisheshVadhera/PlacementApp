@@ -103,6 +103,7 @@ public class LoginPresenterTest {
         };
 
         loginPresenter.onEmailLoginResultReceived(accountKitLoginResult);
+        //noinspection ConstantConditions
         verify(loginView).showMessage(accountKitLoginResult.getError().getErrorType().getMessage());
     }
 

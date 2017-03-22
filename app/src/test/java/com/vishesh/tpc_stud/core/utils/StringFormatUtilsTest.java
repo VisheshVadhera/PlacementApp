@@ -32,6 +32,7 @@ public class StringFormatUtilsTest {
     public void testToRupeeFormattedString_nullInput() throws Exception {
         BigDecimal bigDecimal = null;
 
+        //noinspection ConstantConditions
         StringFormatUtils.toRupeeFormattedString(bigDecimal);
     }
 
@@ -64,6 +65,7 @@ public class StringFormatUtilsTest {
         String s1 = null;
         String s2 = null;
 
+        //noinspection ConstantConditions,ConstantConditions
         StringFormatUtils.createSpacedString(s1, s2);
     }
 
@@ -72,6 +74,7 @@ public class StringFormatUtilsTest {
         String s1 = null;
         String s2 = "abc";
 
+        //noinspection ConstantConditions
         StringFormatUtils.createSpacedString(s1, s2);
     }
 
@@ -79,6 +82,7 @@ public class StringFormatUtilsTest {
     public void testIsUrlValid_nullInput_expectNullPointerException() {
         String s = null;
 
+        //noinspection ConstantConditions
         StringFormatUtils.isUrlValid(s);
     }
 

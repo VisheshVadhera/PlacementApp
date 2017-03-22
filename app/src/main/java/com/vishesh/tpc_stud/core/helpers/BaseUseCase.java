@@ -8,9 +8,6 @@ import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.observers.DisposableSingleObserver;
 
-/**
- * Created by vishesh on 14/2/17.
- */
 public abstract class BaseUseCase<Output, Input1, Input2> {
 
     private final Scheduler jobScheduler;

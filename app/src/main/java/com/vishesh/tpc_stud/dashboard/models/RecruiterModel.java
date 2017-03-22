@@ -2,10 +2,6 @@ package com.vishesh.tpc_stud.dashboard.models;
 
 import org.joda.time.LocalDate;
 
-/**
- * Created by vishesh on 24/2/17.
- */
-
 public class RecruiterModel {
 
     private int id;

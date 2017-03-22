@@ -20,9 +20,6 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Created by vishesh on 25/2/17.
- */
 public class CourseAdapterDelegate extends AdapterDelegate<UserProfile> {
 
     private final Context context;

@@ -24,6 +24,7 @@ public class DateFormatUtilsTest {
         assertEquals(expected, actual);
     }
 
+    @SuppressWarnings("ConstantConditions")
     @Test(expected = NullPointerException.class)
     public void testToDateFormattedString_nullInput() throws Exception {
         LocalDate localDate = null;

@@ -23,10 +23,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-/**
- * Created by vishesh on 25/2/17.
- */
-
 public class CvAdapterDelegate extends AdapterDelegate<UserProfile> {
 
     private final Context context;

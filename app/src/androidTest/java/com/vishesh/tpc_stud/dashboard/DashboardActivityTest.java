@@ -58,7 +58,7 @@ public class DashboardActivityTest {
 
     @Rule
     public ActivityTestRule<DashboardActivity> dashboardActivityActivityTestRule =
-            new ActivityTestRule<DashboardActivity>(DashboardActivity.class);
+            new ActivityTestRule<>(DashboardActivity.class);
 
     @Before
     public void registerIdlingResource() {

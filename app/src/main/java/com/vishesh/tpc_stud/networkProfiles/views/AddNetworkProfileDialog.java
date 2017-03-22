@@ -27,7 +27,7 @@ class AddNetworkProfileDialog {
 
     private final Context context;
 
-    private AlertDialog alertDialog;
+    private final AlertDialog alertDialog;
 
     public AddNetworkProfileDialog(Context context) {
         this.context = context;

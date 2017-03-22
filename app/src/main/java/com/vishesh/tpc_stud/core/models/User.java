@@ -1,9 +1,5 @@
 package com.vishesh.tpc_stud.core.models;
 
-/**
- * Created by vishesh on 19/2/17.
- */
-
 public class User {
 
 

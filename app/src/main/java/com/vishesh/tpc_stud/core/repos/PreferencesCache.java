@@ -4,9 +4,6 @@ import android.content.SharedPreferences;
 
 import com.vishesh.tpc_stud.core.constants.CacheConstants;
 
-/**
- * Created by vishesh on 18/2/17.
- */
 public class PreferencesCache implements LocalCache {
 
     private final SharedPreferences sharedPreferences;
