@@ -60,7 +60,7 @@ public class MockUserService implements UserService {
         mockUserProfile.setCourse(getCourse());
         mockUserProfile.setCvUrl(getCvUrl());
         mockUserProfile.setGpa(getGpa());
-        mockUserProfile.setNetworkProfiles(getStubNetworkProfiles());
+        mockUserProfile.setNetworkProfiles(new ArrayList<NetworkProfile>());
 
         return delegate
                 .returningResponse(mockUserProfile)

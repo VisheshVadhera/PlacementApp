@@ -2,11 +2,12 @@ package com.vishesh.tpc_stud.dashboard.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hannesdorfmann.adapterdelegates3.AdapterDelegate;
@@ -61,7 +62,9 @@ public class NetworkProfileAdapterDelegate extends AdapterDelegate<List<NetworkP
 
         IconicsDrawable navigateNextIcon = new IconicsDrawable(context)
                 .icon(GoogleMaterial.Icon.gmd_navigate_next)
-                .sizeDp(16);
+                .sizeDp(16)
+                .backgroundColor(ContextCompat.getColor(context, R.color.cardview_dark_background))
+                .color(ContextCompat.getColor(context, android.R.color.white));
 
         networkProfileViewHolder
                 .textNetworkProfileItemLabel
@@ -77,14 +80,14 @@ public class NetworkProfileAdapterDelegate extends AdapterDelegate<List<NetworkP
         @BindView(R.id.text_network_profile_item_label)
         TextView textNetworkProfileItemLabel;
         @BindView(R.id.image_network_profile_item)
-        ImageButton imageNetworkProfileNext;
+        ImageView imageNetworkProfileNext;
 
         public NetworkProfileViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
 
-        @OnClick(R.id.image_network_profile_item)
+        @OnClick(R.id.layout_network_profile_item)
         void onClick() {
             bus.post(new NetworkProfileTapEvent());
         }
