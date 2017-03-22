@@ -26,7 +26,7 @@ public abstract class BaseUseCase<Output, Input1, Input2> {
 
     public void execute(DisposableSingleObserver<Output> disposableObserver,
                         Input1 input1, Input2 input2) {
-        Single<Output> single = buildObservable(input1, input2)
+        Single<Output> single = buildSingle(input1, input2)
                 .subscribeOn(jobScheduler)
                 .observeOn(postJobScheduler)
                 .doOnSubscribe(new Consumer<Disposable>() {
@@ -51,7 +51,7 @@ public abstract class BaseUseCase<Output, Input1, Input2> {
         }
     }
 
-    public abstract Single<Output> buildObservable(Input1 input1, Input2 input2);
+    public abstract Single<Output> buildSingle(Input1 input1, Input2 input2);
 
     private void addDisposable(Disposable disposable) {
         compositeDisposable.add(disposable);

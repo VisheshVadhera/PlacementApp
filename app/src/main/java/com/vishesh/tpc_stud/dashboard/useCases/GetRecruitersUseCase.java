@@ -26,7 +26,7 @@ public class GetRecruitersUseCase extends BaseUseCase<List<Recruiter>, Integer, 
 
 
     @Override
-    public Single<List<Recruiter>> buildObservable(Integer userId, Object o) {
+    public Single<List<Recruiter>> buildSingle(Integer userId, Object o) {
         return recruiterRepository.getRecruiters(userId);
     }
 }

@@ -1,7 +1,6 @@
 package com.vishesh.tpc_stud.dashboard.useCases;
 
 import com.vishesh.tpc_stud.dashboard.repos.RecruiterRepository;
-import com.vishesh.tpc_stud.dashboard.useCases.GetRecruitersUseCase;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -36,11 +35,11 @@ public class GetRecruitersUseCaseTest {
     }
 
     @Test
-    public void testGetRecruiterUseCaseObservable() {
+    public void testGetRecruiterUseCaseSingle() {
         Integer userId = anyInt();
         Object o = new Object();
 
-        getRecruitersUseCase.buildObservable(userId, o);
+        getRecruitersUseCase.buildSingle(userId, o);
 
         verify(recruiterRepository).getRecruiters(userId);
         verifyNoMoreInteractions(recruiterRepository);

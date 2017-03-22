@@ -28,7 +28,7 @@ public class LoginUseCase extends BaseUseCase<AccessToken, Map<String, String>, 
     }
 
     @Override
-    public Single<AccessToken> buildObservable(Map<String, String> map, Object o) {
+    public Single<AccessToken> buildSingle(Map<String, String> map, Object o) {
         return userRepository.emailLogin(map);
     }
 }

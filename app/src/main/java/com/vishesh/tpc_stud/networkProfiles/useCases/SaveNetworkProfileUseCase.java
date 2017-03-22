@@ -23,7 +23,7 @@ public class SaveNetworkProfileUseCase extends BaseUseCase<NetworkProfile, Integ
     }
 
     @Override
-    public Single<NetworkProfile> buildObservable(Integer userId, NetworkProfile networkProfile) {
+    public Single<NetworkProfile> buildSingle(Integer userId, NetworkProfile networkProfile) {
         return userRepository.saveNetworkProfile(userId, networkProfile);
     }
 }
