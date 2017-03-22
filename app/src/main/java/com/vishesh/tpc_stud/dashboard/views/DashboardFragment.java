@@ -47,13 +47,8 @@ public class DashboardFragment
     @BindView(R.id.view_pager_dashboard)
     ViewPager viewPager;
 
-    private SectionsPagerAdapter sectionsPagerAdapter;
-
     @Inject
     DashboardPresenter dashboardPresenter;
-
-    private Observable<Integer> tabPositionObservable;
-    private Consumer<Integer> tabPositionConsumer;
 
     public static Intent createIntent(Context context) {
         return new Intent(context, DashboardActivity.class);
@@ -122,7 +117,7 @@ public class DashboardFragment
     public void setupTabs() {
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 
-        sectionsPagerAdapter = new SectionsPagerAdapter(getActivity().getSupportFragmentManager());
+        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getActivity().getSupportFragmentManager());
         sectionsPagerAdapter.addFragment(0, RecruitersFragment.newInstance());
         sectionsPagerAdapter.addFragment(1, ProfileFragment.newInstance());
 
@@ -142,7 +137,7 @@ public class DashboardFragment
 
         final ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
 
-        tabPositionObservable = RxTabLayout
+        Observable<Integer> tabPositionObservable = RxTabLayout
                 .selections(tabLayout)
                 .map(new Function<TabLayout.Tab, Integer>() {
                     @Override
@@ -151,7 +146,7 @@ public class DashboardFragment
                     }
                 });
 
-        tabPositionConsumer = new Consumer<Integer>() {
+        Consumer<Integer> tabPositionConsumer = new Consumer<Integer>() {
             @Override
             public void accept(Integer tabPosition) throws Exception {
                 if (actionBar != null) {

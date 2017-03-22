@@ -16,7 +16,7 @@ class FakeAccountKitLoginResult implements AccountKitLoginResult {
     private final String finalAuthorizationState;
     private final long tokenRefreshIntervalInSeconds;
 
-    public static final Creator<FakeAccountKitLoginResult> CREATOR = new Creator() {
+    public static final Creator<FakeAccountKitLoginResult> CREATOR = new Creator<FakeAccountKitLoginResult>() {
         public FakeAccountKitLoginResult createFromParcel(Parcel source) {
             return new FakeAccountKitLoginResult(source);
         }
@@ -27,11 +27,11 @@ class FakeAccountKitLoginResult implements AccountKitLoginResult {
     };
 
     public FakeAccountKitLoginResult(AccessToken accessToken,
-                                      String authorizationCode,
-                                      boolean cancelled,
-                                      AccountKitError error,
-                                      String finalAuthorizationState,
-                                      long tokenRefreshIntervalInSeconds) {
+                                     String authorizationCode,
+                                     boolean cancelled,
+                                     AccountKitError error,
+                                     String finalAuthorizationState,
+                                     long tokenRefreshIntervalInSeconds) {
         this.accessToken = accessToken;
         this.authorizationCode = authorizationCode;
         this.cancelled = cancelled;
@@ -86,15 +86,15 @@ class FakeAccountKitLoginResult implements AccountKitLoginResult {
         dest.writeString(this.finalAuthorizationState);
         dest.writeLong(this.tokenRefreshIntervalInSeconds);
         dest.writeParcelable(this.error, flags);
-        dest.writeByte((byte)(this.cancelled?1:0));
+        dest.writeByte((byte) (this.cancelled ? 1 : 0));
     }
 
     private FakeAccountKitLoginResult(Parcel parcel) {
-        this.accessToken = (AccessToken)parcel.readParcelable(AccessToken.class.getClassLoader());
+        this.accessToken = (AccessToken) parcel.readParcelable(AccessToken.class.getClassLoader());
         this.authorizationCode = parcel.readString();
         this.finalAuthorizationState = parcel.readString();
         this.tokenRefreshIntervalInSeconds = parcel.readLong();
-        this.error = (AccountKitError)parcel.readParcelable(AccountKitError.class.getClassLoader());
+        this.error = (AccountKitError) parcel.readParcelable(AccountKitError.class.getClassLoader());
         this.cancelled = parcel.readByte() == 1;
     }
 }
