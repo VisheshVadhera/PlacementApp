@@ -18,30 +18,32 @@ import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.core.views.BaseFragment;
-import com.vishesh.tpc_stud.gpa.adapters.GpaItemAdapter;
-import com.vishesh.tpc_stud.gpa.models.Gpa;
-import com.vishesh.tpc_stud.gpa.presenters.GpaPresenter;
+import com.vishesh.tpc_stud.gpa.adapters.SemesterGradeItemAdapter;
+import com.vishesh.tpc_stud.gpa.models.SemesterGrade;
+import com.vishesh.tpc_stud.gpa.presenters.SemesterGradesPresenter;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 
-public class GpaFragment
+public class SemesterGradesFragment
         extends BaseFragment
-        implements GpaPresenter.GpaView {
+        implements SemesterGradesPresenter.SemesterGradesView {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.recycler_view_gpa)
     RecyclerView recyclerViewGpa;
 
-    private GpaItemAdapter gpaItemAdapter;
+    private SemesterGradeItemAdapter semesterGradeItemAdapter;
 
     @Inject
-    GpaPresenter gpaPresenter;
+    SemesterGradesPresenter semesterGradesPresenter;
 
     public static Intent createIntent(Context context) {
-        return new Intent(context, GpaFragment.class);
+        return new Intent(context, SemesterGradesFragment.class);
     }
 
     @Nullable
@@ -49,20 +51,20 @@ public class GpaFragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = super.onCreateView(inflater, container, savedInstanceState);
         setupToolbar();
-        gpaItemAdapter = new GpaItemAdapter(getContext());
+        semesterGradeItemAdapter = new SemesterGradeItemAdapter(getContext());
         return view;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        gpaPresenter.setView(this);
+        semesterGradesPresenter.setView(this);
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        gpaPresenter.onStart();
+        semesterGradesPresenter.onStart();
     }
 
     private void setupToolbar() {
@@ -93,9 +95,9 @@ public class GpaFragment
     }
 
     @Override
-    public void showGpa(Gpa gpa) {
-        gpaItemAdapter.setData(gpa.getCpis());
+    public void showSemesterGrades(List<SemesterGrade> semesterGrades) {
+        semesterGradeItemAdapter.setData(semesterGrades);
         recyclerViewGpa.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerViewGpa.setAdapter(gpaItemAdapter);
+        recyclerViewGpa.setAdapter(semesterGradeItemAdapter);
     }
 }

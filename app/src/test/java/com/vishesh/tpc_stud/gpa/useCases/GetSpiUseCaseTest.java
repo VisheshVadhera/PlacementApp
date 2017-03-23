@@ -16,9 +16,9 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.verifyZeroInteractions;
 
 @RunWith(MockitoJUnitRunner.class)
-public class GetGpaUseCaseTest {
+public class GetSpiUseCaseTest {
 
-    private GetGpaUseCase getGpaUseCase;
+    private GetSemesterGradesUseCase getSemesterGradesUseCase;
 
     @Mock
     private Scheduler jobScheduler;
@@ -29,7 +29,7 @@ public class GetGpaUseCaseTest {
 
     @Before
     public void setup() {
-        getGpaUseCase = new GetGpaUseCase(jobScheduler,
+        getSemesterGradesUseCase = new GetSemesterGradesUseCase(jobScheduler,
                 postJobScheduler, userRepository);
     }
 
@@ -38,9 +38,9 @@ public class GetGpaUseCaseTest {
 
         Integer userId = anyInt();
 
-        getGpaUseCase.buildSingle(userId, new Object());
+        getSemesterGradesUseCase.buildSingle(userId, new Object());
 
-        verify(userRepository).getGpa(userId);
+        verify(userRepository).getSemesterGrades(userId);
         verifyNoMoreInteractions(userRepository);
         verifyZeroInteractions(jobScheduler);
         verifyZeroInteractions(postJobScheduler);

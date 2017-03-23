@@ -61,7 +61,7 @@
             android:exported="true"
             android:label="@string/title_activity_network_profiles"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".gpa.views.GpaActivity"></activity>
+        <activity android:name=".gpa.views.SemesterGradesActivity"></activity>
     </application>
 
 </manifest>

@@ -7,39 +7,39 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.vishesh.tpc_stud.R;
-import com.vishesh.tpc_stud.gpa.models.Cpi;
+import com.vishesh.tpc_stud.gpa.models.SemesterGrade;
 
 import java.util.List;
 
 import butterknife.ButterKnife;
 
-public class GpaItemAdapter extends RecyclerView.Adapter<GpaItemAdapter.ViewHolder> {
+public class SemesterGradeItemAdapter extends RecyclerView.Adapter<SemesterGradeItemAdapter.ViewHolder> {
 
     private final Context context;
-    private List<Cpi> cpis;
+    private List<SemesterGrade> semesterGrades;
 
-    public GpaItemAdapter(Context context) {
+    public SemesterGradeItemAdapter(Context context) {
         this.context = context;
     }
 
-    public void setData(List<Cpi> cpis) {
-        this.cpis = cpis;
+    public void setData(List<SemesterGrade> semesterGrades) {
+        this.semesterGrades = semesterGrades;
     }
 
     @Override
-    public GpaItemAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public SemesterGradeItemAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.layout_gpa_item, parent);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(GpaItemAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(SemesterGradeItemAdapter.ViewHolder holder, int position) {
 
     }
 
     @Override
     public int getItemCount() {
-        return cpis.size();
+        return semesterGrades.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

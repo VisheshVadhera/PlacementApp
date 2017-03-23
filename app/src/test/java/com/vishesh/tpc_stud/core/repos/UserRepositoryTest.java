@@ -96,8 +96,8 @@ public class UserRepositoryTest {
     @Test
     public void testGetGpa() {
 
-        userRepository.getGpa(MOCK_USER_ID);
+        userRepository.getSemesterGrades(MOCK_USER_ID);
 
-        verify(userService).getGpa(MOCK_USER_ID);
+        verify(userService).getSemesterGrades(MOCK_USER_ID);
     }
 }

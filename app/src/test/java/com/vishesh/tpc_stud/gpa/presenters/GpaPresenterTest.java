@@ -1,8 +1,7 @@
 package com.vishesh.tpc_stud.gpa.presenters;
 
 import com.vishesh.tpc_stud.core.repos.LocalCache;
-import com.vishesh.tpc_stud.gpa.presenters.GpaPresenter;
-import com.vishesh.tpc_stud.gpa.useCases.GetGpaUseCase;
+import com.vishesh.tpc_stud.gpa.useCases.GetSemesterGradesUseCase;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -19,30 +18,30 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class GpaPresenterTest {
 
-    private GpaPresenter gpaPresenter;
+    private SemesterGradesPresenter semesterGradesPresenter;
 
     @Mock
-    private GpaPresenter.GpaView gpaView;
+    private SemesterGradesPresenter.SemesterGradesView semesterGradesView;
     @Mock
     private LocalCache localCache;
     @Mock
-    private GetGpaUseCase getGpaUseCase;
+    private GetSemesterGradesUseCase getSemesterGradesUseCase;
 
 
     @Before
     public void setUp() throws Exception {
-        gpaPresenter = new GpaPresenter(localCache, getGpaUseCase);
-        gpaPresenter.setView(gpaView);
+        semesterGradesPresenter = new SemesterGradesPresenter(localCache, getSemesterGradesUseCase);
+        semesterGradesPresenter.setView(semesterGradesView);
     }
 
     @Test
     @SuppressWarnings("unchecked")
     public void onStart_getGpa() throws Exception {
 
-        gpaPresenter.onStart();
+        semesterGradesPresenter.onStart();
 
-        verify(gpaView).showLoader();
-        verify(getGpaUseCase).execute(any(DisposableSingleObserver.class),
+        verify(semesterGradesView).showLoader();
+        verify(getSemesterGradesUseCase).execute(any(DisposableSingleObserver.class),
                 anyInt(), any(Object.class));
     }
 

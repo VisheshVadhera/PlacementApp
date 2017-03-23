@@ -3,7 +3,7 @@ package com.vishesh.tpc_stud.auth.services;
 import com.vishesh.tpc_stud.core.models.User;
 import com.vishesh.tpc_stud.dashboard.models.NetworkProfile;
 import com.vishesh.tpc_stud.dashboard.models.UserProfile;
-import com.vishesh.tpc_stud.gpa.models.Gpa;
+import com.vishesh.tpc_stud.gpa.models.SemesterGrade;
 
 import java.util.List;
 
@@ -36,5 +36,5 @@ public interface UserService {
                                               @Body NetworkProfile networkProfile);
 
     @GET("users/{userId}/profile/gpa")
-    Single<Gpa> getGpa(@Path("userId") int userId);
+    Single<List<SemesterGrade>> getSemesterGrades(@Path("userId") int userId);
 }

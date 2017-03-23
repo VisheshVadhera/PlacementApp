@@ -8,7 +8,7 @@ import com.vishesh.tpc_stud.dashboard.models.Degree;
 import com.vishesh.tpc_stud.dashboard.models.Network;
 import com.vishesh.tpc_stud.dashboard.models.NetworkProfile;
 import com.vishesh.tpc_stud.dashboard.models.UserProfile;
-import com.vishesh.tpc_stud.gpa.models.Gpa;
+import com.vishesh.tpc_stud.gpa.models.SemesterGrade;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,19 +82,19 @@ public class MockUserService implements UserService {
 
     @Override
     public Single<NetworkProfile> saveNetworkProfile(@Path("userId") Integer userId, @Body NetworkProfile networkProfile) {
-        return delegate.returningResponse(getStubGithubNetworkProfile())
+        return delegate.returningResponse(getStubGitHubNetworkProfile())
                 .saveNetworkProfile(userId, networkProfile);
     }
 
     @Override
-    public Single<Gpa> getGpa(@Path("userId") int userId) {
+    public Single<List<SemesterGrade>> getSemesterGrades(@Path("userId") int userId) {
         return null;
     }
 
     private List<NetworkProfile> getStubNetworkProfiles() {
         List<NetworkProfile> networkProfiles = new ArrayList<>();
 
-        NetworkProfile networkProfile = getStubGithubNetworkProfile();
+        NetworkProfile networkProfile = getStubGitHubNetworkProfile();
 
         NetworkProfile networkProfile1 = getStubLinkedInNetworkProfile();
 
@@ -105,7 +105,7 @@ public class MockUserService implements UserService {
     }
 
     @NonNull
-    private NetworkProfile getStubGithubNetworkProfile() {
+    private NetworkProfile getStubGitHubNetworkProfile() {
         NetworkProfile networkProfile = new NetworkProfile();
         networkProfile.setNetwork(Network.GITHUB);
         networkProfile.setUrl("https://github.com");

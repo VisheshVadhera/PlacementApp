@@ -4,7 +4,7 @@ import com.vishesh.tpc_stud.auth.views.LoginFragment;
 import com.vishesh.tpc_stud.dashboard.views.DashboardFragment;
 import com.vishesh.tpc_stud.dashboard.views.ProfileFragment;
 import com.vishesh.tpc_stud.dashboard.views.RecruitersFragment;
-import com.vishesh.tpc_stud.gpa.views.GpaFragment;
+import com.vishesh.tpc_stud.gpa.views.SemesterGradesFragment;
 import com.vishesh.tpc_stud.networkProfiles.views.NetworkProfilesFragment;
 import com.vishesh.tpc_stud.splash.views.SplashFragment;
 
@@ -22,5 +22,5 @@ public interface TpcStudAppComponent {
 
     void inject(NetworkProfilesFragment networkProfilesFragment);
 
-    void inject(GpaFragment gpaFragment);
+    void inject(SemesterGradesFragment semesterGradesFragment);
 }

@@ -6,7 +6,7 @@ import com.vishesh.tpc_stud.auth.services.UserService;
 import com.vishesh.tpc_stud.core.models.User;
 import com.vishesh.tpc_stud.dashboard.models.NetworkProfile;
 import com.vishesh.tpc_stud.dashboard.models.UserProfile;
-import com.vishesh.tpc_stud.gpa.models.Gpa;
+import com.vishesh.tpc_stud.gpa.models.SemesterGrade;
 
 import java.util.List;
 import java.util.Map;
@@ -55,7 +55,7 @@ public class UserRepository {
         return userService.saveNetworkProfile(userId, networkProfile);
     }
 
-    public Single<Gpa> getGpa(int userId) {
-        return userService.getGpa(userId);
+    public Single<List<SemesterGrade>> getSemesterGrades(int userId) {
+        return userService.getSemesterGrades(userId);
     }
 }

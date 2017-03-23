@@ -5,7 +5,7 @@ import android.os.Bundle;
 import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.core.views.BaseActivity;
 
-public class GpaActivity extends BaseActivity {
+public class SemesterGradesActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -13,7 +13,7 @@ public class GpaActivity extends BaseActivity {
         setContentView(R.layout.activity_gpa);
 
         if (savedInstanceState == null) {
-            addFragment(R.id.fragment_container, new GpaFragment());
+            addFragment(R.id.fragment_container, new SemesterGradesFragment());
         }
     }
 }
