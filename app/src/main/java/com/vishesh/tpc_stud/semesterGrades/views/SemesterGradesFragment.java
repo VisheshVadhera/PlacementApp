@@ -34,23 +34,22 @@ public class SemesterGradesFragment
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @BindView(R.id.recycler_view_gpa)
-    RecyclerView recyclerViewGpa;
+    @BindView(R.id.recycler_view_semester_grades)
+    RecyclerView recyclerViewSemesterGrades;
 
-    private SemesterGradeItemAdapter semesterGradeItemAdapter;
-
+    @Inject
+    SemesterGradeItemAdapter semesterGradeItemAdapter;
     @Inject
     SemesterGradesPresenter semesterGradesPresenter;
 
     public static Intent createIntent(Context context) {
-        return new Intent(context, SemesterGradesFragment.class);
+        return new Intent(context, SemesterGradesActivity.class);
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
-        semesterGradeItemAdapter = new SemesterGradeItemAdapter(getContext());
     }
 
     @Nullable
@@ -84,7 +83,7 @@ public class SemesterGradesFragment
                 .color(ContextCompat.getColor(getContext(), android.R.color.white));
 
         if (actionBar != null) {
-            actionBar.setTitle(R.string.title_activity_gpa);
+            actionBar.setTitle(R.string.title_activity_semester_grades);
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeAsUpIndicator(iconicsDrawable);
         }
@@ -97,13 +96,13 @@ public class SemesterGradesFragment
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_gpa;
+        return R.layout.fragment_semester_grades;
     }
 
     @Override
     public void showSemesterGrades(List<SemesterGrade> semesterGrades) {
         semesterGradeItemAdapter.setData(semesterGrades);
-        recyclerViewGpa.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerViewGpa.setAdapter(semesterGradeItemAdapter);
+        recyclerViewSemesterGrades.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerViewSemesterGrades.setAdapter(semesterGradeItemAdapter);
     }
 }

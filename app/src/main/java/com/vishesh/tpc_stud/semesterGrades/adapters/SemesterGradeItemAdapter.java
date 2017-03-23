@@ -12,6 +12,8 @@ import com.vishesh.tpc_stud.semesterGrades.models.SemesterGrade;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -21,6 +23,7 @@ public class SemesterGradeItemAdapter extends RecyclerView.Adapter<SemesterGrade
 
     private List<SemesterGrade> semesterGrades;
 
+    @Inject
     public SemesterGradeItemAdapter(Context context) {
         this.context = context;
     }
@@ -31,7 +34,7 @@ public class SemesterGradeItemAdapter extends RecyclerView.Adapter<SemesterGrade
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.layout_profile_item, parent);
+        View view = LayoutInflater.from(context).inflate(R.layout.layout_profile_item, parent, false);
         return new ViewHolder(view);
     }
 

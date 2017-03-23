@@ -61,7 +61,11 @@
             android:exported="true"
             android:label="@string/title_activity_network_profiles"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".semesterGrades.views.SemesterGradesActivity"></activity>
+        <activity
+            android:name=".semesterGrades.views.SemesterGradesActivity"
+            android:exported="true"
+            android:label="@string/title_activity_semester_grades"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

@@ -57,4 +57,11 @@ public class ProfilePresenterTest {
         verify(profileView).openNetworkProfilesScreen();
     }
 
+    @Test
+    public void onGpaTapped() throws Exception {
+
+        profilePresenter.onGpaTapped();
+
+        verify(profileView).openSemesterGradesScreen();
+    }
 }

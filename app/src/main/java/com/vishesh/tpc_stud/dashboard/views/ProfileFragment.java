@@ -18,10 +18,12 @@ import com.vishesh.tpc_stud.core.utils.FileUtils;
 import com.vishesh.tpc_stud.core.views.BaseFragment;
 import com.vishesh.tpc_stud.dashboard.adapters.ProfileItemAdapter;
 import com.vishesh.tpc_stud.dashboard.busEvents.CvTapEvent;
+import com.vishesh.tpc_stud.dashboard.busEvents.GpaTappedEvent;
 import com.vishesh.tpc_stud.dashboard.busEvents.NetworkProfileTapEvent;
 import com.vishesh.tpc_stud.dashboard.models.UserProfile;
 import com.vishesh.tpc_stud.dashboard.presenters.ProfilePresenter;
 import com.vishesh.tpc_stud.networkProfiles.views.NetworkProfilesFragment;
+import com.vishesh.tpc_stud.semesterGrades.views.SemesterGradesFragment;
 
 import java.io.File;
 
@@ -105,6 +107,12 @@ public class ProfileFragment
         startActivity(networkProfilesIntent);
     }
 
+    @Override
+    public void openSemesterGradesScreen() {
+        Intent semesterGradesIntent = SemesterGradesFragment.createIntent(getContext());
+        startActivity(semesterGradesIntent);
+    }
+
     @NeedsPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
     void showFileChooser(String fileType) {
         Intent fileChooserIntent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -156,6 +164,8 @@ public class ProfileFragment
                 profilePresenter.onCvTapped();
             } else if (event instanceof NetworkProfileTapEvent) {
                 profilePresenter.onNetworkProfileTapped();
+            } else if (event instanceof GpaTappedEvent) {
+                profilePresenter.onGpaTapped();
             }
         }
     }

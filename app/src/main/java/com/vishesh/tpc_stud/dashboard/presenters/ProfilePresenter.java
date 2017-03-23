@@ -88,6 +88,10 @@ public class ProfilePresenter
 
     }
 
+    public void onGpaTapped() {
+        profileView.openSemesterGradesScreen();
+    }
+
     public interface ProfileView extends BaseView {
 
         void showProfile(User user, UserProfile userProfile);
@@ -97,6 +101,8 @@ public class ProfilePresenter
         void openPdfViewer(String pdfUrl);
 
         void openNetworkProfilesScreen();
+
+        void openSemesterGradesScreen();
     }
 
     private final class ProfileObserver extends DisposableSingleObserver<UserProfile> {

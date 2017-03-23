@@ -105,7 +105,7 @@ public class DashboardActivityTest {
 
     /**
      * Covers the following:
-     *
+     * <p>
      * Click on the profile tab, then click on the network profile item, network profiles screen should be opened.
      */
     @Test
