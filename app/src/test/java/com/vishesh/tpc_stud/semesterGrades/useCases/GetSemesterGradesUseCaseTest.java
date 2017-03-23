@@ -1,4 +1,4 @@
-package com.vishesh.tpc_stud.gpa.useCases;
+package com.vishesh.tpc_stud.semesterGrades.useCases;
 
 import com.vishesh.tpc_stud.core.repos.UserRepository;
 
@@ -16,7 +16,7 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.verifyZeroInteractions;
 
 @RunWith(MockitoJUnitRunner.class)
-public class GetSpiUseCaseTest {
+public class GetSemesterGradesUseCaseTest {
 
     private GetSemesterGradesUseCase getSemesterGradesUseCase;
 

@@ -1,4 +1,4 @@
-package com.vishesh.tpc_stud.gpa.views;
+package com.vishesh.tpc_stud.semesterGrades.views;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,9 +18,9 @@ import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.core.views.BaseFragment;
-import com.vishesh.tpc_stud.gpa.adapters.SemesterGradeItemAdapter;
-import com.vishesh.tpc_stud.gpa.models.SemesterGrade;
-import com.vishesh.tpc_stud.gpa.presenters.SemesterGradesPresenter;
+import com.vishesh.tpc_stud.semesterGrades.adapters.SemesterGradeItemAdapter;
+import com.vishesh.tpc_stud.semesterGrades.models.SemesterGrade;
+import com.vishesh.tpc_stud.semesterGrades.presenters.SemesterGradesPresenter;
 
 import java.util.List;
 
@@ -46,12 +46,18 @@ public class SemesterGradesFragment
         return new Intent(context, SemesterGradesFragment.class);
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+        semesterGradeItemAdapter = new SemesterGradeItemAdapter(getContext());
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = super.onCreateView(inflater, container, savedInstanceState);
         setupToolbar();
-        semesterGradeItemAdapter = new SemesterGradeItemAdapter(getContext());
         return view;
     }
 

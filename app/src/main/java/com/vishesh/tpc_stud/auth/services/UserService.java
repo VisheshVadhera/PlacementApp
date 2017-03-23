@@ -3,7 +3,7 @@ package com.vishesh.tpc_stud.auth.services;
 import com.vishesh.tpc_stud.core.models.User;
 import com.vishesh.tpc_stud.dashboard.models.NetworkProfile;
 import com.vishesh.tpc_stud.dashboard.models.UserProfile;
-import com.vishesh.tpc_stud.gpa.models.SemesterGrade;
+import com.vishesh.tpc_stud.semesterGrades.models.SemesterGrade;
 
 import java.util.List;
 

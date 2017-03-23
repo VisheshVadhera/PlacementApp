@@ -1,4 +1,4 @@
-package com.vishesh.tpc_stud.gpa.views;
+package com.vishesh.tpc_stud.semesterGrades.views;
 
 import android.os.Bundle;
 

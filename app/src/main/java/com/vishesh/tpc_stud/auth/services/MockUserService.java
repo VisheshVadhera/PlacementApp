@@ -8,7 +8,7 @@ import com.vishesh.tpc_stud.dashboard.models.Degree;
 import com.vishesh.tpc_stud.dashboard.models.Network;
 import com.vishesh.tpc_stud.dashboard.models.NetworkProfile;
 import com.vishesh.tpc_stud.dashboard.models.UserProfile;
-import com.vishesh.tpc_stud.gpa.models.SemesterGrade;
+import com.vishesh.tpc_stud.semesterGrades.models.SemesterGrade;
 
 import java.util.ArrayList;
 import java.util.List;

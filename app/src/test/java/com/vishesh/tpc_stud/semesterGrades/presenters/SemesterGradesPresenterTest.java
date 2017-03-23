@@ -1,7 +1,7 @@
-package com.vishesh.tpc_stud.gpa.presenters;
+package com.vishesh.tpc_stud.semesterGrades.presenters;
 
 import com.vishesh.tpc_stud.core.repos.LocalCache;
-import com.vishesh.tpc_stud.gpa.useCases.GetSemesterGradesUseCase;
+import com.vishesh.tpc_stud.semesterGrades.useCases.GetSemesterGradesUseCase;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +16,7 @@ import static org.mockito.Mockito.anyInt;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
-public class GpaPresenterTest {
+public class SemesterGradesPresenterTest {
 
     private SemesterGradesPresenter semesterGradesPresenter;
 
