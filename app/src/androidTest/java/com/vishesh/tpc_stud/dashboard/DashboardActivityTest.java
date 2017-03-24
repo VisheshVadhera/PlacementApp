@@ -30,6 +30,7 @@ import static android.support.test.espresso.Espresso.openActionBarOverflowOrOpti
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.swipeLeft;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
 import static android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayingAtLeast;
@@ -133,6 +134,32 @@ public class DashboardActivityTest {
                                 Matchers.<CharSequence>is(s))));
     }
 
+    @Test
+    public void onProfileTabClicked_onGpaItemClicked_openSemesterGradesScreen() {
+
+        ViewInteraction viewPager = onView(
+                allOf(withId(R.id.view_pager_dashboard), isDisplayed()));
+        viewPager.perform(withCustomConstraints(swipeLeft(), isDisplayingAtLeast(85)));
+
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        ViewInteraction recyclerView = onView(
+                allOf(withId(R.id.recycler_view_profile), isDisplayed()));
+        recyclerView.perform(actionOnItemAtPosition(1, click()));
+
+        String s = dashboardActivityActivityTestRule
+                .getActivity()
+                .getString(R.string.title_activity_semester_grades);
+
+        onView(isAssignableFrom(Toolbar.class))
+                .check(matches(
+                        withToolbarTitle(
+                                Matchers.<CharSequence>is(s))));
+    }
 
     @After
     public void unregisterIdlingResource() {

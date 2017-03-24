@@ -196,7 +196,7 @@ public class NetworkProfilesFragment
     }
 
     private FloatingActionButton createFab(@StringRes int titleRes) {
-        FloatingActionButton actionButton = new FloatingActionButton(getActivity().getBaseContext());
+        FloatingActionButton actionButton = new FloatingActionButton(getActivity());
         actionButton.setTitle(getString(titleRes));
         actionButton.setColorNormalResId(android.R.color.white);
         actionButton.setColorPressedResId(R.color.white_pressed);

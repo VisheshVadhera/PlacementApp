@@ -109,7 +109,7 @@ public class ProfileFragment
 
     @Override
     public void openSemesterGradesScreen() {
-        Intent semesterGradesIntent = SemesterGradesFragment.createIntent(getContext());
+        Intent semesterGradesIntent = SemesterGradesFragment.createIntent(getActivity());
         startActivity(semesterGradesIntent);
     }
 
