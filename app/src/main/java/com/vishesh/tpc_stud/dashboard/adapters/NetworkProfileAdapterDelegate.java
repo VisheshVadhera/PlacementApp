@@ -79,12 +79,12 @@ public class NetworkProfileAdapterDelegate extends AdapterDelegate<List<NetworkP
         @BindView(R.id.image_network_profile_item)
         ImageView imageNetworkProfileNext;
 
-        public NetworkProfileViewHolder(View itemView) {
+        NetworkProfileViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
 
-        @OnClick(R.id.layout_network_profile_item)
+        @OnClick(R.id.image_network_profile_item)
         void onClick() {
             bus.post(new NetworkProfileTapEvent());
         }

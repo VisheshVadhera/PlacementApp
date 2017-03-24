@@ -64,8 +64,7 @@ public class ProfilePresenter
 
     public void onStart() {
         profileView.showLoader();
-        getCurrentUserUseCase.execute(new CurrentUserObserver(), null, null);
-    }
+        getCurrentUserUseCase.execute(new CurrentUserObserver(), new Object(), new Object());}
 
     public void onCvTapped() {
         if (userProfileOptional.isPresent()) {

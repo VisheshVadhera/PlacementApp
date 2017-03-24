@@ -39,7 +39,6 @@ public abstract class BaseUseCase<Output, Input1, Input2> {
                     }
                 });
         addDisposable(single.subscribeWith(disposableObserver));
-
     }
 
     public void dispose() {
