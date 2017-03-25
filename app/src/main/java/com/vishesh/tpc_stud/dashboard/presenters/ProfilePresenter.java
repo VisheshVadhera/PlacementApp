@@ -4,7 +4,6 @@ package com.vishesh.tpc_stud.dashboard.presenters;
 import android.text.TextUtils;
 
 import com.fernandocejas.arrow.optional.Optional;
-import com.orhanobut.logger.Logger;
 import com.vishesh.tpc_stud.auth.useCases.GetCurrentUserUseCase;
 import com.vishesh.tpc_stud.core.models.User;
 import com.vishesh.tpc_stud.core.presenters.BasePresenter;
@@ -53,7 +52,6 @@ public class ProfilePresenter
     }
 
     public void setProfileView(ProfileView profileView) {
-        Logger.v("Setting view");
         this.profileView = profileView;
     }
 
@@ -65,9 +63,7 @@ public class ProfilePresenter
     public void destroy() {
         getCurrentUserUseCase.dispose();
         getProfileUseCase.dispose();
-        Logger.v("Before setting view as null");
         profileView = null;
-        Logger.v("After setting view as null");
     }
 
     public void onCvTapped() {

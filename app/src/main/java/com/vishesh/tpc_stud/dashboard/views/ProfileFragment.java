@@ -11,7 +11,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.orhanobut.logger.Logger;
 import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.core.helpers.Bus;
 import com.vishesh.tpc_stud.core.models.User;
@@ -68,7 +67,6 @@ public class ProfileFragment
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        Logger.d("onViewCreated");
         super.onViewCreated(view, savedInstanceState);
         profilePresenter.setProfileView(this);
         if (savedInstanceState == null) {
@@ -78,21 +76,18 @@ public class ProfileFragment
 
     @Override
     public void onResume() {
-        Logger.d("onResume");
         super.onResume();
         profilePresenter.resume();
     }
 
     @Override
     public void onPause() {
-        Logger.d("onPause");
         super.onPause();
         profilePresenter.pause();
     }
 
     @Override
     public void onDestroyView() {
-        Logger.d("onDestroyView");
         super.onDestroyView();
         recyclerViewProfile.setAdapter(null);
         unbinder.unbind();
@@ -100,7 +95,6 @@ public class ProfileFragment
 
     @Override
     public void onStart() {
-        Logger.d("onStart");
         super.onStart();
         bus.asFlowable()
                 .subscribe(new BusEventConsumer());
@@ -108,7 +102,6 @@ public class ProfileFragment
 
     @Override
     public void onDestroy() {
-        Logger.d("onDestroy");
         super.onDestroy();
         profilePresenter.destroy();
     }

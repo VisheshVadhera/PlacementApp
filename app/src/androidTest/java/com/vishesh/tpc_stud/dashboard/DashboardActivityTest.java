@@ -53,6 +53,7 @@ public class DashboardActivityTest {
      * 4. Click on the network profile item and a screen containing the all network profiles should be made visible //TODO
      * 5. Click on the resume upload button and the file upload should begin. //TODO
      * 6. Click on the profile tab, then click on the network profile item, network profiles screen should be opened.
+     * 7. Click on the profile tab, then click on the gpa item, semester grades screen should be opened.
      */
 
     @Rule
@@ -134,6 +135,11 @@ public class DashboardActivityTest {
                                 Matchers.<CharSequence>is(s))));
     }
 
+    /**
+     * Covers the following:
+     * <p>
+     * Click on the profile tab, then click on the gpa item, semester grades screen should be opened.
+     */
     @Test
     public void onProfileTabClicked_onGpaItemClicked_openSemesterGradesScreen() {
 
