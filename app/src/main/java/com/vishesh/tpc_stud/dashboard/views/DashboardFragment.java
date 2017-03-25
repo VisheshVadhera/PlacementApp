@@ -50,6 +50,10 @@ public class DashboardFragment
     @Inject
     DashboardPresenter dashboardPresenter;
 
+    public DashboardFragment() {
+        setRetainInstance(true);
+    }
+
     public static Intent createIntent(Context context) {
         return new Intent(context, DashboardActivity.class);
     }
@@ -76,19 +80,40 @@ public class DashboardFragment
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         dashboardPresenter.setView(this);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        dashboardPresenter.onStart();
+        if (savedInstanceState == null) {
+            loadData();
+        }
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_dashboard, menu);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        dashboardPresenter.pause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        dashboardPresenter.resume();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        viewPager.setAdapter(null);
+        unbinder.unbind();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        dashboardPresenter.destroy();
     }
 
     @Override
@@ -179,5 +204,9 @@ public class DashboardFragment
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_dashboard;
+    }
+
+    private void loadData() {
+        dashboardPresenter.initialize();
     }
 }
