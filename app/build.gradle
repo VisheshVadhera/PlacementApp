@@ -146,11 +146,7 @@ dependencies {
 
     compile "com.android.support.test.espresso:espresso-idling-resource:${espressoVersion}"
 
-    androidTestCompile ('com.jakewharton.espresso:okhttp3-idling-resource:1.0.0'){
-        exclude group: 'com.squareup.okio', module: 'okio'
-        exclude group: 'com.squareup.okhttp3', module: 'okhttp'
-        exclude group: 'com.android.support', module: 'support-annotations'
-    }
+    compile 'com.orhanobut:logger:1.15'
 
     //For floating action button menu
     compile 'com.getbase:floatingactionbutton:1.10.1'
@@ -193,7 +189,9 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
 
-    androidTestCompile('com.squareup.assertj:assertj-android:1.1.1') {
+    androidTestCompile ('com.jakewharton.espresso:okhttp3-idling-resource:1.0.0'){
+        exclude group: 'com.squareup.okio', module: 'okio'
+        exclude group: 'com.squareup.okhttp3', module: 'okhttp'
         exclude group: 'com.android.support', module: 'support-annotations'
     }
 

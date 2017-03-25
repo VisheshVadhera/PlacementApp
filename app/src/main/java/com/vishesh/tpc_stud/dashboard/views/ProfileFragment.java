@@ -11,15 +11,16 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.orhanobut.logger.Logger;
 import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.core.helpers.Bus;
 import com.vishesh.tpc_stud.core.models.User;
 import com.vishesh.tpc_stud.core.utils.FileUtils;
 import com.vishesh.tpc_stud.core.views.BaseFragment;
+import com.vishesh.tpc_stud.dashboard.adapters.GpaAdapterDelegate;
+import com.vishesh.tpc_stud.dashboard.adapters.NetworkProfileAdapterDelegate;
 import com.vishesh.tpc_stud.dashboard.adapters.ProfileItemAdapter;
 import com.vishesh.tpc_stud.dashboard.busEvents.CvTapEvent;
-import com.vishesh.tpc_stud.dashboard.busEvents.GpaTappedEvent;
-import com.vishesh.tpc_stud.dashboard.busEvents.NetworkProfileTapEvent;
 import com.vishesh.tpc_stud.dashboard.models.UserProfile;
 import com.vishesh.tpc_stud.dashboard.presenters.ProfilePresenter;
 import com.vishesh.tpc_stud.networkProfiles.views.NetworkProfilesFragment;
@@ -39,7 +40,9 @@ import permissions.dispatcher.RuntimePermissions;
 @RuntimePermissions
 public class ProfileFragment
         extends BaseFragment
-        implements ProfilePresenter.ProfileView {
+        implements ProfilePresenter.ProfileView,
+        GpaAdapterDelegate.GpaClickListener,
+        NetworkProfileAdapterDelegate.NetworkProfileClickListener{
 
     private static final int FILE_SELECT_REQUEST_CODE = 1001;
 
@@ -65,6 +68,7 @@ public class ProfileFragment
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        Logger.d("onViewCreated");
         super.onViewCreated(view, savedInstanceState);
         profilePresenter.setProfileView(this);
         if (savedInstanceState == null) {
@@ -74,18 +78,21 @@ public class ProfileFragment
 
     @Override
     public void onResume() {
+        Logger.d("onResume");
         super.onResume();
         profilePresenter.resume();
     }
 
     @Override
     public void onPause() {
+        Logger.d("onPause");
         super.onPause();
         profilePresenter.pause();
     }
 
     @Override
     public void onDestroyView() {
+        Logger.d("onDestroyView");
         super.onDestroyView();
         recyclerViewProfile.setAdapter(null);
         unbinder.unbind();
@@ -93,6 +100,7 @@ public class ProfileFragment
 
     @Override
     public void onStart() {
+        Logger.d("onStart");
         super.onStart();
         bus.asFlowable()
                 .subscribe(new BusEventConsumer());
@@ -100,6 +108,7 @@ public class ProfileFragment
 
     @Override
     public void onDestroy() {
+        Logger.d("onDestroy");
         super.onDestroy();
         profilePresenter.destroy();
     }
@@ -114,6 +123,9 @@ public class ProfileFragment
         profileItemAdapter.setData(user, userProfile);
         recyclerViewProfile.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerViewProfile.setAdapter(profileItemAdapter);
+
+        profileItemAdapter.setGpaClickListener(this);
+        profileItemAdapter.setNetworkProfileClickListener(this);
     }
 
     @Override
@@ -187,17 +199,27 @@ public class ProfileFragment
         profilePresenter.initialize();
     }
 
+    @Override
+    public void onGpaClicked() {
+        profilePresenter.onGpaTapped();
+    }
+
+    @Override
+    public void onNetworkProfileClicked() {
+        profilePresenter.onNetworkProfileTapped();
+    }
+
     private class BusEventConsumer implements Consumer<Object> {
 
         @Override
         public void accept(Object event) throws Exception {
             if (event instanceof CvTapEvent) {
                 profilePresenter.onCvTapped();
-            } else if (event instanceof NetworkProfileTapEvent) {
+            } /*else if (event instanceof NetworkProfileTapEvent) {
                 profilePresenter.onNetworkProfileTapped();
             } else if (event instanceof GpaTappedEvent) {
                 profilePresenter.onGpaTapped();
-            }
+            }*/
         }
     }
 }

@@ -9,9 +9,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.hannesdorfmann.adapterdelegates3.AdapterDelegate;
+import com.orhanobut.logger.Logger;
 import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.core.helpers.Bus;
-import com.vishesh.tpc_stud.dashboard.busEvents.GpaTappedEvent;
 import com.vishesh.tpc_stud.dashboard.models.UserProfile;
 
 import java.util.List;
@@ -26,6 +26,8 @@ public class GpaAdapterDelegate extends AdapterDelegate<UserProfile> {
 
     private final Context context;
     private final Bus bus;
+
+    private GpaClickListener gpaClickListener;
 
     @Inject
     public GpaAdapterDelegate(Context context,
@@ -58,6 +60,10 @@ public class GpaAdapterDelegate extends AdapterDelegate<UserProfile> {
         gpaViewHolder.textGpaValue.setText(userProfile.getGpa().toString());
     }
 
+    public void setGpaClickListener(GpaClickListener gpaClickListener) {
+        this.gpaClickListener = gpaClickListener;
+    }
+
     class GpaViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.text_profile_item_label)
@@ -71,9 +77,14 @@ public class GpaAdapterDelegate extends AdapterDelegate<UserProfile> {
         }
 
         @OnClick(R.id.layout_profile_item)
-        public void onClick(){
-            bus.post(new GpaTappedEvent());
+        public void onClick() {
+            Logger.v("gpaClickListener tapped");
+            gpaClickListener.onGpaClicked();
         }
 
+    }
+
+    public interface GpaClickListener {
+        void onGpaClicked();
     }
 }
