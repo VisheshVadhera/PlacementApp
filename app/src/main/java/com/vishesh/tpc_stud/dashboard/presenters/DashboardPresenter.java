@@ -38,7 +38,7 @@ public class DashboardPresenter extends BasePresenter {
         this.dashboardView = dashboardView;
     }
 
-    public void onStart() {
+    public void initialize() {
         dashboardView.showLoader();
 
         getCurrentUserUseCase.execute(new CurrentUserObserver(), null, null);

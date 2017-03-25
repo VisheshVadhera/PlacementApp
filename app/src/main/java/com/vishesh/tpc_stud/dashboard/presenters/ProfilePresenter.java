@@ -51,20 +51,19 @@ public class ProfilePresenter
 
     }
 
+    public void setProfileView(ProfileView profileView) {
+        this.profileView = profileView;
+    }
+
+    public void initialize() {
+        profileView.showLoader();
+        getCurrentUserUseCase.execute(new CurrentUserObserver(), new Object(), new Object());}
+
     @Override
     public void destroy() {
         getCurrentUserUseCase.dispose();
         getProfileUseCase.dispose();
         profileView = null;
-    }
-
-    public void setProfileView(ProfileView profileView) {
-        this.profileView = profileView;
-    }
-
-    public void onStart() {
-        profileView.showLoader();
-        getCurrentUserUseCase.execute(new CurrentUserObserver(), null, null);
     }
 
     public void onCvTapped() {
@@ -88,6 +87,10 @@ public class ProfilePresenter
 
     }
 
+    public void onGpaTapped() {
+        profileView.openSemesterGradesScreen();
+    }
+
     public interface ProfileView extends BaseView {
 
         void showProfile(User user, UserProfile userProfile);
@@ -97,6 +100,8 @@ public class ProfilePresenter
         void openPdfViewer(String pdfUrl);
 
         void openNetworkProfilesScreen();
+
+        void openSemesterGradesScreen();
     }
 
     private final class ProfileObserver extends DisposableSingleObserver<UserProfile> {

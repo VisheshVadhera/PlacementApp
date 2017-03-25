@@ -16,12 +16,14 @@ import com.vishesh.tpc_stud.core.helpers.Bus;
 import com.vishesh.tpc_stud.core.models.User;
 import com.vishesh.tpc_stud.core.utils.FileUtils;
 import com.vishesh.tpc_stud.core.views.BaseFragment;
+import com.vishesh.tpc_stud.dashboard.adapters.GpaAdapterDelegate;
+import com.vishesh.tpc_stud.dashboard.adapters.NetworkProfileAdapterDelegate;
 import com.vishesh.tpc_stud.dashboard.adapters.ProfileItemAdapter;
 import com.vishesh.tpc_stud.dashboard.busEvents.CvTapEvent;
-import com.vishesh.tpc_stud.dashboard.busEvents.NetworkProfileTapEvent;
 import com.vishesh.tpc_stud.dashboard.models.UserProfile;
 import com.vishesh.tpc_stud.dashboard.presenters.ProfilePresenter;
 import com.vishesh.tpc_stud.networkProfiles.views.NetworkProfilesFragment;
+import com.vishesh.tpc_stud.semesterGrades.views.SemesterGradesFragment;
 
 import java.io.File;
 
@@ -37,7 +39,9 @@ import permissions.dispatcher.RuntimePermissions;
 @RuntimePermissions
 public class ProfileFragment
         extends BaseFragment
-        implements ProfilePresenter.ProfileView {
+        implements ProfilePresenter.ProfileView,
+        GpaAdapterDelegate.GpaClickListener,
+        NetworkProfileAdapterDelegate.NetworkProfileClickListener{
 
     private static final int FILE_SELECT_REQUEST_CODE = 1001;
 
@@ -65,14 +69,41 @@ public class ProfileFragment
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         profilePresenter.setProfileView(this);
+        if (savedInstanceState == null) {
+            loadProfile();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        profilePresenter.resume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        profilePresenter.pause();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        recyclerViewProfile.setAdapter(null);
+        unbinder.unbind();
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        profilePresenter.onStart();
         bus.asFlowable()
                 .subscribe(new BusEventConsumer());
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        profilePresenter.destroy();
     }
 
     @Override
@@ -85,6 +116,9 @@ public class ProfileFragment
         profileItemAdapter.setData(user, userProfile);
         recyclerViewProfile.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerViewProfile.setAdapter(profileItemAdapter);
+
+        profileItemAdapter.setGpaClickListener(this);
+        profileItemAdapter.setNetworkProfileClickListener(this);
     }
 
     @Override
@@ -103,6 +137,12 @@ public class ProfileFragment
     public void openNetworkProfilesScreen() {
         Intent networkProfilesIntent = NetworkProfilesFragment.createIntent(getContext());
         startActivity(networkProfilesIntent);
+    }
+
+    @Override
+    public void openSemesterGradesScreen() {
+        Intent semesterGradesIntent = SemesterGradesFragment.createIntent(getActivity());
+        startActivity(semesterGradesIntent);
     }
 
     @NeedsPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -148,15 +188,31 @@ public class ProfileFragment
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+    private void loadProfile() {
+        profilePresenter.initialize();
+    }
+
+    @Override
+    public void onGpaClicked() {
+        profilePresenter.onGpaTapped();
+    }
+
+    @Override
+    public void onNetworkProfileClicked() {
+        profilePresenter.onNetworkProfileTapped();
+    }
+
     private class BusEventConsumer implements Consumer<Object> {
 
         @Override
         public void accept(Object event) throws Exception {
             if (event instanceof CvTapEvent) {
                 profilePresenter.onCvTapped();
-            } else if (event instanceof NetworkProfileTapEvent) {
+            } /*else if (event instanceof NetworkProfileTapEvent) {
                 profilePresenter.onNetworkProfileTapped();
-            }
+            } else if (event instanceof GpaTappedEvent) {
+                profilePresenter.onGpaTapped();
+            }*/
         }
     }
 }

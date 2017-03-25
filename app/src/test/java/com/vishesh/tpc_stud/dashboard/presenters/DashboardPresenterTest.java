@@ -4,7 +4,6 @@ import com.vishesh.tpc_stud.auth.useCases.GetCurrentUserUseCase;
 import com.vishesh.tpc_stud.auth.useCases.UpdateUserUseCase;
 import com.vishesh.tpc_stud.core.models.User;
 import com.vishesh.tpc_stud.core.repos.LocalCache;
-import com.vishesh.tpc_stud.dashboard.presenters.DashboardPresenter;
 import com.vishesh.tpc_stud.dashboard.useCases.LogoutUseCase;
 
 import org.junit.Before;
@@ -47,7 +46,7 @@ public class DashboardPresenterTest {
     @Test
     @SuppressWarnings("unchecked")
     public void onStart_getCurrentUser() {
-        dashboardPresenter.onStart();
+        dashboardPresenter.initialize();
 
         verify(dashboardView).showLoader();
 

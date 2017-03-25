@@ -32,13 +32,13 @@ android {
     sourceSets {
         main {
             res.srcDirs = [
+                    'src/main/res/semesterGrades',
                     'src/main/res/networkProfiles',
                     'src/main/res/splash',
                     'src/main/res/dashboard',
                     'src/main/res/core',
                     'src/main/res/auth',
-                    'src/main/res'
-            ]
+                    'src/main/res']
         }
     }
 }
@@ -146,11 +146,13 @@ dependencies {
 
     compile "com.android.support.test.espresso:espresso-idling-resource:${espressoVersion}"
 
+    compile 'com.orhanobut:logger:1.15'
+
     //For floating action button menu
     compile 'com.getbase:floatingactionbutton:1.10.1'
 
     // For user input validations
-    compile (group: 'commons-validator', name: 'commons-validator', version: '1.4.0'){
+    compile(group: 'commons-validator', name: 'commons-validator', version: '1.4.0') {
         exclude group: 'commons-logging', module: 'commons-logging'
     }
 
@@ -187,7 +189,9 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
 
-    androidTestCompile('com.squareup.assertj:assertj-android:1.1.1') {
+    androidTestCompile ('com.jakewharton.espresso:okhttp3-idling-resource:1.0.0'){
+        exclude group: 'com.squareup.okio', module: 'okio'
+        exclude group: 'com.squareup.okhttp3', module: 'okhttp'
         exclude group: 'com.android.support', module: 'support-annotations'
     }
 

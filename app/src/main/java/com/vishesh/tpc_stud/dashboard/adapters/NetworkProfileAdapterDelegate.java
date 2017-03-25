@@ -15,7 +15,6 @@ import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.core.helpers.Bus;
-import com.vishesh.tpc_stud.dashboard.busEvents.NetworkProfileTapEvent;
 import com.vishesh.tpc_stud.dashboard.models.NetworkProfile;
 
 import java.util.List;
@@ -31,6 +30,7 @@ public class NetworkProfileAdapterDelegate extends AdapterDelegate<List<NetworkP
     private final Context context;
     private final Bus bus;
 
+    private NetworkProfileClickListener networkProfileClickListener;
 
     @Inject
     public NetworkProfileAdapterDelegate(Context context,
@@ -72,6 +72,10 @@ public class NetworkProfileAdapterDelegate extends AdapterDelegate<List<NetworkP
                 .setImageDrawable(navigateNextIcon);
     }
 
+    public void setNetworkProfileClickListener(NetworkProfileClickListener networkProfileClickListener) {
+        this.networkProfileClickListener = networkProfileClickListener;
+    }
+
     class NetworkProfileViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.text_network_profile_item_label)
@@ -79,15 +83,19 @@ public class NetworkProfileAdapterDelegate extends AdapterDelegate<List<NetworkP
         @BindView(R.id.image_network_profile_item)
         ImageView imageNetworkProfileNext;
 
-        public NetworkProfileViewHolder(View itemView) {
+        NetworkProfileViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
 
-        @OnClick(R.id.layout_network_profile_item)
+        @OnClick(R.id.image_network_profile_item)
         void onClick() {
-            bus.post(new NetworkProfileTapEvent());
+            networkProfileClickListener.onNetworkProfileClicked();
         }
 
+    }
+
+    public interface NetworkProfileClickListener {
+        void onNetworkProfileClicked();
     }
 }

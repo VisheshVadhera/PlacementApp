@@ -7,11 +7,10 @@ import android.support.v4.app.Fragment;
 import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.splash.views.SplashActivity;
 
+import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(AndroidJUnit4.class)
 public class SplashActivityTest {
@@ -28,7 +27,6 @@ public class SplashActivityTest {
                 .getSupportFragmentManager()
                 .findFragmentById(R.id.fragment_container_splash);
 
-        assertThat(splashFragment)
-                .isNotNull();
+        Assert.assertNotNull(splashFragment);
     }
 }

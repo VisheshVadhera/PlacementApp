@@ -47,7 +47,7 @@ public class NetworkProfilesPresenterTest {
     @Test
     @SuppressWarnings("unchecked")
     public void onStart_getNetworkProfiles() {
-        networkProfilesPresenter.onStart();
+        networkProfilesPresenter.initialize();
 
         verify(networkProfilesView).showLoader();
         verify(getNetworkProfilesUseCase).execute(any(DisposableSingleObserver.class),

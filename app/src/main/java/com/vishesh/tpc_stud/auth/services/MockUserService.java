@@ -8,6 +8,7 @@ import com.vishesh.tpc_stud.dashboard.models.Degree;
 import com.vishesh.tpc_stud.dashboard.models.Network;
 import com.vishesh.tpc_stud.dashboard.models.NetworkProfile;
 import com.vishesh.tpc_stud.dashboard.models.UserProfile;
+import com.vishesh.tpc_stud.semesterGrades.models.SemesterGrade;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,14 +82,35 @@ public class MockUserService implements UserService {
 
     @Override
     public Single<NetworkProfile> saveNetworkProfile(@Path("userId") Integer userId, @Body NetworkProfile networkProfile) {
-        return delegate.returningResponse(getStubGithubNetworkProfile())
+        return delegate.returningResponse(getStubGitHubNetworkProfile())
                 .saveNetworkProfile(userId, networkProfile);
+    }
+
+    @Override
+    public Single<List<SemesterGrade>> getSemesterGrades(@Path("userId") int userId) {
+        return delegate.returningResponse(getStubSemesterGrades())
+                .getSemesterGrades(userId);
+    }
+
+    private List<SemesterGrade> getStubSemesterGrades() {
+
+        List<SemesterGrade> semesterGrades = new ArrayList<>();
+
+        semesterGrades.add(getSemesterGrade("Semester 1", 9.20));
+        semesterGrades.add(getSemesterGrade("Semester 2", 7.90));
+        semesterGrades.add(getSemesterGrade("Semester 3", 7.45));
+        semesterGrades.add(getSemesterGrade("Semester 4", 8.10));
+        semesterGrades.add(getSemesterGrade("Semester 5", 6.70));
+        semesterGrades.add(getSemesterGrade("Semester 6", 9.00));
+        semesterGrades.add(getSemesterGrade("Semester 7", 7.34));
+
+        return semesterGrades;
     }
 
     private List<NetworkProfile> getStubNetworkProfiles() {
         List<NetworkProfile> networkProfiles = new ArrayList<>();
 
-        NetworkProfile networkProfile = getStubGithubNetworkProfile();
+        NetworkProfile networkProfile = getStubGitHubNetworkProfile();
 
         NetworkProfile networkProfile1 = getStubLinkedInNetworkProfile();
 
@@ -99,7 +121,7 @@ public class MockUserService implements UserService {
     }
 
     @NonNull
-    private NetworkProfile getStubGithubNetworkProfile() {
+    private NetworkProfile getStubGitHubNetworkProfile() {
         NetworkProfile networkProfile = new NetworkProfile();
         networkProfile.setNetwork(Network.GITHUB);
         networkProfile.setUrl("https://github.com");
@@ -128,5 +150,12 @@ public class MockUserService implements UserService {
 
     private Double getGpa() {
         return 8.7;
+    }
+
+    private SemesterGrade getSemesterGrade(String semester, Double grade) {
+        SemesterGrade semesterGrade = new SemesterGrade();
+        semesterGrade.setSemester(semester);
+        semesterGrade.setSemesterGrade(grade);
+        return semesterGrade;
     }
 }

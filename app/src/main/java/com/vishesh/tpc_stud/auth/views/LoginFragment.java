@@ -50,6 +50,30 @@ public class LoginFragment
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        loginPresenter.pause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loginPresenter.resume();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        loginPresenter.destroy();
+    }
+
+    @Override
     protected int getLayoutId() {
         return R.layout.fragment_login;
     }
