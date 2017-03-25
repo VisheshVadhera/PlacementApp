@@ -61,6 +61,10 @@ public class NetworkProfilesFragment
         return new Intent(context, NetworkProfilesActivity.class);
     }
 
+    public NetworkProfilesFragment() {
+        setRetainInstance(true);
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
@@ -73,14 +77,41 @@ public class NetworkProfilesFragment
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         networkProfilesPresenter.setNetworkProfilesView(this);
+        if (savedInstanceState == null) {
+            loadNetworkProfiles();
+        }
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        networkProfilesPresenter.onStart();
         bus.asFlowable()
                 .subscribe(new BusEventConsumer());
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        networkProfilesPresenter.resume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        networkProfilesPresenter.pause();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        recyclerViewNetworkProfiles.setAdapter(null);
+        unbinder.unbind();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        networkProfilesPresenter.destroy();
     }
 
     @Override
@@ -180,6 +211,10 @@ public class NetworkProfilesFragment
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeAsUpIndicator(iconicsDrawable);
         }
+    }
+
+    private void loadNetworkProfiles() {
+        networkProfilesPresenter.initialize();
     }
 
     private void setupNetworkProfileDialog() {

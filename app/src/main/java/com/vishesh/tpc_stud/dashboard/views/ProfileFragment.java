@@ -67,14 +67,41 @@ public class ProfileFragment
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         profilePresenter.setProfileView(this);
+        if (savedInstanceState == null) {
+            loadProfile();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        profilePresenter.resume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        profilePresenter.pause();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        recyclerViewProfile.setAdapter(null);
+        unbinder.unbind();
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        profilePresenter.onStart();
         bus.asFlowable()
                 .subscribe(new BusEventConsumer());
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        profilePresenter.destroy();
     }
 
     @Override
@@ -154,6 +181,10 @@ public class ProfileFragment
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void loadProfile() {
+        profilePresenter.initialize();
     }
 
     private class BusEventConsumer implements Consumer<Object> {

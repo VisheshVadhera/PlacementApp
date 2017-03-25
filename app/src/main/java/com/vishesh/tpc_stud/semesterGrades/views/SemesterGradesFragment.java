@@ -46,9 +46,7 @@ public class SemesterGradesFragment
         return new Intent(context, SemesterGradesActivity.class);
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public SemesterGradesFragment() {
         setRetainInstance(true);
     }
 
@@ -64,12 +62,38 @@ public class SemesterGradesFragment
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         semesterGradesPresenter.setView(this);
+        if (savedInstanceState == null) {
+            loadSemesterGrades();
+        }
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-        semesterGradesPresenter.onStart();
+    public void onResume() {
+        super.onResume();
+        semesterGradesPresenter.resume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        semesterGradesPresenter.pause();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        recyclerViewSemesterGrades.setAdapter(null);
+        unbinder.unbind();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        semesterGradesPresenter.destroy();
+    }
+
+    private void loadSemesterGrades() {
+        semesterGradesPresenter.initialize();
     }
 
     private void setupToolbar() {

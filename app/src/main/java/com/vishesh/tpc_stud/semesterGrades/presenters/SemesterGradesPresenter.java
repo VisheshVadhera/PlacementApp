@@ -46,7 +46,7 @@ public class SemesterGradesPresenter extends BasePresenter {
         this.semesterGradesView = semesterGradesView;
     }
 
-    public void onStart() {
+    public void initialize() {
         semesterGradesView.showLoader();
 
         getSemesterGradesUseCase.execute(new SemesterGradesObserver(), localCache.getUserId(), new Object());

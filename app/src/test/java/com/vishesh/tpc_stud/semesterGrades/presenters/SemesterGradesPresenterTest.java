@@ -38,7 +38,7 @@ public class SemesterGradesPresenterTest {
     @SuppressWarnings("unchecked")
     public void onStart_getGpa() throws Exception {
 
-        semesterGradesPresenter.onStart();
+        semesterGradesPresenter.initialize();
 
         verify(semesterGradesView).showLoader();
         verify(getSemesterGradesUseCase).execute(any(DisposableSingleObserver.class),

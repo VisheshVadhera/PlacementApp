@@ -57,7 +57,7 @@ public class NetworkProfilesPresenter extends BasePresenter {
         this.networkProfilesView = networkProfilesView;
     }
 
-    public void onStart() {
+    public void initialize() {
         networkProfilesView.showLoader();
         getNetworkProfilesUseCase.execute(new NetworkProfilesObserver(),
                 localCache.getUserId(), new Object());

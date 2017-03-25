@@ -62,7 +62,7 @@ public class ProfilePresenter
         this.profileView = profileView;
     }
 
-    public void onStart() {
+    public void initialize() {
         profileView.showLoader();
         getCurrentUserUseCase.execute(new CurrentUserObserver(), new Object(), new Object());}
 
