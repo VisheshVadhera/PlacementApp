@@ -42,7 +42,7 @@ public class ProfilePresenterTest {
     @Ignore
     @SuppressWarnings("unchecked")
     public void onStart_getCurrentUser() {
-        profilePresenter.onStart();
+        profilePresenter.initialize();
 
         verify(profileView).showLoader();
         verify(getCurrentUserUseCase).execute(any(DisposableSingleObserver.class),
@@ -57,4 +57,11 @@ public class ProfilePresenterTest {
         verify(profileView).openNetworkProfilesScreen();
     }
 
+    @Test
+    public void onGpaTapped() throws Exception {
+
+        profilePresenter.onGpaTapped();
+
+        verify(profileView).openSemesterGradesScreen();
+    }
 }

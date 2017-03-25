@@ -35,6 +35,10 @@ public class RecruitersFragment
         return new RecruitersFragment();
     }
 
+    public RecruitersFragment() {
+        setRetainInstance(true);
+    }
+
     @Override
     protected void injectDependencies() {
         getDependencyInjector()
@@ -45,12 +49,34 @@ public class RecruitersFragment
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recruitersPresenter.setView(this);
+        if (savedInstanceState == null) {
+            loadRecruiters();
+        }
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-        recruitersPresenter.onStart();
+    public void onResume() {
+        super.onResume();
+        recruitersPresenter.resume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        recruitersPresenter.pause();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        recyclerViewRecruiters.setAdapter(null);
+        unbinder.unbind();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        recruitersPresenter.destroy();
     }
 
     @Override
@@ -63,5 +89,9 @@ public class RecruitersFragment
         recruiterItemAdapter.setData(recruiterModels);
         recyclerViewRecruiters.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerViewRecruiters.setAdapter(recruiterItemAdapter);
+    }
+
+    private void loadRecruiters() {
+        recruitersPresenter.initialize();
     }
 }

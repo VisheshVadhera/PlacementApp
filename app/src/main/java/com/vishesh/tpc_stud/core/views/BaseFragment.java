@@ -21,7 +21,7 @@ public abstract class BaseFragment extends Fragment {
     @BindView(R.id.layout_loader)
     RelativeLayout relativeLayoutLoader;
 
-    private Unbinder unbinder;
+    protected Unbinder unbinder;
     private Snackbar snackbar;
 
     @Override
@@ -54,12 +54,6 @@ public abstract class BaseFragment extends Fragment {
 
     public void hideLoader() {
         relativeLayoutLoader.setVisibility(View.GONE);
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
     }
 
     protected void finish() {

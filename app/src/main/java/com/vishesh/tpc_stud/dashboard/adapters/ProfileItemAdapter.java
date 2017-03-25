@@ -100,4 +100,13 @@ public class ProfileItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public int getItemCount() {
         return 5;
     }
+
+    public void setGpaClickListener(GpaAdapterDelegate.GpaClickListener gpaClickListener) {
+        gpaAdapterDelegate.setGpaClickListener(gpaClickListener);
+    }
+
+
+    public void setNetworkProfileClickListener(NetworkProfileAdapterDelegate.NetworkProfileClickListener listener) {
+        networkProfileAdapterDelegate.setNetworkProfileClickListener(listener);
+    }
 }

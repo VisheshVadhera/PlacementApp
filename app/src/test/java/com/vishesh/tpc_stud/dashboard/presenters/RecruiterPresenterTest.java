@@ -2,7 +2,6 @@ package com.vishesh.tpc_stud.dashboard.presenters;
 
 import com.vishesh.tpc_stud.core.repos.LocalCache;
 import com.vishesh.tpc_stud.dashboard.mappers.RecruiterModelMapper;
-import com.vishesh.tpc_stud.dashboard.presenters.RecruitersPresenter;
 import com.vishesh.tpc_stud.dashboard.useCases.GetRecruitersUseCase;
 
 import org.junit.Before;
@@ -43,7 +42,7 @@ public class RecruiterPresenterTest {
     @Test
     @SuppressWarnings("unchecked")
     public void onStart_getJobOffers() {
-        recruitersPresenter.onStart();
+        recruitersPresenter.initialize();
 
         verify(recruitersView).showLoader();
         verify(getRecruitersUseCase).execute(any(DisposableSingleObserver.class),

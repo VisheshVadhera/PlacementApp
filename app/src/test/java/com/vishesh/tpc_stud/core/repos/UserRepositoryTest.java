@@ -83,7 +83,7 @@ public class UserRepositoryTest {
     }
 
     @Test
-    public void tesSaveNetworkProfile() throws Exception {
+    public void testSaveNetworkProfile() throws Exception {
         NetworkProfile networkProfile = new NetworkProfile();
         networkProfile.setNetwork(Network.GITHUB);
         networkProfile.setUrl("fakeUrl");
@@ -91,5 +91,13 @@ public class UserRepositoryTest {
         userRepository.saveNetworkProfile(MOCK_USER_ID, networkProfile);
 
         verify(userService).saveNetworkProfile(MOCK_USER_ID, networkProfile);
+    }
+
+    @Test
+    public void testGetGpa() {
+
+        userRepository.getSemesterGrades(MOCK_USER_ID);
+
+        verify(userService).getSemesterGrades(MOCK_USER_ID);
     }
 }
