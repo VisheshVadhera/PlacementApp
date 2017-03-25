@@ -35,7 +35,7 @@ public class RecruitersPresenter extends BasePresenter {
         this.recruitersView = recruitersView;
     }
 
-    public void onStart() {
+    public void initialize() {
         recruitersView.showLoader();
         Integer userId = localCache.getUserId();
         getRecruitersUseCase.execute(new JobOffersObserver(), userId, null);
