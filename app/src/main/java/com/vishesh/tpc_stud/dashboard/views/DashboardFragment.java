@@ -106,7 +106,6 @@ public class DashboardFragment
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        viewPager.setAdapter(null);
         unbinder.unbind();
     }
 
