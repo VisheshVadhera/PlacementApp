@@ -2,17 +2,19 @@ package com.vishesh.tpc_stud.dashboard;
 
 import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.Espresso;
+import android.support.test.espresso.IdlingResource;
 import android.support.test.espresso.UiController;
 import android.support.test.espresso.ViewAction;
 import android.support.test.espresso.ViewInteraction;
-import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.espresso.matcher.BoundedMatcher;
 import android.support.test.filters.LargeTest;
+import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.vishesh.tpc_stud.R;
+import com.vishesh.tpc_stud.core.helpers.ElapsedTimeIdlingResource;
 import com.vishesh.tpc_stud.dashboard.views.DashboardActivity;
 
 import org.hamcrest.Description;
@@ -57,13 +59,17 @@ public class DashboardActivityTest {
      */
 
     @Rule
-    public IntentsTestRule<DashboardActivity> dashboardActivityActivityTestRule =
-            new IntentsTestRule<>(DashboardActivity.class);
+    public ActivityTestRule<DashboardActivity> dashboardActivityActivityTestRule =
+            new ActivityTestRule<>(DashboardActivity.class);
+
+    private static final long WAITING_TIME_MILLS = 2500;
 
     @Before
     public void registerIdlingResource() {
+
         Espresso.registerIdlingResources(dashboardActivityActivityTestRule
                 .getActivity().getCountingIdlingResource());
+
     }
 
     /**
@@ -115,11 +121,8 @@ public class DashboardActivityTest {
                 allOf(withId(R.id.view_pager_dashboard), isDisplayed()));
         viewPager.perform(withCustomConstraints(swipeLeft(), isDisplayingAtLeast(85)));
 
-        try {
-            Thread.sleep(4000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        IdlingResource elapsedTimeIdlingResource = new ElapsedTimeIdlingResource(WAITING_TIME_MILLS);
+        Espresso.registerIdlingResources(elapsedTimeIdlingResource);
 
         ViewInteraction imageButton = onView(
                 allOf(withId(R.id.image_network_profile_item), isDisplayed()));
@@ -133,6 +136,8 @@ public class DashboardActivityTest {
                 .check(matches(
                         withToolbarTitle(
                                 Matchers.<CharSequence>is(s))));
+
+        Espresso.unregisterIdlingResources(elapsedTimeIdlingResource);
     }
 
     /**
@@ -147,11 +152,8 @@ public class DashboardActivityTest {
                 allOf(withId(R.id.view_pager_dashboard), isDisplayed()));
         viewPager.perform(withCustomConstraints(swipeLeft(), isDisplayingAtLeast(85)));
 
-        try {
-            Thread.sleep(4000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        IdlingResource elapsedTimeIdlingResource = new ElapsedTimeIdlingResource(WAITING_TIME_MILLS);
+        Espresso.registerIdlingResources(elapsedTimeIdlingResource);
 
         ViewInteraction recyclerView = onView(
                 allOf(withId(R.id.recycler_view_profile), isDisplayed()));
@@ -165,10 +167,13 @@ public class DashboardActivityTest {
                 .check(matches(
                         withToolbarTitle(
                                 Matchers.<CharSequence>is(s))));
+
+        Espresso.unregisterIdlingResources(elapsedTimeIdlingResource);
     }
 
     @After
     public void unregisterIdlingResource() {
+
         Espresso.unregisterIdlingResources(dashboardActivityActivityTestRule
                 .getActivity().getCountingIdlingResource());
     }
