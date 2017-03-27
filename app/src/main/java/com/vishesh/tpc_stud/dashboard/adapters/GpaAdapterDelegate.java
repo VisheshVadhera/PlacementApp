@@ -78,7 +78,6 @@ public class GpaAdapterDelegate extends AdapterDelegate<UserProfile> {
 
         @OnClick(R.id.layout_profile_item)
         public void onClick() {
-            Logger.v("gpaClickListener tapped");
             gpaClickListener.onGpaClicked();
         }
 
