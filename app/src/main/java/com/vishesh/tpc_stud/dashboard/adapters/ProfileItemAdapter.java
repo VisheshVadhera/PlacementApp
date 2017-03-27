@@ -3,7 +3,7 @@ package com.vishesh.tpc_stud.dashboard.adapters;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
-import com.vishesh.tpc_stud.core.models.User;
+import com.vishesh.tpc_stud.common.models.User;
 import com.vishesh.tpc_stud.dashboard.models.UserProfile;
 
 import javax.inject.Inject;

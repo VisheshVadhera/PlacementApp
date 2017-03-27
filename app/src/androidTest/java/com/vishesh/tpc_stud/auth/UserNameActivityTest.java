@@ -6,7 +6,7 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.vishesh.tpc_stud.R;
-import com.vishesh.tpc_stud.auth.views.UserNameActivity;
+import com.vishesh.tpc_stud.dashboard.views.UserNameActivity;
 
 import org.junit.Rule;
 import org.junit.Test;

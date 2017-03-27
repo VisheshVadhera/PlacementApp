@@ -1,6 +1,7 @@
-package com.vishesh.tpc_stud.core;
+package com.vishesh.tpc_stud;
 
 import com.vishesh.tpc_stud.R;
+import com.vishesh.tpc_stud.TpcStudApplication;
 import com.vishesh.tpc_stud.core.dagger.AppModule;
 import com.vishesh.tpc_stud.core.dagger.DaggerTestAppComponent;
 import com.vishesh.tpc_stud.core.dagger.MockDataModule;

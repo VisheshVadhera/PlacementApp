@@ -2,11 +2,11 @@ package com.vishesh.tpc_stud.dashboard.presenters;
 
 import android.text.TextUtils;
 
-import com.vishesh.tpc_stud.auth.useCases.GetCurrentUserUseCase;
-import com.vishesh.tpc_stud.auth.useCases.UpdateUserUseCase;
-import com.vishesh.tpc_stud.core.models.User;
+import com.vishesh.tpc_stud.dashboard.useCases.GetCurrentUserUseCase;
+import com.vishesh.tpc_stud.dashboard.useCases.UpdateUserUseCase;
+import com.vishesh.tpc_stud.common.models.User;
 import com.vishesh.tpc_stud.core.presenters.BasePresenter;
-import com.vishesh.tpc_stud.core.repos.LocalCache;
+import com.vishesh.tpc_stud.core.cache.LocalCache;
 import com.vishesh.tpc_stud.core.views.BaseView;
 import com.vishesh.tpc_stud.dashboard.useCases.LogoutUseCase;
 

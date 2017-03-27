@@ -1,7 +1,7 @@
 package com.vishesh.tpc_stud.core.dagger;
 
-import com.vishesh.tpc_stud.core.repos.FakePreferencesCache;
-import com.vishesh.tpc_stud.core.repos.LocalCache;
+import com.vishesh.tpc_stud.core.cache.FakePreferencesCache;
+import com.vishesh.tpc_stud.core.cache.LocalCache;
 
 import java.util.HashMap;
 

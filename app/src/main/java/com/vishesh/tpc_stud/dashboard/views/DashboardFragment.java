@@ -20,7 +20,6 @@ import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.auth.views.LoginFragment;
-import com.vishesh.tpc_stud.auth.views.UserNameActivity;
 import com.vishesh.tpc_stud.core.views.BaseFragment;
 import com.vishesh.tpc_stud.dashboard.adapters.SectionsPagerAdapter;
 import com.vishesh.tpc_stud.dashboard.presenters.DashboardPresenter;

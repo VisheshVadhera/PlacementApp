@@ -1,4 +1,4 @@
-package com.vishesh.tpc_stud.dashboard.models;
+package com.vishesh.tpc_stud.networkProfiles.models;
 
 public enum Network {
 

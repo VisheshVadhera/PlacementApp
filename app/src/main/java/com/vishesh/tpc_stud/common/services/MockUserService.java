@@ -1,12 +1,10 @@
-package com.vishesh.tpc_stud.auth.services;
+package com.vishesh.tpc_stud.common.services;
 
-import android.support.annotation.NonNull;
-
-import com.vishesh.tpc_stud.core.models.User;
+import com.vishesh.tpc_stud.common.models.User;
 import com.vishesh.tpc_stud.dashboard.models.Course;
 import com.vishesh.tpc_stud.dashboard.models.Degree;
-import com.vishesh.tpc_stud.dashboard.models.Network;
-import com.vishesh.tpc_stud.dashboard.models.NetworkProfile;
+import com.vishesh.tpc_stud.networkProfiles.models.Network;
+import com.vishesh.tpc_stud.networkProfiles.models.NetworkProfile;
 import com.vishesh.tpc_stud.dashboard.models.UserProfile;
 import com.vishesh.tpc_stud.semesterGrades.models.SemesterGrade;
 
@@ -120,7 +118,6 @@ public class MockUserService implements UserService {
         return networkProfiles;
     }
 
-    @NonNull
     private NetworkProfile getStubGitHubNetworkProfile() {
         NetworkProfile networkProfile = new NetworkProfile();
         networkProfile.setNetwork(Network.GITHUB);
@@ -128,7 +125,6 @@ public class MockUserService implements UserService {
         return networkProfile;
     }
 
-    @NonNull
     private NetworkProfile getStubLinkedInNetworkProfile() {
         NetworkProfile networkProfile1 = new NetworkProfile();
         networkProfile1.setNetwork(Network.LINKEDIN);

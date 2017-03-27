@@ -14,7 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.vishesh.tpc_stud.R;
-import com.vishesh.tpc_stud.core.helpers.ElapsedTimeIdlingResource;
+import com.vishesh.tpc_stud.core.idlingResources.ElapsedTimeIdlingResource;
 import com.vishesh.tpc_stud.dashboard.views.DashboardActivity;
 
 import org.hamcrest.Description;

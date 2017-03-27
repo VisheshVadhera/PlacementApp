@@ -1,8 +1,8 @@
 package com.vishesh.tpc_stud.networkProfiles.presenters;
 
-import com.vishesh.tpc_stud.core.repos.LocalCache;
-import com.vishesh.tpc_stud.dashboard.models.Network;
-import com.vishesh.tpc_stud.dashboard.models.NetworkProfile;
+import com.vishesh.tpc_stud.core.cache.LocalCache;
+import com.vishesh.tpc_stud.networkProfiles.models.Network;
+import com.vishesh.tpc_stud.networkProfiles.models.NetworkProfile;
 import com.vishesh.tpc_stud.networkProfiles.constants.NetworkProfileConstants;
 import com.vishesh.tpc_stud.networkProfiles.useCases.GetNetworkProfilesUseCase;
 import com.vishesh.tpc_stud.networkProfiles.useCases.SaveNetworkProfileUseCase;

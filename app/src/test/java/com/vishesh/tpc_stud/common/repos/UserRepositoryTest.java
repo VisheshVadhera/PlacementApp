@@ -1,10 +1,11 @@
-package com.vishesh.tpc_stud.core.repos;
+package com.vishesh.tpc_stud.common.repos;
 
 import com.vishesh.tpc_stud.auth.services.AuthService;
-import com.vishesh.tpc_stud.auth.services.UserService;
-import com.vishesh.tpc_stud.core.models.User;
-import com.vishesh.tpc_stud.dashboard.models.Network;
-import com.vishesh.tpc_stud.dashboard.models.NetworkProfile;
+import com.vishesh.tpc_stud.common.repos.UserRepository;
+import com.vishesh.tpc_stud.common.services.UserService;
+import com.vishesh.tpc_stud.common.models.User;
+import com.vishesh.tpc_stud.networkProfiles.models.Network;
+import com.vishesh.tpc_stud.networkProfiles.models.NetworkProfile;
 
 import org.junit.Before;
 import org.junit.Test;

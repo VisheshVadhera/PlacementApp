@@ -1,6 +1,6 @@
 package com.vishesh.tpc_stud.dashboard.presenters;
 
-import com.vishesh.tpc_stud.core.repos.LocalCache;
+import com.vishesh.tpc_stud.core.cache.LocalCache;
 import com.vishesh.tpc_stud.dashboard.mappers.RecruiterModelMapper;
 import com.vishesh.tpc_stud.dashboard.useCases.GetRecruitersUseCase;
 

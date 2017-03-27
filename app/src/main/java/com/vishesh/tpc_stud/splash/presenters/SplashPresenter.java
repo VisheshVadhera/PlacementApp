@@ -3,7 +3,7 @@ package com.vishesh.tpc_stud.splash.presenters;
 import android.text.TextUtils;
 
 import com.vishesh.tpc_stud.core.presenters.BasePresenter;
-import com.vishesh.tpc_stud.core.repos.LocalCache;
+import com.vishesh.tpc_stud.core.cache.LocalCache;
 
 import javax.inject.Inject;
 

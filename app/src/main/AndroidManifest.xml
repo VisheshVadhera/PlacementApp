@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".core.TpcStudApplication"
+        android:name=".TpcStudApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -49,7 +49,7 @@
                 <data android:scheme="{ak_login_protocol_scheme}" />
             </intent-filter>
         </activity>
-        <activity android:name=".auth.views.UserNameActivity" />
+        <activity android:name=".dashboard.views.UserNameActivity" />
         <activity
             android:name=".dashboard.views.DashboardActivity"
             android:label="@string/title_activity_dashboard"
