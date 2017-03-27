@@ -52,18 +52,15 @@
         <activity android:name=".auth.views.UserNameActivity" />
         <activity
             android:name=".dashboard.views.DashboardActivity"
-            android:exported="true"
             android:label="@string/title_activity_dashboard"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".splash.views.SplashActivity" />
         <activity
             android:name=".networkProfiles.views.NetworkProfilesActivity"
-            android:exported="true"
             android:label="@string/title_activity_network_profiles"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".semesterGrades.views.SemesterGradesActivity"
-            android:exported="true"
             android:label="@string/title_activity_semester_grades"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
