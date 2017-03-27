@@ -2,7 +2,7 @@ package com.vishesh.tpc_stud.core.dagger;
 
 import android.content.Context;
 
-import com.vishesh.tpc_stud.core.TpcStudApplication;
+import com.vishesh.tpc_stud.TpcStudApplication;
 import com.vishesh.tpc_stud.core.helpers.Bus;
 
 import javax.inject.Singleton;

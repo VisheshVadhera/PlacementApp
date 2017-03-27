@@ -9,7 +9,7 @@ import com.facebook.accountkit.AccountKitLoginResult;
 import com.facebook.accountkit.ui.AccountKitConfiguration;
 import com.vishesh.tpc_stud.auth.constants.AuthConstants;
 import com.vishesh.tpc_stud.auth.useCases.LoginUseCase;
-import com.vishesh.tpc_stud.core.repos.LocalCache;
+import com.vishesh.tpc_stud.core.cache.LocalCache;
 
 import org.junit.Before;
 import org.junit.Test;

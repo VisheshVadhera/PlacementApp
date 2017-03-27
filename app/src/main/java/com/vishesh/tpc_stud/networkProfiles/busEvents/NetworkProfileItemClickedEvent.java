@@ -1,6 +1,6 @@
 package com.vishesh.tpc_stud.networkProfiles.busEvents;
 
-import com.vishesh.tpc_stud.dashboard.models.NetworkProfile;
+import com.vishesh.tpc_stud.networkProfiles.models.NetworkProfile;
 
 public class NetworkProfileItemClickedEvent {
 

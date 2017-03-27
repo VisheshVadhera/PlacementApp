@@ -1,4 +1,6 @@
-package com.vishesh.tpc_stud.core.helpers;
+package com.vishesh.tpc_stud.core.useCases;
+
+import com.vishesh.tpc_stud.core.idlingResources.EspressoIdlingResource;
 
 import io.reactivex.Scheduler;
 import io.reactivex.Single;

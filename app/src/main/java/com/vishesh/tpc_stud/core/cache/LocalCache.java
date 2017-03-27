@@ -1,4 +1,4 @@
-package com.vishesh.tpc_stud.core.repos;
+package com.vishesh.tpc_stud.core.cache;
 
 public interface LocalCache {
 

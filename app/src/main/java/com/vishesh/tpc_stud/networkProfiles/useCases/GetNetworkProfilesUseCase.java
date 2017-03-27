@@ -1,8 +1,8 @@
 package com.vishesh.tpc_stud.networkProfiles.useCases;
 
-import com.vishesh.tpc_stud.core.helpers.BaseUseCase;
-import com.vishesh.tpc_stud.core.repos.UserRepository;
-import com.vishesh.tpc_stud.dashboard.models.NetworkProfile;
+import com.vishesh.tpc_stud.core.useCases.BaseUseCase;
+import com.vishesh.tpc_stud.common.repos.UserRepository;
+import com.vishesh.tpc_stud.networkProfiles.models.NetworkProfile;
 
 import java.util.List;
 

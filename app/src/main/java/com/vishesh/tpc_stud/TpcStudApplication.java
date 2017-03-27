@@ -1,13 +1,12 @@
-package com.vishesh.tpc_stud.core;
+package com.vishesh.tpc_stud;
 
 import android.app.Application;
 
-import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.core.dagger.AppModule;
-import com.vishesh.tpc_stud.core.dagger.TpcStudAppComponent;
 import com.vishesh.tpc_stud.core.dagger.DaggerAppComponent;
 import com.vishesh.tpc_stud.core.dagger.DataModule;
 import com.vishesh.tpc_stud.core.dagger.RetrofitModule;
+import com.vishesh.tpc_stud.core.dagger.TpcStudAppComponent;
 
 import net.danlew.android.joda.JodaTimeAndroid;
 

@@ -1,5 +1,7 @@
 package com.vishesh.tpc_stud.dashboard.models;
 
+import com.vishesh.tpc_stud.networkProfiles.models.NetworkProfile;
+
 import java.util.List;
 
 public class UserProfile {

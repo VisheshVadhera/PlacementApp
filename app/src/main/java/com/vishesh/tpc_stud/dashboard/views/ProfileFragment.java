@@ -13,7 +13,7 @@ import android.view.View;
 
 import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.core.helpers.Bus;
-import com.vishesh.tpc_stud.core.models.User;
+import com.vishesh.tpc_stud.common.models.User;
 import com.vishesh.tpc_stud.core.utils.FileUtils;
 import com.vishesh.tpc_stud.core.views.BaseFragment;
 import com.vishesh.tpc_stud.dashboard.adapters.GpaAdapterDelegate;

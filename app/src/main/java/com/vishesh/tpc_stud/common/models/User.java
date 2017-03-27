@@ -1,4 +1,4 @@
-package com.vishesh.tpc_stud.core.models;
+package com.vishesh.tpc_stud.common.models;
 
 public class User {
 
