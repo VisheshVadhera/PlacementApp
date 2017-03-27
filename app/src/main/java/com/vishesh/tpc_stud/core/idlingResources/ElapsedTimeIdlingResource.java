@@ -1,4 +1,4 @@
-package com.vishesh.tpc_stud.core.helpers;
+package com.vishesh.tpc_stud.core.idlingResources;
 
 import android.support.test.espresso.IdlingResource;
 

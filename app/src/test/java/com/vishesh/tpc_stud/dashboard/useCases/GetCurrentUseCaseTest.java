@@ -1,7 +1,7 @@
-package com.vishesh.tpc_stud.auth.useCases;
+package com.vishesh.tpc_stud.dashboard.useCases;
 
-import com.vishesh.tpc_stud.core.models.User;
-import com.vishesh.tpc_stud.core.repos.UserRepository;
+import com.vishesh.tpc_stud.common.repos.UserRepository;
+import com.vishesh.tpc_stud.dashboard.useCases.GetCurrentUserUseCase;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -11,16 +11,14 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import io.reactivex.Scheduler;
 
-import static org.mockito.Mockito.any;
-import static org.mockito.Mockito.anyInt;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.verifyZeroInteractions;
 
 @RunWith(MockitoJUnitRunner.class)
-public class UpdateUserUseCaseTest {
+public class GetCurrentUseCaseTest {
 
-    private UpdateUserUseCase updateUserUseCase;
+    private GetCurrentUserUseCase getCurrentUserUseCase;
 
     @Mock
     private Scheduler jobScheduler;
@@ -31,18 +29,18 @@ public class UpdateUserUseCaseTest {
 
     @Before
     public void setup() {
-        updateUserUseCase = new UpdateUserUseCase(jobScheduler,
+        getCurrentUserUseCase = new GetCurrentUserUseCase(jobScheduler,
                 postJobScheduler, userRepository);
     }
 
     @Test
-    public void testUpdateUserUseCaseSingle() {
-        Integer userId = anyInt();
-        User user = any(User.class);
+    public void testGetCurrentUseCaseSingle() {
+        Object o = new Object();
+        Object o2 = new Object();
 
-        updateUserUseCase.buildSingle(userId, user);
+        getCurrentUserUseCase.buildSingle(o, o2);
 
-        verify(userRepository).updateUser(userId, user);
+        verify(userRepository).getCurrentUser();
         verifyNoMoreInteractions(userRepository);
         verifyZeroInteractions(jobScheduler);
         verifyZeroInteractions(postJobScheduler);

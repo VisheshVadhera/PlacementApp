@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.core.helpers.Bus;
-import com.vishesh.tpc_stud.dashboard.models.NetworkProfile;
+import com.vishesh.tpc_stud.networkProfiles.models.NetworkProfile;
 import com.vishesh.tpc_stud.networkProfiles.busEvents.NetworkProfileItemClickedEvent;
 
 import java.util.List;

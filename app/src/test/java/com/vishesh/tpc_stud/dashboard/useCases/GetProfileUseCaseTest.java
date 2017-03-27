@@ -1,6 +1,6 @@
 package com.vishesh.tpc_stud.dashboard.useCases;
 
-import com.vishesh.tpc_stud.core.repos.UserRepository;
+import com.vishesh.tpc_stud.common.repos.UserRepository;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -1,8 +1,8 @@
-package com.vishesh.tpc_stud.auth.useCases;
+package com.vishesh.tpc_stud.dashboard.useCases;
 
-import com.vishesh.tpc_stud.core.helpers.BaseUseCase;
-import com.vishesh.tpc_stud.core.models.User;
-import com.vishesh.tpc_stud.core.repos.UserRepository;
+import com.vishesh.tpc_stud.core.useCases.BaseUseCase;
+import com.vishesh.tpc_stud.common.models.User;
+import com.vishesh.tpc_stud.common.repos.UserRepository;
 
 import javax.inject.Inject;
 import javax.inject.Named;

@@ -1,8 +1,8 @@
 package com.vishesh.tpc_stud.auth.useCases;
 
 import com.vishesh.tpc_stud.auth.models.AccessToken;
-import com.vishesh.tpc_stud.core.helpers.BaseUseCase;
-import com.vishesh.tpc_stud.core.repos.UserRepository;
+import com.vishesh.tpc_stud.core.useCases.BaseUseCase;
+import com.vishesh.tpc_stud.common.repos.UserRepository;
 
 import java.util.Map;
 

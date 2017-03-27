@@ -1,7 +1,7 @@
-package com.vishesh.tpc_stud.auth.services;
+package com.vishesh.tpc_stud.common.services;
 
-import com.vishesh.tpc_stud.core.models.User;
-import com.vishesh.tpc_stud.dashboard.models.NetworkProfile;
+import com.vishesh.tpc_stud.common.models.User;
+import com.vishesh.tpc_stud.networkProfiles.models.NetworkProfile;
 import com.vishesh.tpc_stud.dashboard.models.UserProfile;
 import com.vishesh.tpc_stud.semesterGrades.models.SemesterGrade;
 

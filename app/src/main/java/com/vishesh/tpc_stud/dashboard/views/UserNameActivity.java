@@ -1,4 +1,4 @@
-package com.vishesh.tpc_stud.auth.views;
+package com.vishesh.tpc_stud.dashboard.views;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,7 +12,6 @@ import android.widget.Button;
 import com.jakewharton.rxbinding2.widget.RxTextView;
 import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.core.views.BaseActivity;
-import com.vishesh.tpc_stud.dashboard.views.DashboardFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

@@ -1,6 +1,6 @@
-package com.vishesh.tpc_stud;
+package com.vishesh.tpc_stud.core.useCases;
 
-import com.vishesh.tpc_stud.core.helpers.BaseUseCase;
+import com.vishesh.tpc_stud.core.useCases.BaseUseCase;
 
 import junit.framework.Assert;
 

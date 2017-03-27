@@ -1,7 +1,7 @@
 package com.vishesh.tpc_stud.dashboard.useCases;
 
-import com.vishesh.tpc_stud.core.helpers.BaseUseCase;
-import com.vishesh.tpc_stud.core.repos.UserRepository;
+import com.vishesh.tpc_stud.core.useCases.BaseUseCase;
+import com.vishesh.tpc_stud.common.repos.UserRepository;
 import com.vishesh.tpc_stud.dashboard.models.UserProfile;
 
 import javax.inject.Inject;

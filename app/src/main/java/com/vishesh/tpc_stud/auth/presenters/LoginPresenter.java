@@ -8,7 +8,7 @@ import com.vishesh.tpc_stud.auth.constants.AuthConstants;
 import com.vishesh.tpc_stud.auth.models.AccessToken;
 import com.vishesh.tpc_stud.auth.useCases.LoginUseCase;
 import com.vishesh.tpc_stud.core.presenters.BasePresenter;
-import com.vishesh.tpc_stud.core.repos.LocalCache;
+import com.vishesh.tpc_stud.core.cache.LocalCache;
 import com.vishesh.tpc_stud.core.views.BaseView;
 
 import java.util.HashMap;
