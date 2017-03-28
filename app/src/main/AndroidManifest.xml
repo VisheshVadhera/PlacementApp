@@ -53,6 +53,7 @@
         <activity
             android:name=".dashboard.views.DashboardActivity"
             android:label="@string/title_activity_dashboard"
+            android:exported="true"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".splash.views.SplashActivity" />
         <activity

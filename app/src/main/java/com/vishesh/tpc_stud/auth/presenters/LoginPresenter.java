@@ -74,6 +74,10 @@ public class LoginPresenter extends BasePresenter {
     @Override
     public void destroy() {
         loginUseCase.dispose();
+    }
+
+    @Override
+    public void unsetView() {
         loginView = null;
     }
 
@@ -88,15 +92,19 @@ public class LoginPresenter extends BasePresenter {
 
         @Override
         public void onSuccess(AccessToken value) {
-            localCache.saveAccessToken(value.getAccessToken());
-            loginView.hideLoader();
-            loginView.openDashboard();
+            if(loginView!=null){
+                localCache.saveAccessToken(value.getAccessToken());
+                loginView.hideLoader();
+                loginView.openDashboard();
+            }
         }
 
         @Override
         public void onError(Throwable e) {
-            loginView.hideLoader();
-            handleError(e);
+            if(loginView!=null){
+                loginView.hideLoader();
+                handleError(e);
+            }
         }
     }
 }

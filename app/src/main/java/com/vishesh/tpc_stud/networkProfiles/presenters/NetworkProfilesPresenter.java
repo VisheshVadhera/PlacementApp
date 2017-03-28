@@ -50,6 +50,10 @@ public class NetworkProfilesPresenter extends BasePresenter {
     public void destroy() {
         getNetworkProfilesUseCase.dispose();
         saveNetworkProfileUseCase.dispose();
+    }
+
+    @Override
+    public void unsetView() {
         networkProfilesView = null;
     }
 
@@ -119,25 +123,29 @@ public class NetworkProfilesPresenter extends BasePresenter {
         @Override
         public void onSuccess(List<NetworkProfile> networkProfiles) {
 
-            NetworkProfilesPresenter.this.networkProfiles = networkProfiles;
+            if(networkProfilesView!=null){
 
-            if (isNetworkProfileAbsent(Network.GITHUB)) {
-                networkProfilesView.allowGitHubProfileAddition();
-            } else if (isNetworkProfileAbsent(Network.LINKEDIN)) {
-                networkProfilesView.allowLinkedInProfileAddition();
-            } else {
-                networkProfilesView.allowOtherProfilesAddition();
+                NetworkProfilesPresenter.this.networkProfiles = networkProfiles;
+
+                if (isNetworkProfileAbsent(Network.GITHUB)) {
+                    networkProfilesView.allowGitHubProfileAddition();
+                } else if (isNetworkProfileAbsent(Network.LINKEDIN)) {
+                    networkProfilesView.allowLinkedInProfileAddition();
+                } else {
+                    networkProfilesView.allowOtherProfilesAddition();
+                }
+
+                networkProfilesView.hideLoader();
+                networkProfilesView.showNetworkProfiles(networkProfiles);
             }
-
-            networkProfilesView.hideLoader();
-            networkProfilesView.showNetworkProfiles(networkProfiles);
-
         }
 
         @Override
         public void onError(Throwable e) {
-            networkProfilesView.hideLoader();
-            handleError(e);
+            if(networkProfilesView!=null){
+                networkProfilesView.hideLoader();
+                handleError(e);
+            }
         }
     }
 
@@ -145,15 +153,19 @@ public class NetworkProfilesPresenter extends BasePresenter {
 
         @Override
         public void onSuccess(NetworkProfile networkProfile) {
-            networkProfilesView.hideLoader();
-            networkProfiles.add(networkProfile);
-            networkProfilesView.showUpdatedNetworkProfiles(networkProfiles);
+            if(networkProfilesView!=null){
+                networkProfilesView.hideLoader();
+                networkProfiles.add(networkProfile);
+                networkProfilesView.showUpdatedNetworkProfiles(networkProfiles);
+            }
         }
 
         @Override
         public void onError(Throwable e) {
-            networkProfilesView.hideLoader();
-            handleError(e);
+            if(networkProfilesView!=null){
+                networkProfilesView.hideLoader();
+                handleError(e);
+            }
         }
     }
 }

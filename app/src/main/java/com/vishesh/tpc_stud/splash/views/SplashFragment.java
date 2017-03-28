@@ -59,4 +59,17 @@ public class SplashFragment
         startActivity(dashboardIntent);
         finish();
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        splashPresenter.unsetView();
+        unbinder.unbind();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        splashPresenter.destroy();
+    }
 }

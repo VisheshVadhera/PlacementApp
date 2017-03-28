@@ -69,9 +69,7 @@ public class ProfileFragment
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         profilePresenter.setProfileView(this);
-        if (savedInstanceState == null) {
-            loadProfile();
-        }
+        profilePresenter.initialize();
     }
 
     @Override
@@ -90,6 +88,7 @@ public class ProfileFragment
     public void onDestroyView() {
         super.onDestroyView();
         recyclerViewProfile.setAdapter(null);
+        profilePresenter.unsetView();
         unbinder.unbind();
     }
 
@@ -186,10 +185,6 @@ public class ProfileFragment
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
-    }
-
-    private void loadProfile() {
-        profilePresenter.initialize();
     }
 
     @Override

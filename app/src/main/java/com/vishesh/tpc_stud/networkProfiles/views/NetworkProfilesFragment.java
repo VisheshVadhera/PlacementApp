@@ -77,9 +77,7 @@ public class NetworkProfilesFragment
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         networkProfilesPresenter.setNetworkProfilesView(this);
-        if (savedInstanceState == null) {
-            loadNetworkProfiles();
-        }
+        networkProfilesPresenter.initialize();
     }
 
     @Override
@@ -105,6 +103,7 @@ public class NetworkProfilesFragment
     public void onDestroyView() {
         super.onDestroyView();
         recyclerViewNetworkProfiles.setAdapter(null);
+        networkProfilesPresenter.unsetView();
         unbinder.unbind();
     }
 
@@ -211,10 +210,6 @@ public class NetworkProfilesFragment
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeAsUpIndicator(iconicsDrawable);
         }
-    }
-
-    private void loadNetworkProfiles() {
-        networkProfilesPresenter.initialize();
     }
 
     private void setupNetworkProfileDialog() {

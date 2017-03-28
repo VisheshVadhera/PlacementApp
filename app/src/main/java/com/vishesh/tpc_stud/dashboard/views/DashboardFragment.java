@@ -10,10 +10,12 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.jakewharton.rxbinding2.support.design.widget.RxTabLayout;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
@@ -70,19 +72,18 @@ public class DashboardFragment
                 .inject(this);
     }
 
+    @Nullable
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         setHasOptionsMenu(true);
+        return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         dashboardPresenter.setView(this);
-        if (savedInstanceState == null) {
-            loadData();
-        }
+        dashboardPresenter.initialize();
     }
 
     @Override
@@ -106,6 +107,7 @@ public class DashboardFragment
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+        dashboardPresenter.unsetView();
     }
 
     @Override
@@ -202,9 +204,5 @@ public class DashboardFragment
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_dashboard;
-    }
-
-    private void loadData() {
-        dashboardPresenter.initialize();
     }
 }

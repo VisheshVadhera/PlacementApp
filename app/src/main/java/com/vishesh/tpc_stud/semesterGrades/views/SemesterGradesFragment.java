@@ -62,9 +62,7 @@ public class SemesterGradesFragment
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         semesterGradesPresenter.setView(this);
-        if (savedInstanceState == null) {
-            loadSemesterGrades();
-        }
+        semesterGradesPresenter.initialize();
     }
 
     @Override
@@ -83,6 +81,7 @@ public class SemesterGradesFragment
     public void onDestroyView() {
         super.onDestroyView();
         recyclerViewSemesterGrades.setAdapter(null);
+        semesterGradesPresenter.unsetView();
         unbinder.unbind();
     }
 
@@ -90,10 +89,6 @@ public class SemesterGradesFragment
     public void onDestroy() {
         super.onDestroy();
         semesterGradesPresenter.destroy();
-    }
-
-    private void loadSemesterGrades() {
-        semesterGradesPresenter.initialize();
     }
 
     private void setupToolbar() {

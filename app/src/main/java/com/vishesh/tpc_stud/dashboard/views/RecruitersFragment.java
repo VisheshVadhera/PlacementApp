@@ -49,9 +49,7 @@ public class RecruitersFragment
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recruitersPresenter.setView(this);
-        if (savedInstanceState == null) {
-            loadRecruiters();
-        }
+        recruitersPresenter.initialize();
     }
 
     @Override
@@ -70,6 +68,7 @@ public class RecruitersFragment
     public void onDestroyView() {
         super.onDestroyView();
         recyclerViewRecruiters.setAdapter(null);
+        recruitersPresenter.unsetView();
         unbinder.unbind();
     }
 
@@ -89,9 +88,5 @@ public class RecruitersFragment
         recruiterItemAdapter.setData(recruiterModels);
         recyclerViewRecruiters.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerViewRecruiters.setAdapter(recruiterItemAdapter);
-    }
-
-    private void loadRecruiters() {
-        recruitersPresenter.initialize();
     }
 }

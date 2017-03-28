@@ -39,6 +39,10 @@ public class SemesterGradesPresenter extends BasePresenter {
     @Override
     public void destroy() {
         getSemesterGradesUseCase.dispose();
+    }
+
+    @Override
+    public void unsetView() {
         semesterGradesView = null;
     }
 
@@ -61,14 +65,18 @@ public class SemesterGradesPresenter extends BasePresenter {
 
         @Override
         public void onSuccess(List<SemesterGrade> semesterGrades) {
-            semesterGradesView.hideLoader();
-            semesterGradesView.showSemesterGrades(semesterGrades);
+            if(semesterGradesView!=null){
+                semesterGradesView.hideLoader();
+                semesterGradesView.showSemesterGrades(semesterGrades);
+            }
         }
 
         @Override
         public void onError(Throwable e) {
-            semesterGradesView.hideLoader();
-            handleError(e);
+            if(semesterGradesView!=null){
+                semesterGradesView.hideLoader();
+                handleError(e);
+            }
         }
     }
 }

@@ -64,6 +64,7 @@ public class LoginFragment
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        loginPresenter.unsetView();
         unbinder.unbind();
     }
 
