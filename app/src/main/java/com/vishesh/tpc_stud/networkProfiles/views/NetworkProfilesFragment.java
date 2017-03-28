@@ -13,6 +13,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -70,6 +71,7 @@ public class NetworkProfilesFragment
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
         setupToolbar();
         setupNetworkProfileDialog();
+        setHasOptionsMenu(true);
         return rootView;
     }
 
@@ -183,6 +185,17 @@ public class NetworkProfilesFragment
                 });
 
         addNetworkProfileDialog.show();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                getActivity().onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override
