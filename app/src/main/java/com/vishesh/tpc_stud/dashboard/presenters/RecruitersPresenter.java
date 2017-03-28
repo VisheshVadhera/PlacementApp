@@ -59,6 +59,10 @@ public class RecruitersPresenter extends BasePresenter {
     @Override
     public void destroy() {
         getRecruitersUseCase.dispose();
+    }
+
+    @Override
+    public void unsetView() {
         recruitersView = null;
     }
 
@@ -66,14 +70,18 @@ public class RecruitersPresenter extends BasePresenter {
 
         @Override
         public void onSuccess(List<Recruiter> recruiters) {
-            recruitersView.hideLoader();
-            recruitersView.showJobOffers(recruiterModelMapper.transform(recruiters));
+            if (recruitersView != null) {
+                recruitersView.hideLoader();
+                recruitersView.showJobOffers(recruiterModelMapper.transform(recruiters));
+            }
         }
 
         @Override
         public void onError(Throwable e) {
-            recruitersView.hideLoader();
-            handleError(e);
+            if (recruitersView != null) {
+                recruitersView.hideLoader();
+                handleError(e);
+            }
         }
     }
 }

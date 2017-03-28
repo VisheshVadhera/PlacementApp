@@ -8,6 +8,8 @@ public abstract class BasePresenter {
 
     public abstract void destroy();
 
+    public abstract void unsetView();
+
     protected void handleError(Throwable throwable){
 
     }

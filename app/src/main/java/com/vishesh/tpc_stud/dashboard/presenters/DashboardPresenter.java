@@ -40,7 +40,6 @@ public class DashboardPresenter extends BasePresenter {
 
     public void initialize() {
         dashboardView.showLoader();
-
         getCurrentUserUseCase.execute(new CurrentUserObserver(), null, null);
     }
 
@@ -52,11 +51,11 @@ public class DashboardPresenter extends BasePresenter {
         user.setLastName(lastName);
 
         dashboardView.showLoader();
-
         updateUserUseCase.execute(new UpdatedUserObserver(), localCache.getUserId(), user);
     }
 
     public void onLogoutClicked() {
+
         dashboardView.showLoader();
 
         logoutUseCase.execute(new LogoutObserver(), null, null);
@@ -77,6 +76,9 @@ public class DashboardPresenter extends BasePresenter {
         getCurrentUserUseCase.dispose();
         updateUserUseCase.dispose();
         logoutUseCase.dispose();
+    }
+
+    public void unsetView() {
         dashboardView = null;
     }
 
@@ -94,18 +96,21 @@ public class DashboardPresenter extends BasePresenter {
         @Override
         public void onSuccess(Object value) {
 
-            localCache.deleteUserId();
-            localCache.deleteAccessToken();
+            if (dashboardView != null) {
+                localCache.deleteUserId();
+                localCache.deleteAccessToken();
 
-            dashboardView.hideLoader();
-            dashboardView.openLoginScreen();
+                dashboardView.hideLoader();
+                dashboardView.openLoginScreen();
+            }
         }
 
         @Override
         public void onError(Throwable e) {
-
-            dashboardView.hideLoader();
-            handleError(e);
+            if (dashboardView != null) {
+                dashboardView.hideLoader();
+                handleError(e);
+            }
         }
     }
 
@@ -114,22 +119,24 @@ public class DashboardPresenter extends BasePresenter {
         @Override
         public void onSuccess(User user) {
 
+            if (dashboardView != null) {
+                localCache.saveUserId(user.getId());
 
-            localCache.saveUserId(user.getId());
-
-            if (TextUtils.isEmpty(user.getFirstName())) {
-                dashboardView.takeUserName();
-            } else {
-                dashboardView.hideLoader();
-                dashboardView.setupTabs();
+                if (TextUtils.isEmpty(user.getFirstName())) {
+                    dashboardView.takeUserName();
+                } else {
+                    dashboardView.hideLoader();
+                    dashboardView.setupTabs();
+                }
             }
         }
 
         @Override
         public void onError(Throwable e) {
-
-            dashboardView.hideLoader();
-            handleError(e);
+            if (dashboardView != null) {
+                dashboardView.hideLoader();
+                handleError(e);
+            }
         }
     }
 
@@ -137,16 +144,18 @@ public class DashboardPresenter extends BasePresenter {
 
         @Override
         public void onSuccess(User value) {
-
-            dashboardView.hideLoader();
-            dashboardView.setupTabs();
+            if (dashboardView != null) {
+                dashboardView.hideLoader();
+                dashboardView.setupTabs();
+            }
         }
 
         @Override
         public void onError(Throwable e) {
-
-            dashboardView.hideLoader();
-            handleError(e);
+            if (dashboardView != null) {
+                dashboardView.hideLoader();
+                handleError(e);
+            }
         }
     }
 }

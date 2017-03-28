@@ -2,6 +2,7 @@ package com.vishesh.tpc_stud.dashboard.views;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 
 import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.core.views.BaseActivity;
@@ -14,7 +15,9 @@ public class DashboardActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        if (savedInstanceState == null) {
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+
+        if (fragment == null) {
             addFragment(R.id.fragment_container, new DashboardFragment());
         }
     }

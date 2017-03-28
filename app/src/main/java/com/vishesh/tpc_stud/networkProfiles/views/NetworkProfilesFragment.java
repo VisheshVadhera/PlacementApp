@@ -13,6 +13,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -70,6 +71,7 @@ public class NetworkProfilesFragment
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
         setupToolbar();
         setupNetworkProfileDialog();
+        setHasOptionsMenu(true);
         return rootView;
     }
 
@@ -77,9 +79,7 @@ public class NetworkProfilesFragment
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         networkProfilesPresenter.setNetworkProfilesView(this);
-        if (savedInstanceState == null) {
-            loadNetworkProfiles();
-        }
+        networkProfilesPresenter.initialize();
     }
 
     @Override
@@ -105,6 +105,7 @@ public class NetworkProfilesFragment
     public void onDestroyView() {
         super.onDestroyView();
         recyclerViewNetworkProfiles.setAdapter(null);
+        networkProfilesPresenter.unsetView();
         unbinder.unbind();
     }
 
@@ -187,6 +188,17 @@ public class NetworkProfilesFragment
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                getActivity().onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
     protected void injectDependencies() {
         getDependencyInjector().inject(this);
     }
@@ -211,10 +223,6 @@ public class NetworkProfilesFragment
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeAsUpIndicator(iconicsDrawable);
         }
-    }
-
-    private void loadNetworkProfiles() {
-        networkProfilesPresenter.initialize();
     }
 
     private void setupNetworkProfileDialog() {

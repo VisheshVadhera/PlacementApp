@@ -30,6 +30,11 @@ public class SplashPresenter extends BasePresenter {
 
     @Override
     public void destroy() {
+
+    }
+
+    @Override
+    public void unsetView() {
         splashView = null;
     }
 

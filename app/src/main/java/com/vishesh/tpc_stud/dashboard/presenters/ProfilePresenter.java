@@ -57,12 +57,17 @@ public class ProfilePresenter
 
     public void initialize() {
         profileView.showLoader();
-        getCurrentUserUseCase.execute(new CurrentUserObserver(), new Object(), new Object());}
+        getCurrentUserUseCase.execute(new CurrentUserObserver(), new Object(), new Object());
+    }
 
     @Override
     public void destroy() {
         getCurrentUserUseCase.dispose();
         getProfileUseCase.dispose();
+    }
+
+    @Override
+    public void unsetView() {
         profileView = null;
     }
 
@@ -108,17 +113,21 @@ public class ProfilePresenter
 
         @Override
         public void onSuccess(UserProfile userProfile) {
-            profileView.hideLoader();
-            if (userOptional.isPresent()) {
-                userProfileOptional = Optional.of(userProfile);
-                profileView.showProfile(userOptional.get(), userProfile);
+            if (profileView != null) {
+                profileView.hideLoader();
+                if (userOptional.isPresent()) {
+                    userProfileOptional = Optional.of(userProfile);
+                    profileView.showProfile(userOptional.get(), userProfile);
+                }
             }
         }
 
         @Override
         public void onError(Throwable e) {
-            profileView.hideLoader();
-            handleError(e);
+            if (profileView != null) {
+                profileView.hideLoader();
+                handleError(e);
+            }
         }
     }
 
@@ -126,15 +135,19 @@ public class ProfilePresenter
 
         @Override
         public void onSuccess(User user) {
-            localCache.saveUserId(user.getId());
-            userOptional = Optional.of(user);
-            getProfileUseCase.execute(new ProfileObserver(), localCache.getUserId(), null);
+            if (profileView != null) {
+                localCache.saveUserId(user.getId());
+                userOptional = Optional.of(user);
+                getProfileUseCase.execute(new ProfileObserver(), localCache.getUserId(), null);
+            }
         }
 
         @Override
         public void onError(Throwable e) {
-            profileView.hideLoader();
-            handleError(e);
+            if (profileView != null) {
+                profileView.hideLoader();
+                handleError(e);
+            }
         }
     }
 }

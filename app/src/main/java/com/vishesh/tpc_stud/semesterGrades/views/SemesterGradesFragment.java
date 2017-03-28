@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -55,6 +56,7 @@ public class SemesterGradesFragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = super.onCreateView(inflater, container, savedInstanceState);
         setupToolbar();
+        setHasOptionsMenu(true);
         return view;
     }
 
@@ -62,9 +64,7 @@ public class SemesterGradesFragment
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         semesterGradesPresenter.setView(this);
-        if (savedInstanceState == null) {
-            loadSemesterGrades();
-        }
+        semesterGradesPresenter.initialize();
     }
 
     @Override
@@ -83,6 +83,7 @@ public class SemesterGradesFragment
     public void onDestroyView() {
         super.onDestroyView();
         recyclerViewSemesterGrades.setAdapter(null);
+        semesterGradesPresenter.unsetView();
         unbinder.unbind();
     }
 
@@ -90,10 +91,6 @@ public class SemesterGradesFragment
     public void onDestroy() {
         super.onDestroy();
         semesterGradesPresenter.destroy();
-    }
-
-    private void loadSemesterGrades() {
-        semesterGradesPresenter.initialize();
     }
 
     private void setupToolbar() {
@@ -107,8 +104,8 @@ public class SemesterGradesFragment
                 .color(ContextCompat.getColor(getContext(), android.R.color.white));
 
         if (actionBar != null) {
-            actionBar.setTitle(R.string.title_activity_semester_grades);
             actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setTitle(R.string.title_activity_semester_grades);
             actionBar.setHomeAsUpIndicator(iconicsDrawable);
         }
     }
@@ -128,5 +125,16 @@ public class SemesterGradesFragment
         semesterGradeItemAdapter.setData(semesterGrades);
         recyclerViewSemesterGrades.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerViewSemesterGrades.setAdapter(semesterGradeItemAdapter);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                getActivity().onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
