@@ -84,7 +84,7 @@ public class LoginPresenter extends BasePresenter {
 
         @Override
         public void onSuccess(AccessToken value) {
-            if(loginView!=null){
+            if (loginView != null) {
                 localCache.saveAccessToken(value.getAccessToken());
                 loginView.hideLoader();
                 loginView.openDashboard();
@@ -93,7 +93,7 @@ public class LoginPresenter extends BasePresenter {
 
         @Override
         public void onError(Throwable e) {
-            if(loginView!=null){
+            if (loginView != null) {
                 loginView.hideLoader();
                 handleError(e);
             }
