@@ -1,14 +1,10 @@
 package com.vishesh.tpc_stud.auth.presenters;
 
-import com.facebook.accountkit.AccountKitLoginResult;
-import com.facebook.accountkit.ui.AccountKitActivity;
-import com.facebook.accountkit.ui.AccountKitConfiguration;
-import com.facebook.accountkit.ui.LoginType;
 import com.vishesh.tpc_stud.auth.constants.AuthConstants;
 import com.vishesh.tpc_stud.auth.models.AccessToken;
 import com.vishesh.tpc_stud.auth.useCases.LoginUseCase;
-import com.vishesh.tpc_stud.core.presenters.BasePresenter;
 import com.vishesh.tpc_stud.core.cache.LocalCache;
+import com.vishesh.tpc_stud.core.presenters.BasePresenter;
 import com.vishesh.tpc_stud.core.views.BaseView;
 
 import java.util.HashMap;
@@ -19,6 +15,8 @@ import javax.inject.Inject;
 import io.reactivex.observers.DisposableSingleObserver;
 
 public class LoginPresenter extends BasePresenter {
+
+    private static final String AUTHORIZATION_CODE_KEY = "authorizationCode";
 
     private LoginView loginView;
 
@@ -45,30 +43,8 @@ public class LoginPresenter extends BasePresenter {
 
     }
 
-    public void onEmailLoginResultReceived(AccountKitLoginResult accountKitLoginResult) {
-
-        if (accountKitLoginResult.getError() != null) {
-
-            loginView.showMessage(AuthConstants.ACCOUNT_KIT_ERROR_MSG);
-
-        } else if (accountKitLoginResult.wasCancelled()) {
-
-            loginView.showMessage(AuthConstants.LOGIN_CANCELLED_MSG);
-
-        } else if (accountKitLoginResult.getAuthorizationCode() != null) {
-            Map<String, String> map = new HashMap<>();
-            map.put("authorizationCode", accountKitLoginResult.getAuthorizationCode());
-            loginView.showLoader();
-            loginUseCase.execute(new LoginObserver(), map, null);
-        }
-    }
-
     public void onEmailLoginClicked() {
-        AccountKitConfiguration accountKitConfiguration =
-                new AccountKitConfiguration.AccountKitConfigurationBuilder(LoginType.EMAIL,
-                        AccountKitActivity.ResponseType.CODE).build();
-
-        loginView.startLoginProcess(accountKitConfiguration);
+        loginView.startLoginProcess();
     }
 
     @Override
@@ -81,11 +57,27 @@ public class LoginPresenter extends BasePresenter {
         loginView = null;
     }
 
+    public void onAccountKitLoginError() {
+        loginView.showMessage(AuthConstants.ACCOUNT_KIT_ERROR_MSG);
+    }
+
+    public void onAccountKitLoginCancelled() {
+        loginView.showMessage(AuthConstants.LOGIN_CANCELLED_MSG);
+    }
+
+    public void onAccountKitLoginResult(String authorizationCode) {
+        Map<String, String> map = new HashMap<>();
+        map.put(AUTHORIZATION_CODE_KEY, authorizationCode);
+        loginView.showLoader();
+        loginUseCase.execute(new LoginPresenter.LoginObserver(), map, new Object());
+    }
+
     public interface LoginView extends BaseView {
 
         void openDashboard();
 
-        void startLoginProcess(AccountKitConfiguration accountKitConfiguration);
+        void startLoginProcess();
+
     }
 
     private final class LoginObserver extends DisposableSingleObserver<AccessToken> {

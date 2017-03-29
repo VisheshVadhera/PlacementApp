@@ -11,6 +11,7 @@ import android.view.View;
 import com.facebook.accountkit.AccountKitLoginResult;
 import com.facebook.accountkit.ui.AccountKitActivity;
 import com.facebook.accountkit.ui.AccountKitConfiguration;
+import com.facebook.accountkit.ui.LoginType;
 import com.vishesh.tpc_stud.R;
 import com.vishesh.tpc_stud.auth.presenters.LoginPresenter;
 import com.vishesh.tpc_stud.core.views.BaseFragment;
@@ -92,7 +93,11 @@ public class LoginFragment
     }
 
     @Override
-    public void startLoginProcess(AccountKitConfiguration accountKitConfiguration) {
+    public void startLoginProcess() {
+        AccountKitConfiguration accountKitConfiguration =
+                new AccountKitConfiguration.AccountKitConfigurationBuilder(LoginType.EMAIL,
+                        AccountKitActivity.ResponseType.CODE).build();
+
         final Intent accountKitIntent = new Intent(getActivity(), AccountKitActivity.class);
         accountKitIntent.putExtra(AccountKitActivity.ACCOUNT_KIT_ACTIVITY_CONFIGURATION, accountKitConfiguration);
 
@@ -105,9 +110,24 @@ public class LoginFragment
             switch (requestCode) {
                 case ACCOUNT_KIT_REQUEST_CODE:
                     AccountKitLoginResult accountKitLoginResult = data.getParcelableExtra(AccountKitLoginResult.RESULT_KEY);
-                    loginPresenter.onEmailLoginResultReceived(accountKitLoginResult);
+                    onEmailLoginResultReceived(accountKitLoginResult);
                     break;
             }
+        }
+    }
+
+    private void onEmailLoginResultReceived(AccountKitLoginResult accountKitLoginResult) {
+        if (accountKitLoginResult.getError() != null) {
+
+            loginPresenter.onAccountKitLoginError();
+
+        } else if (accountKitLoginResult.wasCancelled()) {
+
+            loginPresenter.onAccountKitLoginCancelled();
+
+        } else if (accountKitLoginResult.getAuthorizationCode() != null) {
+
+            loginPresenter.onAccountKitLoginResult(accountKitLoginResult.getAuthorizationCode());
         }
     }
 }
