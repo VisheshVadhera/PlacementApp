@@ -54,11 +54,11 @@ The process of inviting companies to visit the college campus for hiring student
  * Get your account kit credentials from [this](https://developers.facebook.com/docs/accountkit/android) and the following
    variables to the gradle.properties file.
 
-   `
+   ```
     FACEBOOK_APP_ID=<facebook_app_id>
     ACCOUNT_KIT_CLIENT_TOKEN=<account_kit_client_token>
     BASE_URL=<base_url_with_trialing_slash>
-   `
+   ```
  * Build in Android Studio and deploy!
 
 
