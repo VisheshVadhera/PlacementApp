@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.vishesh.tpc_stud.dashboard.views.UserNameActivity">
+    tools:context="com.vishesh.placement.dashboard.views.UserNameActivity">
 
 
     <android.support.design.widget.TextInputLayout

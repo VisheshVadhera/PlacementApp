@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.vishesh.tpc_stud">
+    package="com.vishesh.placement">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".TpcStudApplication"
+        android:name="com.vishesh.placement.TpcStudApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -28,7 +28,7 @@
             android:name="com.facebook.accountkit.FacebookAppEventsEnabled"
             android:value="false" />
 
-        <activity android:name=".auth.views.LoginActivity">
+        <activity android:name="com.vishesh.placement.auth.views.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -49,18 +49,18 @@
                 <data android:scheme="{ak_login_protocol_scheme}" />
             </intent-filter>
         </activity>
-        <activity android:name=".dashboard.views.UserNameActivity" />
+        <activity android:name="com.vishesh.placement.dashboard.views.UserNameActivity" />
         <activity
-            android:name=".dashboard.views.DashboardActivity"
+            android:name="com.vishesh.placement.dashboard.views.DashboardActivity"
             android:label="@string/title_activity_dashboard"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".splash.views.SplashActivity" />
+        <activity android:name="com.vishesh.placement.splash.views.SplashActivity" />
         <activity
-            android:name=".networkProfiles.views.NetworkProfilesActivity"
+            android:name="com.vishesh.placement.networkProfiles.views.NetworkProfilesActivity"
             android:label="@string/title_activity_network_profiles"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".semesterGrades.views.SemesterGradesActivity"
+            android:name="com.vishesh.placement.semesterGrades.views.SemesterGradesActivity"
             android:label="@string/title_activity_semester_grades"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
