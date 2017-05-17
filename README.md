@@ -44,12 +44,12 @@ The process of inviting companies to visit the college campus for hiring student
  * Clone the project
 
    `
-    git clone git@github.com:VisheshVadhera/tpc-stud.git
+    git clone git@github.com:VisheshVadhera/PlacementApp.git
    `
  * Change the directory
 
     `
-    cd tpc-stud
+    cd PlacementApp
     `
  * Get your account kit credentials from [this](https://developers.facebook.com/docs/accountkit/android) and the following
    variables to the gradle.properties file.
