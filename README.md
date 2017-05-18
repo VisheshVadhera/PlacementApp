@@ -20,7 +20,7 @@ The process of inviting companies to visit the college campus for hiring student
 * File upload feature using persistent job queue.
 * An activity showing full job description.
 * Notifications.
-* Integration tests for tetsing integration of okHttp, Retrofit, Json Parsing & RxJava.
+* Integration tests for tetsing integration of OkHttp, Retrofit, Json Parsing & RxJava.
 * Java docs.
 * Another version of the app built using MVI (Model View Intent) pattern. (Just for fun's sake!)
 * Develop the backend. App right now uses mocked responses using mocked Retrofit services.
