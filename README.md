@@ -11,7 +11,7 @@ The process of inviting companies to visit the college campus for hiring student
 * MVP with Clean Architecture.
 * Dependency Injection.
 * Unit Tests: Written with JUnit & Mockito. Tests the Presenters, UseCases and the Repositories in isolation. Find them in the [`src/test`](/app/src/test) directory.
-* Functional UI Tests: Written with the help of Espresso & Mocked Retrofit Service classes, they are intended to test that the app works as expected from the user's point of view. Find them in the [`src/androidTest`](/app/src/androidTest) directory.
+* Functional UI Tests: Written with the help of Espresso & Stubbed Retrofit Service classes, they are intended to test that the app works as expected from the user's point of view. Find them in the [`src/androidTest`](/app/src/androidTest) directory.
 * Password less email login using Facebook AccountKit.
 * And lots more!
 
